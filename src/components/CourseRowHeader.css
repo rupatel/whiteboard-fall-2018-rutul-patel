@@ -3,6 +3,6 @@ a.no-decorate{
     color: black;
 }
 
-a.no-decorate:hover{
-    text-decoration: none;
+.course-listing-header{
+    border-color:#d6d0d0 !important;
 }

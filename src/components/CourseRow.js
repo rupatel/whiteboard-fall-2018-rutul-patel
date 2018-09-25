@@ -1,11 +1,6 @@
 import React from 'react';
 
-
-const style = {
-
-}
-
-const CourseRow = () =>{
+const CourseRow = () => {
     return (
         <div className="row">
             <div className="col-sm-5 col-11">
