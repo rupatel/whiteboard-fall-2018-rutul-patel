@@ -1,4 +1,5 @@
 import React from 'react';
+import './CourseRow.css'
 
 const CourseRow = () => {
     return (
@@ -15,10 +16,9 @@ const CourseRow = () => {
                 <p className="text-justify text-left">6.45 PM</p>
             </div>
             <div className="col-1">
-                <i className="fas fa-times"></i>
+                <a className="no-decorate" href={"#"}> <i className="fas fa-times"></i></a>
             </div>
         </div>
     )
 }
-
 export default CourseRow;

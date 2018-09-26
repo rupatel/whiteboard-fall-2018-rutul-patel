@@ -2,8 +2,11 @@ import React from 'react';
 import './CourseTableNavBar.css';
 
 const CourseTableNavBar = () => {
+    const navbarHeight = {
+        height: "10vh"
+    }
     return (
-        <nav className="navbar navbar-expand navbar-dark bg-primary static-fixed-top">
+        <nav style={navbarHeight} className="navbar navbar-expand navbar-dark bg-primary fixed-top">
             <i className="fas fa-bars pr-3"></i>
             <a className="navbar-brand pb-0 pt-0 d-none d-sm-inline" href="#">
                 <p className="navbar-text text-left text-white text-bold m-0">Course Manager</p>

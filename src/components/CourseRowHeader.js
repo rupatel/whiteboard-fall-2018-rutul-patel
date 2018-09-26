@@ -2,8 +2,12 @@ import React from 'react';
 import './CourseRowHeader.css';
 
 const CourseRowHeader = () => {
+    const styleTopMargin = {
+        marginTop :"10vh",
+        height:'5vh'
+    }
     return (
-        <div className="pb-2 pt-2 border-bottom course-listing-header">
+        <div style={styleTopMargin} className="pb-2 pt-2 border-bottom course-listing-header">
             <div className="container mr-sm-5 ml-sm-4">
                 <div className="row">
                     <div className="col-12 pl-0 d-block d-sm-none">

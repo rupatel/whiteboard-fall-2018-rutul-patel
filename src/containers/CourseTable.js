@@ -27,7 +27,7 @@ class CourseTable extends React.Component {
                     <CourseRow/>
                     <CourseRow/>
                 </div>
-                <a href="#" className="bottom-right p-3">
+                <a href="#" className="bottom-right m-3">
                     <span className="fa-stack fa-2x">
                       <i className="fas fa-circle fa-stack-1x circle"></i>
                       <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
