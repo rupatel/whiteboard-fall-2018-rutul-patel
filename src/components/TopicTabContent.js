@@ -2,6 +2,18 @@ import React from 'react';
 import Widget from './Widget';
 
 const TopicTabContent = () => {
+    const widgets = [
+        {
+            courseID:1,
+            lessonID:1,
+            topicID:1,
+            widgetID:1,
+            widgetName:'heading widget',
+            widgetType:'Heading',
+            headingText:'Heading Text',
+            headingType:'Heading1',
+        }
+    ]
     return(
         <div className="tab-content" id="pills-tabContent-module1">
             <div className="tab-pane fade show active" id='pills-module1-lesson1-topic1' role="tabpanel"
@@ -20,6 +32,7 @@ const TopicTabContent = () => {
                  aria-labelledby="module1-lesson1-topic4">
                 Module1 Lesson1 Topic 4 Widgets
             </div>
+
             <div className="tab-pane fade" id="pills-module1-lesson1-topic5" role="tabpanel"
                  aria-labelledby="module1-lesson1-topic5">
                 Module1 Lesson1 Topic 5 Widgets

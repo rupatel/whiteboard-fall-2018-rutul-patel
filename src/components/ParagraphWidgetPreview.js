@@ -1,8 +1,11 @@
 import React from 'react';
 const ParagraphWidgetPreview = () => {
+    const paraWidgetInfo = {
+        para : 'Lorem ipsum'
+    }
     return (
         <div className="row mb-3">
-            <p>Lorem ipsum</p>
+            <p>{paraWidgetInfo.para}</p>
         </div>
     );
 }
