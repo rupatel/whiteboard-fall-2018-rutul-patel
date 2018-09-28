@@ -1,16 +1,24 @@
 import React from 'react';
 import CourseCard from '../components/CourseCard';
+import CourseTableNavBar from "../components/CourseTableNavBar";
 
 class CourseGrid extends React.Component{
     render(){
-        const divStyle = {
-            margin: '40px',
-            border: '5px solid pink'
-        };
+        const gridContainerStyle = {
+            paddingTop:"10vh"
+        }
         return(
-            <div className="container-fluid">
+            <div>
+                <CourseTableNavBar/>
+                <div className="container"  style={gridContainerStyle}>
                 <h1>Whiteboard</h1>
-                <div className="card-deck mb-2">
+                <div className="row mb-2">
+                    <CourseCard/>
+                    <CourseCard/>
+                    <CourseCard/>
+                    <CourseCard/>
+                    <CourseCard/>
+                    <CourseCard/>
                     <CourseCard/>
                     <CourseCard/>
                     <CourseCard/>
@@ -18,6 +26,7 @@ class CourseGrid extends React.Component{
                     <CourseCard/>
                     <CourseCard/>
                 </div>
+            </div>
             </div>
         )
     }
