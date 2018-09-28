@@ -1,6 +1,9 @@
 import React from 'react';
 
 const ModuleTabPane = () => {
+    let actionIconStyle = {
+        color:'white'
+    }
     let selectedModuleID = 1;
     let modules = [
         {
@@ -47,7 +50,7 @@ const ModuleTabPane = () => {
                                   aria-selected="true">
                                 <span className="pr-2"> Module1-JQuery </span>
                                 <a className="float-right" href="#">
-                                    <i className="fas fa-times action-icon"></i>
+                                    <i className="fas fa-times" style={actionIconStyle}></i>
                                 </a>
                             </span>
                         )

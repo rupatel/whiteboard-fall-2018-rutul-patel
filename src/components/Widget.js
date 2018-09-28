@@ -27,26 +27,24 @@ const Widget = (props) => {
             </div>
             <div className="container" style={widgetContentStyle}>
                 <div className="row mb-3">
-                    <div className="col-6">
+                    <div className="col-5">
                         {'Heading' == props.widget.widgetType && <h1>Heading widget</h1>}
                         {'Paragraph' == props.widget.widgetType && <h1>Paragraph widget</h1>}
                         {'List' == props.widget.widgetType && <h1>List widget</h1>}
                         {'Image' == props.widget.widgetType && <h1>Image widget</h1>}
                         {'Link' == props.widget.widgetType && <h1>Link widget</h1>}
                     </div>
-                    <div className="col-6">
-                        <button className="mr-2 btn btn-warning">
-                            <i className="fas fa-arrow-up"></i>
+                    <div className="col-7">
+                        <button className="btn btn-danger float-right">
+                            <i className="fas fa-times-circle"></i>
                         </button>
-                        <button className="mr-2 btn btn-warning">
-                            <i className="fas fa-arrow-down"></i>
-                        </button>
+
                         <select
                             onChange={e => {
                                 props.widget.widgetType = selectedElement.value
                             }
                             }
-                            className="mr-2 custom-select d-inline w-50"
+                            className="mr-2 custom-select d-inline w-50 float-right"
                             ref={selectDomElement => {
                                 selectedElement = selectDomElement
                             }}>
@@ -56,8 +54,13 @@ const Widget = (props) => {
                             <option>Image</option>
                             <option>Link</option>
                         </select>
-                        <button className="btn btn-danger">
-                            <i className="fas fa-times-circle"></i>
+
+                        <button className="mr-2 btn btn-warning float-right">
+                            <i className="fas fa-arrow-down"></i>
+                        </button>
+
+                        <button className="mr-2 btn btn-warning float-right">
+                            <i className="fas fa-arrow-up"></i>
                         </button>
                     </div>
                     {'Heading' == props.widget.widgetType && <HeaderWidgetContent/>}
