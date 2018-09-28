@@ -13,7 +13,7 @@ const HeaderWidgetPreview = () => {
         heading =  <h3>{headerWidgetInfo.headingText}</h3>
     return (
         <div className="row mb-3">
-                <h1>{heading}</h1>
+                {heading}
         </div>
     );
 }

@@ -30,7 +30,4 @@ let widget = {
     headingType: 'Heading1'
 }
 
-var c = new CourseService();
-console.log(c.findAllCourses());
-
-ReactDom.render(<Widget widget={widget}/>,document.getElementById('root'));
+ReactDom.render(<Topic/>,document.getElementById('root'));

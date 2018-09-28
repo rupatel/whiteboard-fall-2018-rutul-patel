@@ -42,9 +42,14 @@ const Widget = (props) => {
                             <i className="fas fa-arrow-down"></i>
                         </button>
                         <select
-                            onChange={e => props.widget.widgetType=selectedElement}
+                            onChange={e => {
+                                props.widget.widgetType = selectedElement.value
+                                }
+                            }
                             className="mr-2 custom-select d-inline w-50"
-                                ref={selectDomElement => selectedElement = selectDomElement.value}>
+                            ref={selectDomElement => {
+                                selectedElement = selectDomElement
+                            }}>
                             <option>Heading</option>
                             <option>Paragraph</option>
                             <option>List</option>
