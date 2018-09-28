@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseCard from '../components/CourseCard';
 import CourseTableNavBar from "../components/CourseTableNavBar";
-
+import CourseGridHeader from "../components/CourseGridHeader";
 class CourseGrid extends React.Component{
     render(){
         const gridContainerStyle = {
@@ -12,7 +12,7 @@ class CourseGrid extends React.Component{
             <div>
                 <CourseTableNavBar/>
                 <div className="container-fluid"  style={gridContainerStyle}>
-                <h1>Whiteboard</h1>
+                <CourseGridHeader/>
                 <div className="row mr-2">
                     <CourseCard/>
                     <CourseCard/>

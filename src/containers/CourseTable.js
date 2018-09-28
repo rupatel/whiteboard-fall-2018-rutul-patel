@@ -21,7 +21,7 @@ class CourseTable extends React.Component {
             <div style={styleBody} className="h-100">
                 <CourseTableNavBar/>
                 <CourseRowHeader/>
-                <div style={rowGroupstyle} className="container mr-sm-5 ml-sm-4 mb-sm-2">
+                <div style={rowGroupstyle} className="mt-2 container mr-sm-5 ml-sm-4 mb-sm-2">
                     <CourseRow/>
                     <CourseRow/>
                     <CourseRow/>
