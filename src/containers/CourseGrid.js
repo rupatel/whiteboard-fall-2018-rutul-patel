@@ -22,6 +22,24 @@ class CourseGrid extends React.Component{
                         <CourseCard/>
                         <CourseCard/>
                         <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
                     </div>
                 </div>
             </div>

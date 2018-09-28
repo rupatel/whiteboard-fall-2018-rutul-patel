@@ -18,4 +18,4 @@ let widget = {
     headingType: 'Heading1'
 }
 
-ReactDom.render(<Course/>,document.getElementById('root'));
+ReactDom.render(<CourseGrid/>,document.getElementById('root'));
