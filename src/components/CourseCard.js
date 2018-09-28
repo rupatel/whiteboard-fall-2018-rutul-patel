@@ -2,13 +2,17 @@ import React from 'react';
 
 const CourseCard = () =>
     (
-        <div className="card col-sm-12 col-md-3 col-lg-2 mt-2" style={{width: '18rem;'}}>
-            <img className="card-img-top" src="https://picsum.photos/300/200" alt="Card image cap"/>
-            <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">Some quick example text to build on the card title and make up the
-                    bulk of the card's content.</p>
-                <a href="#" className="btn btn-primary">Go somewhere</a>
+        <div className="p-0 col-sm-12 col-md-4 col-lg-2">
+            <div className="col-12 pl-3 pt-3 pb-0 pr-0">
+                <div className="card-body p-auto" style={{background: "#FFFFFF"}}>
+                    <h5 className="card-title">Card title</h5>
+                    <p className="card-text">
+                        Some quick example text to build on the card title and make up the bulk of
+                        the card's content.</p>
+                </div>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item">Cras justo odio</li>
+                </ul>
             </div>
         </div>
     )

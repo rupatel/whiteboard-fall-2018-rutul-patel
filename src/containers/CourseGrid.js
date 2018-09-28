@@ -5,14 +5,15 @@ import CourseTableNavBar from "../components/CourseTableNavBar";
 class CourseGrid extends React.Component{
     render(){
         const gridContainerStyle = {
-            paddingTop:"10vh"
+            paddingTop:"10vh",
+            background: "#e6e6e6"
         }
         return(
             <div>
                 <CourseTableNavBar/>
-                <div className="container"  style={gridContainerStyle}>
+                <div className="container-fluid"  style={gridContainerStyle}>
                 <h1>Whiteboard</h1>
-                <div className="row mb-2">
+                <div className="row mr-2">
                     <CourseCard/>
                     <CourseCard/>
                     <CourseCard/>
