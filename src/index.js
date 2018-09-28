@@ -17,4 +17,4 @@ let widget = {
     headingType: 'Heading1'
 }
 
-ReactDom.render(<CourseGrid/>,document.getElementById('root'));
+ReactDom.render(<CourseTable/>,document.getElementById('root'));

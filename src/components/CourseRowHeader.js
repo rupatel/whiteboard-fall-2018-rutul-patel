@@ -3,7 +3,6 @@ import './CourseTableHeader.css';
 
 const CourseRowHeader = () => {
     const styleTopMargin = {
-        marginTop: "10vh",
         height: '5vh'
     }
     return (
