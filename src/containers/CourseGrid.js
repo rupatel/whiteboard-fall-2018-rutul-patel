@@ -5,29 +5,39 @@ import CourseGridHeader from "../components/CourseGridHeader";
 class CourseGrid extends React.Component{
     render(){
         const gridContainerStyle = {
-            paddingTop:"10vh",
+            marginTop:"10vh",
             background: "#e6e6e6"
         }
         return(
             <div>
                 <CourseTableNavBar/>
                 <div className="container-fluid"  style={gridContainerStyle}>
-                <CourseGridHeader/>
-                <div className="row mr-2">
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
-                    <CourseCard/>
+                    <CourseGridHeader/>
+                    <div className="row mr-2">
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                        <CourseCard/>
+                    </div>
                 </div>
-            </div>
             </div>
         )
     }
