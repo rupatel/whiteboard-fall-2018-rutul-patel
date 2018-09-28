@@ -1,0 +1,22 @@
+.modules .nav-link{
+    background: #655858;
+    color:white;
+}
+
+.modules .nav-pills .nav-link.active{
+    background: #4a4d50;
+    color:white;
+}
+.modules{
+    padding-top:10vh;
+}
+
+.modulesTab{
+    background:#4e4747;
+    height: 90vh;
+    position:fixed;
+}
+.modulesTab .nav-link{
+    background: #655858;
+    color:white;
+}

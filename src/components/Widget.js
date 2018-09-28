@@ -27,14 +27,14 @@ const Widget = (props) => {
             </div>
             <div className="container" style={widgetContentStyle}>
                 <div className="row mb-3">
-                    <div className="col-7">
+                    <div className="col-6">
                         {'Heading' == props.widget.widgetType && <h1>Heading widget</h1>}
                         {'Paragraph' == props.widget.widgetType && <h1>Paragraph widget</h1>}
                         {'List' == props.widget.widgetType && <h1>List widget</h1>}
                         {'Image' == props.widget.widgetType && <h1>Image widget</h1>}
                         {'Link' == props.widget.widgetType && <h1>Link widget</h1>}
                     </div>
-                    <div className="col-5">
+                    <div className="col-6">
                         <button className="mr-2 btn btn-warning">
                             <i className="fas fa-arrow-up"></i>
                         </button>
@@ -44,7 +44,7 @@ const Widget = (props) => {
                         <select
                             onChange={e => {
                                 props.widget.widgetType = selectedElement.value
-                                }
+                            }
                             }
                             className="mr-2 custom-select d-inline w-50"
                             ref={selectDomElement => {
@@ -70,11 +70,13 @@ const Widget = (props) => {
                     <div className="row mb-3">
                         <span className="text-black font-weight-bold">Preview</span>
                     </div>
-                    {'Heading' == props.widget.widgetType && <HeaderWidgetPreview/>}
-                    {'Paragraph' == props.widget.widgetType && <ParagraphWidgetPreview/>}
-                    {'List' == props.widget.widgetType && <ListWidgetPreview/>}
-                    {'Image' == props.widget.widgetType && <ImageWidgetPreview/>}
-                    {'Link' == props.widget.widgetType && <LinkWidgetPreview/>}
+                    <div className="row mb-3">
+                        {'Heading' == props.widget.widgetType && <HeaderWidgetPreview/>}
+                        {'Paragraph' == props.widget.widgetType && <ParagraphWidgetPreview/>}
+                        {'List' == props.widget.widgetType && <ListWidgetPreview/>}
+                        {'Image' == props.widget.widgetType && <ImageWidgetPreview/>}
+                        {'Link' == props.widget.widgetType && <LinkWidgetPreview/>}
+                    </div>
                 </div>
             </div>
         </div>

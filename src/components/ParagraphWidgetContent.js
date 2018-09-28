@@ -1,4 +1,5 @@
 import React from 'react';
+
 const ParagraphWidgetContent = () => {
     return (
         <div className="container">

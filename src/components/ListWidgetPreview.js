@@ -1,14 +1,15 @@
 import React from "react";
+
 const ListWidgetPreview = () => {
     const listWidgetInfo = {
-        items:[
+        items: [
             'put each',
             'item',
             'a seperate row'
         ]
     }
     return (
-        <div className="row mb-3">
+        <div className="container">
             <ul>
                 {listWidgetInfo['items'].map(item => {
                     return (<li>item</li>)

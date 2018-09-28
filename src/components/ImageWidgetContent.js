@@ -1,4 +1,5 @@
 import React from 'react';
+
 const ImageWidgetContent = () => {
     return (
         <div className="container">

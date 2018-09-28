@@ -1,5 +1,10 @@
 import React from 'react';
+import './LessonNavBar.css'
 const LessonNavBar = () => {
+    let navBarStyle = {
+        background:'#4e4747',
+        height: '10vh'
+    }
     let courseName = "CS5610";
     let selectedLesson = 1;
     let lessons = [
@@ -28,18 +33,19 @@ const LessonNavBar = () => {
             name:'Settings'
         }
     ]
+
     return (
-        <nav className="navbar navbar-expand navbar-dark bg-dark fixed-top lessons">
+        <nav className="navbar navbar-expand navbar-dark bg-dark fixed-top" style = {navBarStyle}>
             <div className="container-fluid">
                 <div className="row w-100">
                     <div className="col-3">
                         <div className="row">
-                        <span className="col-2">
+                        <span className="col-2 mr-2">
                             <a href="#">
                                 <i className="fas fa-times fa-2x action-icon"></i>
                             </a>
                         </span>
-                            <span className="p-0 m-0 col-10 navbar-brand text-white text-bold">
+                            <span className="p-0 m-0 col-8 navbar-brand text-white text-bold">
                             CS5610
                         </span>
                         </div>
