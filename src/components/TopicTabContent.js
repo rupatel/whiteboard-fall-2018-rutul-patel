@@ -12,6 +12,36 @@ const TopicTabContent = () => {
             widgetType: 'Heading',
             headingText: 'Heading Text',
             headingType: 'Heading1',
+        },
+        {
+            courseID: 1,
+            lessonID: 1,
+            topicID: 1,
+            widgetID: 1,
+            widgetName: 'heading widget',
+            widgetType: 'Heading',
+            headingText: 'Heading Text',
+            headingType: 'Heading1',
+        },
+        {
+            courseID: 1,
+            lessonID: 1,
+            topicID: 1,
+            widgetID: 1,
+            widgetName: 'heading widget',
+            widgetType: 'Heading',
+            headingText: 'Heading Text',
+            headingType: 'Heading1',
+        },
+        {
+            courseID: 1,
+            lessonID: 1,
+            topicID: 1,
+            widgetID: 1,
+            widgetName: 'heading widget',
+            widgetType: 'Heading',
+            headingText: 'Heading Text',
+            headingType: 'Heading1',
         }
     ]
 

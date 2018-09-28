@@ -5,6 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import CourseGrid from "./containers/CourseGrid";
 import CourseTable from "./containers/CourseTable";
+import Course from "./components/Course";
 
 let widget = {
     courseID: 1,
@@ -17,4 +18,4 @@ let widget = {
     headingType: 'Heading1'
 }
 
-ReactDom.render(<CourseTable/>,document.getElementById('root'));
+ReactDom.render(<Course/>,document.getElementById('root'));

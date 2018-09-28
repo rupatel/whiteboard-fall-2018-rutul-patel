@@ -9,7 +9,9 @@
 }
 
 .modules {
-    padding-top: 10vh;
+    margin-top:10vh;
+    overflow-y: scroll;
+    height:90vh;
 }
 
 .modulesTab {
