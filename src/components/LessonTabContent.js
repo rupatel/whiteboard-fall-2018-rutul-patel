@@ -7,11 +7,6 @@ const LessonTabContent = () => {
                  aria-labelledby="nav-module1-lesson1-tab">
                 <Topic/>
             </div>
-
-            <div className="tab-pane fade" id="nav-module1-lesson2" role="tabpanel"
-                 aria-labelledby="nav-module1-lesson2-tab">
-                <Topic/>
-            </div>
         </div>
     );
 }

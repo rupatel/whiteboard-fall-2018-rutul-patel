@@ -11,16 +11,16 @@ import CourseRowHeader from "./components/CourseRowHeader";
 import CourseRow from "./components/CourseRow";
 import CourseTableNavBar from "./components/CourseTableNavBar";
 import CourseTable from "./containers/CourseTable";
-import CourseEditorNavBar from './components/CourseEditorNavBar';
 import CourseModuleRow from './components/CourseModuleRow'
 import Widget from './components/Widget';
 import TopicTabPane from './components/TopicTabPane';
 import Topic from './components/Topic';
 import LessonTabContent from "./components/LessonTabContent";
-import Lesson from "./components/Lesson";
 import CourseService from "./services/CourseService";
 import ModuleTabPane from "./components/ModuleTabPane";
 import Module from "./components/Module";
+import LessonNavBar from "./components/LessonNavBar";
+import Course from "./components/Course";
 let widget = {
     courseID: 1,
     lessonID: 1,
@@ -32,4 +32,4 @@ let widget = {
     headingType: 'Heading1'
 }
 
-ReactDom.render(<Module/>,document.getElementById('root'));
+ReactDom.render(<Course/>,document.getElementById('root'));
