@@ -6,7 +6,9 @@ class CourseGrid extends React.Component{
     render(){
         const gridContainerStyle = {
             marginTop:"10vh",
-            background: "#e6e6e6"
+            background: "#e6e6e6",
+            overflowY: "scroll",
+            height:"90vh"
         }
         return(
             <div>
@@ -20,22 +22,7 @@ class CourseGrid extends React.Component{
                         <CourseCard/>
                         <CourseCard/>
                         <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
-                        <CourseCard/>
+                        
                     </div>
                 </div>
             </div>
