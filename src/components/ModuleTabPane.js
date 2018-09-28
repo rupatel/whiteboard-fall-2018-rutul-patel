@@ -2,7 +2,7 @@ import React from 'react';
 
 const ModuleTabPane = () => {
     let actionIconStyle = {
-        color:'white'
+        color: 'white'
     }
     let selectedModuleID = 1;
     let modules = [

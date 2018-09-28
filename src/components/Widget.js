@@ -9,6 +9,7 @@ import ImageWidgetContent from './ImageWidgetContent';
 import ImageWidgetPreview from './ImageWidgetPreview';
 import ParagraphWidgetContent from './ParagraphWidgetContent';
 import ParagraphWidgetPreview from './ParagraphWidgetPreview';
+import './Widget.css'
 
 const Widget = (props) => {
     const widgetContentStyle = {
@@ -22,7 +23,7 @@ const Widget = (props) => {
                 <div className="offset-9">
                     <button className="btn btn-success mr-2">Save</button>
                     <span className="mr-2">Preview</span>
-                    <a><i className="fas fa-2x fa-toggle-off"></i></a>
+                    <a className="no-decorate" href="#"><i className="fas fa-2x fa-toggle-off"></i></a>
                 </div>
             </div>
             <div className="container" style={widgetContentStyle}>

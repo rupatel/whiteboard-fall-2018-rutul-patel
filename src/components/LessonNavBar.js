@@ -1,41 +1,42 @@
 import React from 'react';
 import './LessonNavBar.css'
+
 const LessonNavBar = () => {
     let navBarStyle = {
-        background:'#4e4747',
+        background: '#4e4747',
         height: '10vh'
     }
     let courseName = "CS5610";
     let selectedLesson = 1;
     let lessons = [
         {
-            lessonID:1,
-            name:'Pages'
+            lessonID: 1,
+            name: 'Pages'
         },
         {
-            lessonID:2,
-            name:'Build'
+            lessonID: 2,
+            name: 'Build'
         },
         {
-            lessonID:3,
-            name:'Theme'
+            lessonID: 3,
+            name: 'Theme'
         },
         {
-            lessonID:4,
-            name:'Store'
+            lessonID: 4,
+            name: 'Store'
         },
         {
-            lessonID:5,
-            name:'Apps'
+            lessonID: 5,
+            name: 'Apps'
         },
         {
-            lessonID:6,
-            name:'Settings'
+            lessonID: 6,
+            name: 'Settings'
         }
     ]
 
     return (
-        <nav className="navbar navbar-expand navbar-dark bg-dark fixed-top" style = {navBarStyle}>
+        <nav className="navbar navbar-expand navbar-dark bg-dark fixed-top" style={navBarStyle}>
             <div className="container-fluid">
                 <div className="row w-100">
                     <div className="col-3">
@@ -56,15 +57,16 @@ const LessonNavBar = () => {
                                  role="tablist">
                                 {
                                     lessons.map(lesson => {
-                                    let className = "nav-item nav-link text-black";
-                                    if(lesson.lessonID == selectedLesson)
-                                        className = className + ' active ';
-                                    return (
-                                        <a className={className} id="nav-module1-lesson1-tab"
-                                           data-toggle="tab" href="#nav-module1-lesson1" role="tab"
-                                           aria-controls="nav-module1-lesson1" aria-selected="true">{lesson.name}</a>
-                                    )
-                                })}
+                                        let className = "nav-item nav-link text-black";
+                                        if (lesson.lessonID == selectedLesson)
+                                            className = className + ' active ';
+                                        return (
+                                            <a className={className} id="nav-module1-lesson1-tab"
+                                               data-toggle="tab" href="#nav-module1-lesson1" role="tab"
+                                               aria-controls="nav-module1-lesson1"
+                                               aria-selected="true">{lesson.name}</a>
+                                        )
+                                    })}
                             </div>
                         </nav>
                     </div>

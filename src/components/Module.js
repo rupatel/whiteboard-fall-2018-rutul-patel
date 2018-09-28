@@ -2,6 +2,7 @@ import React from 'react';
 import ModuleTabPane from "./ModuleTabPane";
 import ModuleTabContent from "./ModuleTabContent";
 import './Module.css';
+
 const Module = () => {
 
     return (

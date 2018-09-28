@@ -3,8 +3,8 @@ import './CourseRowHeader.css';
 
 const CourseRowHeader = () => {
     const styleTopMargin = {
-        marginTop :"10vh",
-        height:'5vh'
+        marginTop: "10vh",
+        height: '5vh'
     }
     return (
         <div style={styleTopMargin} className="pb-2 pt-2 border-bottom course-listing-header">

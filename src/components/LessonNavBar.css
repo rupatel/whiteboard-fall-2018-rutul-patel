@@ -1,11 +1,13 @@
-.navLessons .nav-tabs .nav-link.active{
+.navLessons .nav-tabs .nav-link.active {
     color: white;
     background-color: #524949;
     border-color: transparent;
 }
-.navLessons .nav-tabs a{
+
+.navLessons .nav-tabs a {
     color: #b1bbc5;
 }
-.action-icon{
-    color:white;
+
+.action-icon {
+    color: white;
 }

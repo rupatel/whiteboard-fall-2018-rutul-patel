@@ -26,15 +26,14 @@ const TopicTabPane = () => {
             {
                 topics.map(topic => {
                         let className = "nav-link ml-0 mb-2 mt-2 mr-2";
-                        if (topic.topicID == selectedTopic)
-                        {
+                        if (topic.topicID == selectedTopic) {
                             className = className + ' active ';
                         }
                         return (
                             <li className="nav-item" key={topic.topicID}>
-                            <a className={className} id="module1-lesson1-topic1" data-toggle="pill"
-                               href="#pills-module1-lesson1-topic1" role="tab"
-                               aria-controls="pills-module1-lesson1-topic1" aria-selected="true">{topic.name}</a>
+                                <a className={className} id="module1-lesson1-topic1" data-toggle="pill"
+                                   href="#pills-module1-lesson1-topic1" role="tab"
+                                   aria-controls="pills-module1-lesson1-topic1" aria-selected="true">{topic.name}</a>
                             </li>)
                     }
                 )
