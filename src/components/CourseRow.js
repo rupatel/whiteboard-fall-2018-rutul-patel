@@ -1,6 +1,6 @@
 import React from 'react';
 import './CourseRow.css'
-
+import {Link} from 'react-router-dom';
 const CourseRow = ({deleteCourse,course}) => {
     if(!course)
         course = {title:'CS4540 Data Mining', id:1}
@@ -18,10 +18,10 @@ const CourseRow = ({deleteCourse,course}) => {
                 <p className="text-justify text-left">6.45 PM</p>
             </div>
             <div className="col-1">
-                <a className="no-decorate" href={"#"} onClick={e => {
+                <Link className="no-decorate" to={"#"} onClick={e => {
                     deleteCourse({id:course.id});
                 }}>
-                    <i className="fas fa-times"></i></a>
+                    <i className="fas fa-times"></i></Link>
             </div>
         </div>
     )

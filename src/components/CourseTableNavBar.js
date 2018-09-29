@@ -1,6 +1,6 @@
 import React from 'react';
 import './CourseTableNavBar.css';
-
+import {Link} from 'react-router-dom';
 const CourseTableNavBar = ({addCourse}) => {
     const navbarHeight = {
         height: "10vh"
@@ -23,7 +23,7 @@ const CourseTableNavBar = ({addCourse}) => {
                         className="form-control w-100"/>
                 </div>
                 <div className="col-2 p-0">
-                    <a href="#" onClick={() => {
+                    <Link to = "#" onClick={() => {
                         addCourse({
                         id: (new Date()).getTime() + '',
                         title: courseTitleElem.value
@@ -34,7 +34,7 @@ const CourseTableNavBar = ({addCourse}) => {
                       <i className="fas fa-circle fa-stack-1x circle"></i>
                       <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
                     </span>
-                    </a>
+                    </Link>
                 </div>
             </form>
         </nav>

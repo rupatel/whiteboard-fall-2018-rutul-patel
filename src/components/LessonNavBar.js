@@ -1,7 +1,7 @@
 import React from 'react';
 import './LessonNavBar.css'
 
-const LessonNavBar = () => {
+const LessonNavBar = ({courseTitle}) => {
     let navBarStyle = {
         background: '#4e4747',
         height: '10vh'
@@ -47,7 +47,7 @@ const LessonNavBar = () => {
                             </a>
                         </span>
                             <span className="p-0 m-0 col-8 navbar-brand text-white text-bold">
-                            CS5610
+                                {courseTitle}
                         </span>
                         </div>
                     </div>

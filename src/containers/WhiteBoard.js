@@ -52,7 +52,7 @@ export default class WhiteBoard extends React.Component
                             render={(props) =>
                                 <CourseEditor
                                     {...props}
-                                    course={this.state.courses}/>}
+                                    findCourseById = {this.courseService.findCourseById}/>}
                             path="/course/:courseId/edit"/>
                     </Switch>
                 </Router>
