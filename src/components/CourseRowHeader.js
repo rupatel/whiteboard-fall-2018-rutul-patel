@@ -31,7 +31,7 @@ const CourseRowHeader = () => {
                     </div>
                     <div className="col-5 d-none d-sm-block">
                         <p className="text-justify text-left float-left font-weight-bold mr-3">Last modified by me</p>
-                        <a className="no-decorate float-left mr-3" href="#"><i className="fas fa-grip-horizontal"></i></a>
+                        <a className="no-decorate float-left mr-3" href="/course/grid"><i className="fas fa-grip-horizontal"></i></a>
                         <a className="no-decorate float-left mr-3" href="#"><i className="fas fa-sort pr-3"></i></a>
                     </div>
                 </div>

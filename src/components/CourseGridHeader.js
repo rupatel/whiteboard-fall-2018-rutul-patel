@@ -26,7 +26,7 @@ const CourseGridHeader = () => {
                 <a className="mr-2 float-right no-decorate" href="#">
                     <i className="fas fa-sort pr-3"></i>
                 </a>
-                <a className="mr-4 float-right no-decorate" href="#">
+                <a className="mr-4 float-right no-decorate" href="/course/table">
                     <i className="fas fa-th-list"></i>
                 </a>
             </div>

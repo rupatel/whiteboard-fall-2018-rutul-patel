@@ -2,7 +2,7 @@ import React from 'react';
 import LessonNavBar from "./LessonNavBar";
 import Module from "./Module";
 
-const Course = () => {
+const CourseEditor = () => {
     return (
         <div className="container-fluid m-0 p-0">
             <LessonNavBar/>
@@ -13,4 +13,4 @@ const Course = () => {
         </div>
     );
 }
-export default Course;
+export default CourseEditor;
