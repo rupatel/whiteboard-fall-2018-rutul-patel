@@ -1,13 +1,15 @@
 import React from 'react';
 import './CourseRow.css'
 
-const CourseRow = () => {
+const CourseRow = ({deleteCourse,course}) => {
+    if(!course)
+        course = {title:'CS4540 Data Mining', id:1}
     return (
         <div className="row">
             <div className="col-sm-5 col-11">
                 <a className="no-decorate" href="/course-editor/course-editor.template.client.html"> <i
                     className="fas fa-file-alt"></i> </a>
-                <p className="text-justify d-inline p-2">CS4550 Software Engineer Undergraduate</p>
+                <p className="text-justify d-inline p-2">{course.title}</p>
             </div>
             <div className="col-2 d-none d-sm-block">
                 <p className="text-justify text-left">me</p>
@@ -16,7 +18,10 @@ const CourseRow = () => {
                 <p className="text-justify text-left">6.45 PM</p>
             </div>
             <div className="col-1">
-                <a className="no-decorate" href={"#"}> <i className="fas fa-times"></i></a>
+                <a className="no-decorate" href={"#"} onClick={e => {
+                    deleteCourse({id:course.id});
+                }}>
+                    <i className="fas fa-times"></i></a>
             </div>
         </div>
     )

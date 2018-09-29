@@ -6,6 +6,8 @@ import './CourseTable.css';
 
 const CourseTable = ({addCourse,deleteCourse,courses}) =>
 {
+
+    console.log(courses);
     const rowGroupstyle = {
         background: '#FFFFFF'
     }
@@ -21,10 +23,13 @@ const CourseTable = ({addCourse,deleteCourse,courses}) =>
             <div className="container-fluid"  style={tableContainerStyle}>
                 <CourseRowHeader/>
                 <div style={rowGroupstyle} className="mt-2 container mr-sm-5 ml-sm-4 mb-sm-2">
-                    <CourseRow/>
-                    <CourseRow/>
-                    <CourseRow/>
-                    <CourseRow/>
+                    {courses.map((c,index) => {
+                        return (<CourseRow
+                            key =  {index}
+                            deleteCourse = {deleteCourse}
+                            course = {c}
+                        />)
+                    })}
                 </div>
                 <a href="#" className="bottom-right m-3">
                     <span className="fa-stack fa-2x">
