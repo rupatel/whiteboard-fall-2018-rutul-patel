@@ -24,7 +24,8 @@ const ModuleTabPane = ({modules,selectedModule,selectModule,deleteModule}) => {
                                 <span
                                     className="pr-2"> {module.title} </span>
                                 <a className="float-right" href="#"
-                                   onClick={() => {
+                                   onClick={(e) => {
+                                       e.stopPropagation();
                                        deleteModule(module.id);
                                    }}>
                                     <i className="fas fa-times" style={actionIconStyle}></i>

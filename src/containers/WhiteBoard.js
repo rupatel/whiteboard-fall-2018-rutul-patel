@@ -39,26 +39,6 @@ export default class WhiteBoard extends React.Component
         this.setState(newState);
     }
 
-    addModule = (courseId,moduleId) => {
-        this.moduleService.createModule(courseId,moduleId);
-        let newState = {...this.state}
-        newState.courses = this.courseService.findAllCourses();
-        this.setState(newState);
-    }
-
-    deleteModule = (courseId,moduleId) => {
-        this.moduleService.deleteModule(courseId,moduleId);
-        let newState = {...this.state}
-        newState.courses = this.courseService.findAllCourses();
-        this.setState(newState);
-    }
-
-    updateModule = (courseId,moduleId) => {
-        this.moduleService.updateModule(courseId,moduleId);
-        let newState = {...this.state}
-        newState.courses = this.courseService.findAllCourses();
-        this.setState(newState);
-    }
 
     render() {
         return (
@@ -84,10 +64,7 @@ export default class WhiteBoard extends React.Component
                                 <CourseEditor
                                     {...props}
                                     findCourseById = {this.courseService.findCourseById}
-                                    deleteModule = {this.deleteModule}
-                                    addModule = {this.addModule}
-                                    updateModule = {this.updateModule}
-                                    findAllModules = {this.moduleService.findAllModules}
+                                    updateCourse = {this.updateCourse}
                                     />}
                             path="/course/:courseId/edit"/>
                     </Switch>

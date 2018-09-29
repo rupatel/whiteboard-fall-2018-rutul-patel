@@ -1,16 +1,14 @@
 import React from 'react';
 import LessonNavBar from "../components/LessonNavBar";
 import Module from "../components/Module";
+import ModuleService from "../services/ModuleService";
 
 class CourseEditor extends React.Component{
     constructor(props) {
         super(props);
+        this.moduleService = new ModuleService();
         this.state = {
-            course: {
-                id: '',
-                title: '',
-                modules: [],
-            },
+            modules:[],
             selectedModule: '',
             selectedLesson: '',
             selectedTopic: ''
@@ -21,31 +19,34 @@ class CourseEditor extends React.Component{
         this.updateModule = this.updateModule.bind(this);
     }
     componentDidMount() {
-        const course = this.props.findCourseById(this.props.match.params.courseId);
+        const modules = this.moduleService.findAllModules(this.props.match.params.courseId);
         let newState = {...this.state};
-        newState.course = course;
+        newState.modules = modules;
+        this.setState(newState);
+    }
+
+    addModule = (module) => {
+        let courseId = this.props.match.params.courseId;
+        this.moduleService.createModule(courseId);
+        let newState = {...this.state}
+        newState['modules'] = this.moduleService.findAllModules(courseId);
         this.setState(newState);
     }
 
     deleteModule = (moduleId) => {
-        this.props.deleteModule(this.state.course.id,moduleId);
-        let state = {...this.state};
-        state.course.modules = this.props.findAllModules(this.state.course.id,moduleId);
-        this.setState(state);
-    }
-
-    addModule = (moduleId) => {
-        this.props.addModule(this.state.course.id,moduleId);
-        let state = {...this.state};
-        state.course.modules = this.props.findAllModules(this.state.course.id,moduleId);
-        this.setState(state);
+        let courseId = this.props.match.params.courseId;
+        this.moduleService.deleteModule(courseId,moduleId);
+        let newState = {...this.state}
+        newState.modules = this.moduleService.findAllModules(courseId);
+        this.setState(newState,() => {console.log(JSON.stringify(newState))});
     }
 
     updateModule = (moduleId) => {
-        this.props.updateModule(this.state.course.id,moduleId);
-        let state = {...this.state};
-        state.course.modules = this.props.findAllModules(this.state.course.id,moduleId);
-        this.setState(state);
+        let courseId = this.props.match.params.courseId;
+        this.moduleService.updateModule(courseId,moduleId);
+        let newState = {...this.state}
+        newState.modules = this.moduleService.findAllModules(courseId);
+        this.setState(newState);
     }
 
     selectModule = (moduleId) => {
@@ -57,13 +58,11 @@ class CourseEditor extends React.Component{
     render() {
         return (
             <div className="container-fluid m-0 p-0">
-                <LessonNavBar
-                    courseTitle = {this.state.course.title}
-                />
+                <LessonNavBar/>
                 <Module
                     deleteModule = {this.deleteModule}
                     addModule = {this.addModule}
-                    modules = {this.state.course.modules}
+                    modules = {this.state.modules}
                     updateModule = {this.updateModule}
                     selectedModule = {this.state.selectedModule}
                     selectedLesson = {this.state.selectedLesson}

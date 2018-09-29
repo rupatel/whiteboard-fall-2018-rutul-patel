@@ -14,6 +14,7 @@ export default class ModuleService {
     }
     deleteModule(courseId,moduleId)
     {
+
         let course = {... courseService.findCourseById(courseId)};
         let newModules = course.modules.filter(m => m.id != moduleId);
         course.modules = newModules;
