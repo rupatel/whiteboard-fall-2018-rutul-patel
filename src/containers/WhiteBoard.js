@@ -25,7 +25,6 @@ export default class WhiteBoard extends React.Component
 
     deleteCourse = c => {
         this.courseService.deleteCourse(c.id)
-        console.log('state changed');
         this.setState({
             courses: this.courseService.findAllCourses()
         })

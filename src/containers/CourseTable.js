@@ -6,8 +6,6 @@ import './CourseTable.css';
 
 const CourseTable = ({addCourse,deleteCourse,courses}) =>
 {
-
-    console.log(courses);
     const rowGroupstyle = {
         background: '#FFFFFF'
     }
@@ -31,12 +29,6 @@ const CourseTable = ({addCourse,deleteCourse,courses}) =>
                         />)
                     })}
                 </div>
-                <a href="#" className="bottom-right m-3">
-                    <span className="fa-stack fa-2x">
-                      <i className="fas fa-circle fa-stack-1x circle"></i>
-                      <i className="fas fa-plus fa-stack-1x fa-inverse"></i>
-                    </span>
-                </a>
                 <div className="d-none d-sm-block row p-2 w-100">
                     <div className="col-sm-5 col-10 pl-0 pl-sm-4 d-none d-sm-block w-100">
                         <p className="text-justify d-inline p-2">Yesterday</p>
