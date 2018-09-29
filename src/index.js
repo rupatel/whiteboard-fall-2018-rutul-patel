@@ -5,7 +5,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import CourseGrid from "./containers/CourseGrid";
 import CourseTable from "./containers/CourseTable";
-import CourseEditor from "./components/CourseEditor";
+import CourseEditor from "./containers/CourseEditor";
 import WhiteBoard from "./containers/WhiteBoard";
 
 let widget = {

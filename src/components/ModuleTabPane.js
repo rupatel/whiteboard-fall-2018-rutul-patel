@@ -1,55 +1,32 @@
 import React from 'react';
 
-const ModuleTabPane = () => {
+const ModuleTabPane = ({modules,selectedModule,selectModule,deleteModule}) => {
     let actionIconStyle = {
         color: 'white'
     }
-    let selectedModuleID = 1;
-    let modules = [
-        {
-            moduleID: 1,
-            name: 'Module1-JQuery'
-        },
-        {
-            moduleID: 2,
-            name: 'Module2-React'
-        },
-        {
-            moduleID: 3,
-            name: 'Module3-Redux'
-        },
-        {
-            moduleID: 4,
-            name: 'Module4-Native'
-        },
-        {
-            moduleID: 5,
-            name: 'Module5-Angular'
-        },
-        {
-            moduleID: 6,
-            name: 'Module6-Node'
-        },
-        {
-            moduleID: 7,
-            name: 'Module7-Mongo'
-        }
-    ]
+
     return (
         <div className="container">
             <div className="row nav flex-column nav-pills" id="v-pills-module-tab" role="tablist"
                  aria-orientation="vertical">
                 {
-                    modules.map(module => {
+                    modules.map((module,index) => {
                         let className = "nav-link m-2";
-                        if (module.moduleID == selectedModuleID)
+                        if ((selectedModule && module.id == selectedModule) || index==0)
                             className = className + ' active ';
                         return (
                             <span className={className} id="v-pills-course1-module1-tab" data-toggle="pill"
                                   href="#v-pills-course1-module1" role="tab" aria-controls="v-pills-course1-module1"
-                                  aria-selected="true">
-                                <span className="pr-2"> Module1-JQuery </span>
-                                <a className="float-right" href="#">
+                                  aria-selected="true"
+                                  onClick={() => {
+                                      selectModule(module.id);
+                                  }}>
+                                <span
+                                    className="pr-2"> {module.title} </span>
+                                <a className="float-right" href="#"
+                                   onClick={() => {
+                                       deleteModule(module.id);
+                                   }}>
                                     <i className="fas fa-times" style={actionIconStyle}></i>
                                 </a>
                             </span>
