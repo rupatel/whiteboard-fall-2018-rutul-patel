@@ -27,7 +27,7 @@ class CourseEditor extends React.Component{
 
     addModule = (module) => {
         let courseId = this.props.match.params.courseId;
-        this.moduleService.createModule(courseId);
+        this.moduleService.createModule(courseId,module);
         let newState = {...this.state}
         newState['modules'] = this.moduleService.findAllModules(courseId);
         this.setState(newState);
@@ -38,7 +38,7 @@ class CourseEditor extends React.Component{
         this.moduleService.deleteModule(courseId,moduleId);
         let newState = {...this.state}
         newState.modules = this.moduleService.findAllModules(courseId);
-        this.setState(newState,() => {console.log(JSON.stringify(newState))});
+        this.setState(newState);
     }
 
     updateModule = (moduleId) => {

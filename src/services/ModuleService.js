@@ -29,13 +29,13 @@ export default class ModuleService {
         });
         let course = {...courseService.findCourseById(courseId)};
         course.modules = modules;
-        courseService.updateModule(courseId,course);
+        courseService.updateCourse(courseId,course);
     }
     createModule(courseId,module){
         let modules = this.findAllModules(courseId)
         modules.push(module);
         let course = {...courseService.findCourseById(courseId)};
         course.modules = modules;
-        courseService.updateModule(courseId,course);
+        courseService.updateCourse(courseId,course);
     }
 }

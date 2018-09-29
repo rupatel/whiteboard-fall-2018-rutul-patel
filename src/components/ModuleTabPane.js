@@ -1,18 +1,19 @@
 import React from 'react';
 
-const ModuleTabPane = ({modules,selectedModule,selectModule,deleteModule}) => {
+const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, addModule}) => {
     let actionIconStyle = {
         color: 'white'
     }
 
+    let moduleTitleElem;
     return (
         <div className="container">
             <div className="row nav flex-column nav-pills" id="v-pills-module-tab" role="tablist"
                  aria-orientation="vertical">
                 {
-                    modules.map((module,index) => {
+                    modules.map((module, index) => {
                         let className = "nav-link m-2";
-                        if ((selectedModule && module.id == selectedModule) || index==0)
+                        if ((selectedModule && module.id == selectedModule) || index == 0)
                             className = className + ' active ';
                         return (
                             <span className={className} id="v-pills-course1-module1-tab" data-toggle="pill"
@@ -35,8 +36,20 @@ const ModuleTabPane = ({modules,selectedModule,selectModule,deleteModule}) => {
                     })
                 }
             </div>
+            <input
+                ref={selectDomElement => {
+                    moduleTitleElem = selectDomElement
+                }}
+                className="form-control w-100"/>
             <a className="m-2 float-right" id="v-pills-course1-module-add-tab"
-               href="#">
+               href="#"
+               onClick={(e) => {
+                   addModule({
+                       id: (new Date()).getTime() + '',
+                       title: moduleTitleElem.value
+                   });
+                   moduleTitleElem.value = '';
+               }}>
                 <i className="action-icon fas fa-2x fa-plus"></i>
             </a>
         </div>
