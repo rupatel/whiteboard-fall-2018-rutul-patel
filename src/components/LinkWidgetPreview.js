@@ -7,7 +7,7 @@ const LinkWidgetPreview = () => {
     }
     return (
         <div className="container">
-            <Link href={linkWidgetInfo.link}>{linkWidgetInfo.linkText}</Link>
+            <Link to={linkWidgetInfo.link}>{linkWidgetInfo.linkText}</Link>
         </div>
     );
 }

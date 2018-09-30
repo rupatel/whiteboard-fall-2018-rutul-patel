@@ -19,9 +19,7 @@ const WidgetList = () => {
             topicID: 1,
             widgetID: 1,
             widgetName: 'heading widget',
-            widgetType: 'Heading',
-            headingText: 'Heading Text',
-            headingType: 'Heading1',
+            widgetType: 'List'
         },
         {
             courseID: 1,
@@ -29,9 +27,7 @@ const WidgetList = () => {
             topicID: 1,
             widgetID: 1,
             widgetName: 'heading widget',
-            widgetType: 'Heading',
-            headingText: 'Heading Text',
-            headingType: 'Heading1',
+            widgetType: 'Link',
         },
         {
             courseID: 1,
@@ -39,9 +35,15 @@ const WidgetList = () => {
             topicID: 1,
             widgetID: 1,
             widgetName: 'heading widget',
-            widgetType: 'Heading',
-            headingText: 'Heading Text',
-            headingType: 'Heading1',
+            widgetType: 'Paragraph',
+        },
+        {
+            courseID: 1,
+            lessonID: 1,
+            topicID: 1,
+            widgetID: 1,
+            widgetName: 'heading widget',
+            widgetType: 'Image',
         }
     ]
 
