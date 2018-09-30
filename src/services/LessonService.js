@@ -31,7 +31,7 @@ export default class LessonService {
         module.lessons = lessons
         moduleService.updateModule(courseId,moduleId,module);
     }
-    createModule(courseId,moduleId,lesson){
+    createLesson(courseId,moduleId,lesson){
         let lessons = this.findAllLessons(courseId,moduleId)
         lessons.push(lesson);
         let module = {...moduleService.findModuleById(courseId,moduleId)};

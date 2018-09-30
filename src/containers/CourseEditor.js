@@ -9,6 +9,9 @@ class CourseEditor extends React.Component{
         super(props);
         this.moduleService = new ModuleService();
         this.courseService = new CourseService();
+        this.lessonService = new LessonService();
+        this.topicService = new TopicService();
+
         this.state = {
             modules:[],
             selectedModule: '',
@@ -32,6 +35,7 @@ class CourseEditor extends React.Component{
         this.setState(newState);
     }
 
+    //updating module state
     addModule = (module) => {
         let courseId = this.props.match.params.courseId;
         this.moduleService.createModule(courseId,module);
@@ -63,6 +67,88 @@ class CourseEditor extends React.Component{
     selectModule = (moduleId) => {
         let state = {...this.state};
         state.selectedModule = moduleId;
+        this.setState(state);
+    }
+
+    // updating lesson state
+    addLesson = (lesson) => {
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        this.lessonService.createLesson(courseId,moduleId,lesson);
+        let newState = {...this.state}
+        newState['modules'] = this.moduleService.findAllModules(courseId);
+        let selectedLesson = (!this.state.selectedLesson ?  lesson.id : this.state.selectedLesson);
+        newState.selectedLesson = selectedLesson;
+        this.setState(newState);
+    }
+
+    deleteLesson = (lessonId) => {
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        this.lessonService.deleteLesson(courseId,moduleId,lessonId);
+        let newState = {...this.state}
+        newState.modules = this.moduleService.findAllModules(courseId);
+        let lessons = lessonService.findAllLessons(courseId,moduleId,lessonId);
+        if(this.state.selectedLesson == lessonId)
+            newState.selectedLesson = lessons.length==0? '' : lessons[0].id;
+        this.setState(newState);
+    }
+
+    updateLesson = (lesson) => {
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        this.lessonService.updateLesson(courseId,moduleId,lesson);
+        let newState = {...this.state}
+        newState.modules = this.moduleService.findAllModules(courseId);
+        this.setState(newState);
+    }
+
+    selectLesson = (lessonId) => {
+        let state = {...this.state};
+        state.selectedLesson = lessonId;
+        this.setState(state);
+    }
+
+    //updating Topic State
+
+    addTopic = (topic) => {
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        let lessonId = this.state.selectedLesson;
+        this.topicService.createLesson(courseId,moduleId,lessonId,topic);
+        let newState = {...this.state}
+        newState['modules'] = this.moduleService.findAllModules(courseId);
+        let selectedLesson = (!this.state.selectedTopic ?  topic.id : this.state.selectedTopic);
+        newState.selectedTopic = selectedLesson;
+        this.setState(newState);
+    }
+
+    deleteTopic = (topicId) => {
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        let lessonId = this.state.selectedLesson;
+        this.topicService.deleteTopic(courseId,moduleId,lessonId,topicId);
+        let newState = {...this.state}
+        newState.modules = this.moduleService.findAllModules(courseId);
+        let topics = topicService.findAllTopics(courseId,moduleId,lessonId,topicId);
+        if(this.state.selectedLesson == lessonId)
+            newState.selectedTopic = topics.length==0? '' : topics[0].id;
+        this.setState(newState);
+    }
+
+    updateTopic = (topic) => {
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        let lessonId = this.state.selectedLesson;
+        this.topicService.updateTopic(courseId,moduleId,lessonId,topic);
+        let newState = {...this.state}
+        newState.modules = this.moduleService.findAllModules(courseId);
+        this.setState(newState);
+    }
+
+    selectTopic = (topicId) => {
+        let state = {...this.state};
+        state.selectedTopic = topicId;
         this.setState(state);
     }
 
