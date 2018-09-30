@@ -30,8 +30,11 @@ const CourseCard = ({deleteCourse,course}) => {
                             <Link className="mr-2 no-decorate d-inline" to={'/course/'+ course.id +'/edit'}>
                                 <i className="fas fa-file-alt"></i> </Link>
                             <p className="mr-2 text-truncate d-inline">Modified 8.09 am</p>
-                            <a className="-pull-right no-decorate d-inline" href="/course-editor/course-editor.template.client.html">
-                                <i className="fas fa-ellipsis-v"></i> </a>
+                            
+                            <Link className="no-decorate" to={"#"} onClick={e => {
+                                deleteCourse({id:course.id});
+                            }}>
+                                <i className="fas fa-times"></i></Link>
                         </div>
                     </div>
                 </div>

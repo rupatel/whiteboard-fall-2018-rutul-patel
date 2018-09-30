@@ -3,7 +3,7 @@ import './CourseRow.css'
 import {Link} from 'react-router-dom';
 const CourseRow = ({deleteCourse,course}) => {
     if(!course)
-        course = {title:'CS4540 Data Mining', id:1}
+        course = {title:'DUMMY', id:1}
     return (
         <div className="row">
             <div className="col-sm-5 col-11">

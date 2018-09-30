@@ -24,54 +24,45 @@ const CourseGrid = ({addCourse,deleteCourse,courses}) => {
                             course={c}
                         />)
                     })}
+
                     <CourseCard key={100}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
+                                course = {{id:1,title:'DUMMY'}}/>
                     <CourseCard key={101}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
+                                course = {{id:1,title:'DUMMY'}}/>
                     <CourseCard key={102}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
+                                course = {{id:1,title:'DUMMY'}}/>
                     <CourseCard key={103}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
+                                course = {{id:1,title:'DUMMY'}}/>
                     <CourseCard key={104}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
+                                course = {{id:1,title:'DUMMY'}}/>
 
                     <CourseCard key={105}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={106}
+                                course = {{id:1,title:'DUMMY'}}/>
+                    <CourseCard key={100}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={107}
+                                course = {{id:1,title:'DUMMY'}}/>
+                    <CourseCard key={101}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={108}
+                                course = {{id:1,title:'DUMMY'}}/>
+                    <CourseCard key={102}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={109}
+                                course = {{id:1,title:'DUMMY'}}/>
+                    <CourseCard key={103}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
+                                course = {{id:1,title:'DUMMY'}}/>
+                    <CourseCard key={104}
+                                deleteCourse={deleteCourse}
+                                course = {{id:1,title:'DUMMY'}}/>
 
-
-                    <CourseCard key={110}
+                    <CourseCard key={105}
                                 deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={111}
-                                deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={112}
-                                deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={113}
-                                deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
-                    <CourseCard key={114}
-                                deleteCourse={deleteCourse}
-                                course = {{id:1,title:'CS4500'}}/>
+                                course = {{id:1,title:'DUMMY'}}/>
 
                 </div>
             </div>
