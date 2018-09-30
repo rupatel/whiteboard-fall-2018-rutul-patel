@@ -21,9 +21,9 @@ const LessonNavBar = ({
                     <div className="col-3">
                         <div className="row">
                         <span className="col-2 mr-2">
-                            <a href="#">
+                            <Link to="#">
                                 <i className="fas fa-times fa-2x action-icon"></i>
-                            </a>
+                            </Link>
                         </span>
                             <span className="p-0 m-0 col-8 navbar-brand text-white text-bold">
                                 {courseTitle}
@@ -41,7 +41,7 @@ const LessonNavBar = ({
                                             className = className + ' active show ';
                                         return (
                                             <span className={className} id="nav-module1-lesson1-tab"
-                                                  data-toggle="tab" href="#nav-module1-lesson1" role="tab"
+                                                  data-toggle="tab" role="tab"
                                                   aria-controls="nav-module1-lesson1"
                                                   aria-selected="true"
                                                   onClick={() => {

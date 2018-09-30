@@ -17,15 +17,15 @@ const CourseRowHeader = () => {
                     </div>
                     <div className="col-3 d-none d-sm-block">
                         <div className="dropdown show">
-                            <a className="no-decorate dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                            <Link className="no-decorate dropdown-toggle" to="#" role="button" id="dropdownMenuLink"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span className="font-weight-bold"> Owned By </span>
-                            </a>
+                            </Link>
 
                             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a className="dropdown-item" href="#">Ram</a>
-                                <a className="dropdown-item" href="#">Tom</a>
-                                <a className="dropdown-item" href="#">Bill</a>
+                                <Link className="dropdown-item" to="#">Ram</Link>
+                                <Link className="dropdown-item" to="#">Tom</Link>
+                                <Link className="dropdown-item" to="#">Bill</Link>
                             </div>
                         </div>
                     </div>
@@ -34,7 +34,7 @@ const CourseRowHeader = () => {
                         <Link className="no-decorate float-left mr-3" to="/course/grid">
                             <i className="fas fa-grip-horizontal"></i>
                         </Link>
-                        <a className="no-decorate float-left mr-3" href="#"><i className="fas fa-sort pr-3"></i></a>
+                        <Link className="no-decorate float-left mr-3" to="#"><i className="fas fa-sort pr-3"></i></Link>
                     </div>
                 </div>
             </div>

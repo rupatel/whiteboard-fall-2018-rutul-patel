@@ -7,7 +7,7 @@ export default class TopicService {
     findAllTopics(courseId,moduleId,lessonId)
     {
         let lesson = lessonService.findLessonById(courseId,moduleId,lessonId);
-        return lesson.topics
+        return lesson.topics ? lesson.topics : [];
     }
     findTopicById(courseId,moduleId,lessonId,topicId){
         let topics = this.findAllTopics(courseId,moduleId);
@@ -29,13 +29,13 @@ export default class TopicService {
         });
         let lesson = {...lessonService.findLessonById(courseId,moduleId,lessonId)};
         lesson.topics = topics
-        lessonService.updateLesson(courseId,moduleId,lessonId,lesson);
+        lessonService.updateLesson(courseId,moduleId,lesson);
     }
     createTopic(courseId,moduleId,lessonId,topic){
         let topics = this.findAllTopics(courseId,moduleId,lessonId);
         topics.push(topic);
         let lesson = {...lessonService.findLessonById(courseId,moduleId,lessonId)};
         lesson.topics = topics;
-        lessonService.updateLesson(courseId,moduleId,lessonId,lesson);
+        lessonService.updateLesson(courseId,moduleId,lesson);
     }
 }

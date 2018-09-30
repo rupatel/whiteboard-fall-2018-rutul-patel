@@ -50,7 +50,7 @@ const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, add
                             className = className + ' active ';
                         return (
                             <span className={className} id="v-pills-course1-module1-tab" data-toggle="pill"
-                                  href="#v-pills-course1-module1" role="tab" aria-controls="v-pills-course1-module1"
+                                  role="tab" aria-controls="v-pills-course1-module1"
                                   aria-selected="true"
                                   onClick={() => {
                                       selectModule(module.id);
@@ -58,13 +58,13 @@ const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, add
                                 <span
                                     className="pr-2"> {module.title} </span>
 
-                                <a className="float-right" href="#"
+                                <Link className="float-right" to="#"
                                    onClick={(e) => {
                                        e.stopPropagation();
                                        deleteModule(module.id);
                                    }}>
                                     <i className="fas fa-times" style={actionIconStyle}></i>
-                                </a>
+                                </Link>
 
 
                             </span>

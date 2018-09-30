@@ -6,7 +6,8 @@ let courseService =  new CourseService();
 export default class ModuleService {
     findAllModules(courseId)
     {
-        return courseService.findCourseById(courseId).modules;
+        let course = courseService.findCourseById(courseId);
+        return course.modules ? course.modules : [];
     }
     findModuleById(courseId,moduleId){
         let course = courseService.findCourseById(courseId);

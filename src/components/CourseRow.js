@@ -7,8 +7,8 @@ const CourseRow = ({deleteCourse,course}) => {
     return (
         <div className="row">
             <div className="col-sm-5 col-11">
-                <a className="no-decorate" href={'/course/'+ course.id +'/edit'}>
-                    <i className="fas fa-file-alt"></i> </a>
+                <Link className="no-decorate" to={'/course/'+ course.id +'/edit'}>
+                    <i className="fas fa-file-alt"></i> </Link>
                 <Link to = {'/course/'+ course.id +'/edit'} className="no-decorate text-justify d-inline p-2">
                     {course.title}
                 </Link>

@@ -7,7 +7,7 @@ export default class LessonService {
     findAllLessons(courseId,moduleId)
     {
         let module = moduleService.findModuleById(courseId,moduleId);
-        return module.lessons
+        return module.lessons ? module.lessons : [];
     }
     findLessonById(courseId,moduleId,lessonId){
         let lessons = this.findAllLessons(courseId,moduleId);
@@ -36,6 +36,6 @@ export default class LessonService {
         lessons.push(lesson);
         let module = {...moduleService.findModuleById(courseId,moduleId)};
         module.lessons = lessons;
-        moduleService.updateModule(courseId,moduleId);
+        moduleService.updateModule(courseId,module);
     }
 }

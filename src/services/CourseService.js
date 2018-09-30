@@ -156,7 +156,7 @@ let courses = [
 export default class CourseService {
     findAllCourses()
     {
-        return courses;
+        return courses ? courses : [];
     }
 
     findCourseById(id)

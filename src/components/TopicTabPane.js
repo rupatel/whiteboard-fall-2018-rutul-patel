@@ -19,7 +19,7 @@ const TopicTabPane = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopi
                                 return (
                                     <li className="nav-item" key={topic.id}>
                                         <span className={className} id="module1-lesson1-topic1" data-toggle="pill"
-                                           href="#pills-module1-lesson1-topic1" role="tab"
+                                              role="tab"
                                            aria-controls="pills-module1-lesson1-topic1" aria-selected="true"
                                            onClick={() => {
                                                selectTopic(topic.id);

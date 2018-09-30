@@ -7,25 +7,25 @@ const CourseGridHeader = () => {
             <div className="col-5 font-weight-bold">Recent Documents</div>
             <div className="col-3">
                 <div className="dropdown show">
-                    <a className="no-decorate dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                    <Link className="no-decorate dropdown-toggle" to="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span className="font-weight-bold">Owned By</span>
-                    </a>
+                    </Link>
 
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a className="dropdown-item" href="#">Ram</a>
-                        <a className="dropdown-item" href="#">Tom</a>
-                        <a className="dropdown-item" href="#">Bill</a>
+                        <Link className="dropdown-item" to="#">Ram</Link>
+                        <Link className="dropdown-item" to="#">Tom</Link>
+                        <Link className="dropdown-item" to="#">Bill</Link>
                     </div>
                 </div>
             </div>
             <div className="col-4">
-                <a className="mr-4 float-right no-decorate" href="#">
+                <Link className="mr-4 float-right no-decorate" to="#">
                     <i className="fas fa-folder"></i>
-                </a>
-                <a className="mr-2 float-right no-decorate" href="#">
+                </Link>
+                <Link className="mr-2 float-right no-decorate" to="#">
                     <i className="fas fa-sort pr-3"></i>
-                </a>
+                </Link>
                 <Link className="mr-4 float-right no-decorate" to="/course/table">
                     <i className="fas fa-th-list"></i>
                 </Link>
