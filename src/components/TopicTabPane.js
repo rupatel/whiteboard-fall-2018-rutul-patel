@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 const TopicTabPane = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
     let topicTitleElem;
     let actionIconStyle = {
-        color: 'white'
+        color: '#655858'
     }
 
     return (
@@ -45,7 +45,8 @@ const TopicTabPane = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopi
                            topicTitleElem = selectDomElement
                        }}
                        className="form-control w-75 mr-2 d-inline"/>
-                <Link to="#" onClick={() => {
+                <Link
+                    to="#" onClick={() => {
                     addTopic({
                         id: (new Date()).getTime() + '',
                         title: topicTitleElem.value,
@@ -53,9 +54,11 @@ const TopicTabPane = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopi
                     });
                     topicTitleElem.value = 'New Topic';
                 }}>
-                    <i className="fas fa-plus fa-2x action-icon"></i>
+                    <i className="fas fa-plus fa-2x action-icon" style={actionIconStyle}></i>
                 </Link>
-                <Link className="ml-2"
+                <Link
+                      style = {{color:'blue'}}
+                      className="ml-2"
                       to="#"
                       onClick={(e) => {
                           e.stopPropagation();

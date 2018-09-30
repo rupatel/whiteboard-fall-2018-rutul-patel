@@ -29,7 +29,7 @@ export default class LessonService {
         });
         let module = {...moduleService.findModuleById(courseId,moduleId)};
         module.lessons = lessons
-        moduleService.updateModule(courseId,moduleId,module);
+        moduleService.updateModule(courseId,module);
     }
     createLesson(courseId,moduleId,lesson){
         let lessons = this.findAllLessons(courseId,moduleId)
