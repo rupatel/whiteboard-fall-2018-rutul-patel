@@ -13,7 +13,7 @@ export default class TopicService {
         let topics = this.findAllTopics(courseId,moduleId);
         return topics.filter(t => t.id == topicId)[0]
     }
-    deleteTopicById(courseId,moduleId,lessonId,topicId)
+    deleteTopic(courseId,moduleId,lessonId,topicId)
     {
         let lesson = {... lessonService.findLessonById(courseId,moduleId,lessonId)};
         let newTopics = lesson.topics.filter(t => t.id != topicId);
@@ -23,7 +23,7 @@ export default class TopicService {
 
     updateTopic(courseId,moduleId,lessonId,topic)
     {
-        let topics = this.findAllTopics(courseId,moduleId,topicId).map(t =>{
+        let topics = this.findAllTopics(courseId,moduleId,lessonId).map(t =>{
             if(t.id == topic.id) return topic;
             else return t;
         });

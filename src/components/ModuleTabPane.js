@@ -12,7 +12,7 @@ const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, add
             <div className="row nav flex-column nav-pills" id="v-pills-module-tab" role="tablist"
                  aria-orientation="vertical">
                 <span className="container">
-                    <input defaultValue="New Title"
+                    <input defaultValue="New Module"
                            ref={selectDomElement => {
                                moduleTitleElem = selectDomElement
                            }}
@@ -24,7 +24,7 @@ const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, add
                                   id: (new Date()).getTime() + '',
                                   title: moduleTitleElem.value
                               });
-                              moduleTitleElem.value = 'New Title';
+                              moduleTitleElem.value = 'New Module';
                           }}>
                         <i className="action-icon fas fa-2x fa-plus"></i>
                     </Link>

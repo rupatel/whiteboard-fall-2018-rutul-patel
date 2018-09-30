@@ -13,10 +13,10 @@ export default class LessonService {
         let lessons = this.findAllLessons(courseId,moduleId);
         return lessons.filter(l => l.id == lessonId)[0]
     }
-    deleteLessonById(courseId,moduleId,lessonId)
+    deleteLesson(courseId,moduleId,lessonId)
     {
         let module = {... moduleService.findModuleById(courseId,moduleId)};
-        let newLessons = module.lesson.filter(l => l.id != lessonId);
+        let newLessons = module.lessons.filter(l => l.id != lessonId);
         module.lessons = newLessons;
         moduleService.updateModule(courseId,module);
     }
