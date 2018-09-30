@@ -18,7 +18,7 @@ export default class TopicService {
         let lesson = {... lessonService.findLessonById(courseId,moduleId,lessonId)};
         let newTopics = lesson.topics.filter(t => t.id != topicId);
         lesson.topics = newTopics;
-        lessonService.updateModule(courseId,lesson);
+        lessonService.updateLesson(courseId,moduleId,lesson );
     }
 
     updateTopic(courseId,moduleId,lessonId,topic)

@@ -7,7 +7,7 @@ import './Module.css';
 const Module = ({
                     deleteModule, addModule, modules, updateModule, selectedModule, selectModule,
                     selectedLesson,
-                    updateTopic, deleteTopic, addTopic, selectedTopic, findAllTopics, selectTopic
+                    updateTopic, deleteTopic, addTopic, selectedTopic,selectTopic,topics
                 }) => {
     return (
         <div className="container-fluid modules">
@@ -24,16 +24,12 @@ const Module = ({
                 </div>
                 <div className="col-9 offset-3">
                     <ModuleTabContent
-                        selectedModule={selectedModule}
-                        selectedLesson = {selectedLesson}
-
-                        updateTopic = {updateTopic}
-                        deleteTopic = {deleteTopic}
-                        addTopic = {addTopic}
-                        selectedTopic = {selectedTopic}
-                        findAllTopics = {findAllTopics}
-                        selectTopic = {selectTopic}
-                    />
+                        updateTopic={updateTopic}
+                        deleteTopic={deleteTopic}
+                        addTopic={addTopic}
+                        selectedTopic={selectedTopic}
+                        selectTopic={selectTopic}
+                        topics={topics}/>
                 </div>
             </div>
         </div>

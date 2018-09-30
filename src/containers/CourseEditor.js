@@ -146,7 +146,7 @@ class CourseEditor extends React.Component {
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
         let lessonId = this.state.selectedLesson;
-        this.topicService.createLesson(courseId, moduleId, lessonId, topic);
+        this.topicService.createTopic(courseId, moduleId, lessonId, topic);
         let newState = {...this.state}
         newState['modules'] = this.moduleService.findAllModules(courseId);
         let selectedLesson = (!this.state.selectedTopic ? topic.id : this.state.selectedTopic);
@@ -191,6 +191,9 @@ class CourseEditor extends React.Component {
         if (lesson && lesson.topics)
             topic = lesson.topics.filter(t => t.id == this.state.selectedTopic)[0];
 
+
+        let lessons = (module ? (module.lessons ? module.lessons : []) : []);
+        let topics = (lesson ? (lesson.topics ? lesson.topics : []) : []);
         return (
             <div className="container-fluid m-0 p-0">
                 <LessonNavBar
@@ -200,7 +203,7 @@ class CourseEditor extends React.Component {
                     addLesson={this.addLesson}
                     selectedLesson={this.state.selectedLesson}
                     selectLesson={this.selectLesson}
-                    lessons={(module ? (module.lessons ? module.lessons : []) : [])}
+                    lessons={lessons}
                 />
                 <Module
                     deleteModule={this.deleteModule}
@@ -209,13 +212,12 @@ class CourseEditor extends React.Component {
                     updateModule={this.updateModule}
                     selectedModule={this.state.selectedModule}
                     selectModule={this.selectModule}
-
                     updateTopic={this.updateTopic}
                     deleteTopic={this.deleteTopic}
                     addTopic={this.addTopic}
                     selectedTopic={this.state.selectedTopic}
-                    findAllTopics={this.topicService.findAllTopics}
                     selectTopic={this.selectTopic}
+                    topics={topics}
                 />
                 <button className="btn btn-danger bottom-right m-4">
                     <i className="fas fa-plus-circle"></i>
