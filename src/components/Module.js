@@ -5,6 +5,11 @@ import './Module.css';
 const Module = ({deleteModule,addModule,modules,updateModule,
                     selectedModule,selectedLesson,selectedTopic,
                     selectModule}) => {
+    //context state
+    let module = selectedModule ?  modules.filter(m => m.id == selectedModule) : '';
+    let lesson = selectedLesson ?  module.modules.filter(l => l.id == selectedLesson) : '';
+    let topic = selectedTopic ? lesson.topics.filter(t => t.id == selectedTopic) : '';
+
     return (
         <div className="container-fluid modules">
             <div className="row">
@@ -19,7 +24,11 @@ const Module = ({deleteModule,addModule,modules,updateModule,
                     />
                 </div>
                 <div className="col-9 offset-3">
-                    <ModuleTabContent/>
+                    <ModuleTabContent
+                        selectedModule = {selectedModule}
+                        selectedLesson = {selectedLesson}
+                        selectedTopic = {selectedTopic}
+                    />
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
-import CourseTableNavBar from '../components/CourseTableNavBar';
-import CourseRowHeader from '../components/CourseRowHeader';
-import CourseRow from "../components/CourseRow";
+import CourseTableNavBar from './CourseTableNavBar';
+import CourseRowHeader from './CourseRowHeader';
+import CourseRow from "./CourseRow";
 import './CourseTable.css';
 
 const CourseTable = ({addCourse,deleteCourse,courses}) =>

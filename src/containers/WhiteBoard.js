@@ -1,7 +1,7 @@
 import React from 'react';
 import CourseService from "../services/CourseService";
-import CourseTable from "./CourseTable";
-import CourseGrid from "./CourseGrid";
+import CourseTable from "../components/CourseTable";
+import CourseGrid from "../components/CourseGrid";
 import {BrowserRouter as Router, Link, Route, Redirect} from 'react-router-dom';
 import CourseEditor from "./CourseEditor";
 import Switch from "react-router/es/Switch";

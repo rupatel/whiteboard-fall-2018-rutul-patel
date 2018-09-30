@@ -1,7 +1,7 @@
 import React from 'react';
-import CourseTableNavBar from "../components/CourseTableNavBar";
-import CourseGridHeader from "../components/CourseGridHeader";
-import CourseCard from "../components/CourseCard";
+import CourseTableNavBar from "./CourseTableNavBar";
+import CourseGridHeader from "./CourseGridHeader";
+import CourseCard from "./CourseCard";
 
 const CourseGrid = ({addCourse,deleteCourse,courses}) => {
     const gridContainerStyle = {
