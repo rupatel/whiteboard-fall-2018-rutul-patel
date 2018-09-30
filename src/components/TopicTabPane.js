@@ -30,7 +30,7 @@ const TopicTabPane = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopi
                                                           e.stopPropagation();
                                                           deleteTopic(topic.id);
                                                       }}>
-                                                    <i className="fas fa-times"></i>
+                                                    <i className="fas fa-times" style = {{color:'white'}}></i>
                                                 </Link>
                                         </span>
                                     </li>)
