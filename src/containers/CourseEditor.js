@@ -2,16 +2,19 @@ import React from 'react';
 import LessonNavBar from "../components/LessonNavBar";
 import Module from "../components/Module";
 import ModuleService from "../services/ModuleService";
+import CourseService from "../services/CourseService";
 
 class CourseEditor extends React.Component{
     constructor(props) {
         super(props);
         this.moduleService = new ModuleService();
+        this.courseService = new CourseService();
         this.state = {
             modules:[],
             selectedModule: '',
             selectedLesson: '',
-            selectedTopic: ''
+            selectedTopic: '',
+            courseTitle:''
         };
         this.deleteModule = this.deleteModule.bind(this);
         this.addModule = this.addModule.bind(this);
@@ -19,9 +22,13 @@ class CourseEditor extends React.Component{
         this.updateModule = this.updateModule.bind(this);
     }
     componentDidMount() {
-        const modules = this.moduleService.findAllModules(this.props.match.params.courseId);
+        let courseId = this.props.match.params.courseId;
+        const modules = this.moduleService.findAllModules(courseId);
         let newState = {...this.state};
         newState.modules = modules;
+        const course = this.courseService.findCourseById(courseId);
+        newState.courseTitle = course.title;
+        newState.selectedModule = modules.length == 0 ? '' : modules[0].id;
         this.setState(newState);
     }
 
@@ -58,7 +65,8 @@ class CourseEditor extends React.Component{
     render() {
         return (
             <div className="container-fluid m-0 p-0">
-                <LessonNavBar/>
+                <LessonNavBar
+                courseTitle={this.state.courseTitle}/>
                 <Module
                     deleteModule = {this.deleteModule}
                     addModule = {this.addModule}

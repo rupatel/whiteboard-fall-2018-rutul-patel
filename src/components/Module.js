@@ -15,6 +15,7 @@ const Module = ({deleteModule,addModule,modules,updateModule,
                         selectModule = {selectModule}
                         deleteModule = {deleteModule}
                         addModule = {addModule}
+                        updateModule = {updateModule}
                     />
                 </div>
                 <div className="col-9 offset-3">
