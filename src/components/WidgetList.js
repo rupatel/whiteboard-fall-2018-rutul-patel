@@ -1,7 +1,7 @@
 import React from 'react';
 import Widget from './Widget';
 
-const TopicTabContent = () => {
+const WidgetList = () => {
     let widgets = [
         {
             courseID: 1,
@@ -54,4 +54,4 @@ const TopicTabContent = () => {
         </div>
     )
 }
-export default TopicTabContent;
+export default WidgetList;

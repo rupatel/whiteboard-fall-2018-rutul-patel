@@ -1,8 +1,8 @@
 import React from 'react';
-import './LessonNavBar.css'
+import './LessonTabs.css'
 import {Link} from 'react-router-dom';
 
-const LessonNavBar = ({
+const LessonTab = ({
                           courseTitle, updateLesson, deleteLesson, addLesson, selectedLesson,
                           selectLesson, lessons
                       }) => {
@@ -96,4 +96,4 @@ const LessonNavBar = ({
         </nav>
     );
 }
-export default LessonNavBar;
+export default LessonTab;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-const TopicTabPane = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
+const TopicPills = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
     let topicTitleElem;
     let actionIconStyle = {
         color: '#655858'
@@ -74,4 +74,4 @@ const TopicTabPane = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopi
         </div>
     );
 }
-export default TopicTabPane;
+export default TopicPills;

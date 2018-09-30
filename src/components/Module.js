@@ -1,5 +1,5 @@
 import React from 'react';
-import ModuleTabPane from "./ModuleTabPane";
+import ModuleList from "./ModuleList";
 import ModuleTabContent from "./ModuleTabContent";
 import './Module.css';
 
@@ -13,7 +13,7 @@ const Module = ({
         <div className="container-fluid modules">
             <div className="row">
                 <div className="col-3 modulesTab">
-                    <ModuleTabPane
+                    <ModuleList
                         modules={modules}
                         selectedModule={selectedModule}
                         selectModule={selectModule}

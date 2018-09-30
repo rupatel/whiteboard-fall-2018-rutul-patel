@@ -1,5 +1,5 @@
 import React from 'react';
-import LessonNavBar from "../components/LessonNavBar";
+import LessonTab from "../components/LessonTab";
 import Module from "../components/Module";
 import ModuleService from "../services/ModuleService";
 import CourseService from "../services/CourseService";
@@ -196,7 +196,7 @@ class CourseEditor extends React.Component {
         let topics = (lesson ? (lesson.topics ? lesson.topics : []) : []);
         return (
             <div className="container-fluid m-0 p-0">
-                <LessonNavBar
+                <LessonTab
                     courseTitle={this.state.courseTitle}
                     updateLesson={this.updateLesson}
                     deleteLesson={this.deleteLesson}

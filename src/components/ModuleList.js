@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, addModule, updateModule}) => {
+const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addModule, updateModule}) => {
     let actionIconStyle = {
         color: 'white'
     }
@@ -75,4 +75,4 @@ const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, add
         </div>
     );
 }
-export default ModuleTabPane;
+export default ModuleList;

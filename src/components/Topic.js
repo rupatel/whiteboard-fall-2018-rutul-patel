@@ -1,12 +1,12 @@
 import React from 'react';
-import TopicTabPane from "./TopicTabPane";
-import TopicTabContent from "./TopicTabContent";
+import TopicPills from "./TopicPills";
+import WidgetList from "./WidgetList";
 import ModuleTabContent from "./ModuleTabContent";
 
 const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
     return (
         <div>
-            <TopicTabPane
+            <TopicPills
                 updateTopic = {updateTopic}
                 deleteTopic = {deleteTopic}
                 addTopic = {addTopic}
@@ -14,7 +14,7 @@ const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topic
                 selectTopic = {selectTopic}
                 topics = {topics}
             />
-            <TopicTabContent/>
+            <WidgetList/>
         </div>
     );
 }
