@@ -9,7 +9,9 @@ const CourseRow = ({deleteCourse,course}) => {
             <div className="col-sm-5 col-11">
                 <a className="no-decorate" href={'/course/'+ course.id +'/edit'}>
                     <i className="fas fa-file-alt"></i> </a>
-                <p className="text-justify d-inline p-2">{course.title}</p>
+                <Link to = {'/course/'+ course.id +'/edit'} className="no-decorate text-justify d-inline p-2">
+                    {course.title}
+                </Link>
             </div>
             <div className="col-2 d-none d-sm-block">
                 <p className="text-justify text-left">me</p>

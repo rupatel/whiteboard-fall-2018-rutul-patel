@@ -37,6 +37,8 @@ class CourseEditor extends React.Component{
         this.moduleService.createModule(courseId,module);
         let newState = {...this.state}
         newState['modules'] = this.moduleService.findAllModules(courseId);
+        let selectedModule = (!this.state.selectedModule ?  module.id : this.state.selectedModule);
+        newState.selectedModule = selectedModule;
         this.setState(newState);
     }
 
@@ -45,12 +47,14 @@ class CourseEditor extends React.Component{
         this.moduleService.deleteModule(courseId,moduleId);
         let newState = {...this.state}
         newState.modules = this.moduleService.findAllModules(courseId);
+        if(this.state.selectedModule == moduleId)
+            newState.selectedModule = newState.modules.length==0? '' : newState.modules[0].id;
         this.setState(newState);
     }
 
-    updateModule = (moduleId) => {
+    updateModule = (module) => {
         let courseId = this.props.match.params.courseId;
-        this.moduleService.updateModule(courseId,moduleId);
+        this.moduleService.updateModule(courseId,module);
         let newState = {...this.state}
         newState.modules = this.moduleService.findAllModules(courseId);
         this.setState(newState);

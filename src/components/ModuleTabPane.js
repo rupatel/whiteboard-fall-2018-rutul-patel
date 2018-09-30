@@ -36,7 +36,7 @@ const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, add
                               {
                                   let module = modules.filter(m => m.id==selectedModule)[0];
                                   module.title = moduleTitleElem.value;
-                                  updateModule(selectedModule,module);
+                                  updateModule(module);
                               }
                           }}>
                         <i className="action-icon fas fa-pencil-alt fa-2x" style={actionIconStyle}></i>
@@ -45,7 +45,8 @@ const ModuleTabPane = ({modules, selectedModule, selectModule, deleteModule, add
                 {
                     modules.map((module, index) => {
                         let className = "nav-link m-2";
-                        if ((selectedModule && module.id == selectedModule) || index == 0)
+
+                        if (module.id == selectedModule)
                             className = className + ' active ';
                         return (
                             <span className={className} id="v-pills-course1-module1-tab" data-toggle="pill"

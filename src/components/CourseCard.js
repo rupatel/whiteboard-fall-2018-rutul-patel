@@ -1,8 +1,10 @@
 import React from 'react';
 import './CourseCard.css';
-const CourseCard = () => {
+import {Link} from 'react-router-dom';
 
-    let courseTitle = 'Single Page Application'
+const CourseCard = ({deleteCourse,course}) => {
+
+    let courseTitle = course.title;
     let courseDescription = 'A single-page application (SPA) is a web application or web site that interacts with the ' +
         'user by dynamically rewriting the current page rather than loading entire new pages from a server. ' +
         'This approach avoids interruption of the user experience between successive pages, making the application ' +
@@ -21,10 +23,12 @@ const CourseCard = () => {
                         <p className="card-text" style={{maxHeight: "20rem"}}>{courseDescription}</p>
                     </div>
                     <div className="h-25 p-2">
-                        <h5 className="card-title font-weight-bold text-truncate">{courseTitle}</h5>
+                        <Link to = {'/course/'+ course.id +'/edit'} className="no-decorate">
+                            <h5 className="card-title font-weight-bold text-truncate">{courseTitle}</h5>
+                        </Link>
                         <div className="d-block">
-                            <a className="mr-2 no-decorate d-inline" href="/course-editor/course-editor.template.client.html">
-                                <i className="fas fa-file-alt"></i> </a>
+                            <Link className="mr-2 no-decorate d-inline" to={'/course/'+ course.id +'/edit'}>
+                                <i className="fas fa-file-alt"></i> </Link>
                             <p className="mr-2 text-truncate d-inline">Modified 8.09 am</p>
                             <a className="-pull-right no-decorate d-inline" href="/course-editor/course-editor.template.client.html">
                                 <i className="fas fa-ellipsis-v"></i> </a>
