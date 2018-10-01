@@ -7,6 +7,7 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
     }
 
     let moduleTitleElem;
+    let moduletTitleUpdate;
     return (
         <div className="container">
             <div className="row nav flex-column nav-pills" id="v-pills-module-tab" role="tablist"
@@ -28,24 +29,12 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
                           }}>
                         <i className="action-icon fas fa-2x fa-plus"></i>
                     </Link>
-                    <Link className="ml-2"
-                          to="#"
-                          onClick={(e) => {
-                              e.stopPropagation();
-                              if(selectedModule)
-                              {
-                                  let module = modules.filter(m => m.id==selectedModule)[0];
-                                  module.title = moduleTitleElem.value;
-                                  updateModule(module);
-                              }
-                          }}>
-                        <i className="action-icon fas fa-pencil-alt fa-2x" style={actionIconStyle}></i>
-                    </Link>
                 </span>
                 {
                     modules.map((module, index) => {
-                        let className = "nav-link m-2";
-
+                        let className = "nav-link m-2 pt-0 pb-0 ";
+                        let editInputId = module.id + 'module' + 'edit';
+                        let mid = module.id;
                         if (module.id == selectedModule)
                             className = className + ' active ';
                         return (
@@ -55,8 +44,20 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
                                   onClick={() => {
                                       selectModule(module.id);
                                   }}>
-                                <span
-                                    className="pr-2"> {module.title} </span>
+                                <input disabled='true'
+                                    onChange={ (e) => {
+                                        let module = modules.filter(m => m.id==mid)[0];
+                                        module.title = e.currentTarget.value;
+                                        updateModule(module);
+                                    }}
+                                    id = {editInputId}
+                                    className="p-0 form-control w-75 d-inline" value={module.title}
+                                       style={{backgroundColor:'transparent',
+                                                border:0,
+                                                color:'white'}}
+                                        onBlur = {(e) =>{
+                                            e.currentTarget.setAttribute('disabled','true');
+                                        }}/>
 
                                 <Link className="float-right" to="#"
                                    onClick={(e) => {
@@ -65,7 +66,17 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
                                    }}>
                                     <i className="fas fa-times" style={actionIconStyle}></i>
                                 </Link>
-
+                                <Link className="float-right mr-2"
+                                      to="#"
+                                      onClick={(e) => {
+                                          let updateElem = document.getElementById(editInputId);
+                                          updateElem.removeAttribute('disabled');
+                                          updateElem.focus();
+                                          updateElem.select();
+                                          e.stopPropagation();
+                                      }}>
+                                    <i className="action-icon fas fa-pencil-alt" style={actionIconStyle}></i>
+                                </Link>
 
                             </span>
                         )

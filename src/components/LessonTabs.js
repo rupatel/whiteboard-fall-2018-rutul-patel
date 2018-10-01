@@ -2,7 +2,7 @@ import React from 'react';
 import './LessonTabs.css'
 import {Link} from 'react-router-dom';
 
-const LessonTab = ({
+const LessonTabs = ({
                           courseTitle, updateLesson, deleteLesson, addLesson, selectedLesson,
                           selectLesson, lessons
                       }) => {
@@ -96,4 +96,4 @@ const LessonTab = ({
         </nav>
     );
 }
-export default LessonTab;
+export default LessonTabs;
