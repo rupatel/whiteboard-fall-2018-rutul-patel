@@ -89,7 +89,7 @@ const TopicPills = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,
                     });
                     topicTitleElem.value = 'New Topic';
                 }}>
-                    <i className="fas fa-plus fa-2x action-icon" style={actionIconStyle}></i>
+                    <i className="fas fa-plus fa-2x action-icon" style={{color:'#655858'}}></i>
                 </Link>
             </div>
         </div>
