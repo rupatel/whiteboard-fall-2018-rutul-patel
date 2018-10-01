@@ -83,7 +83,10 @@ class CourseEditor extends React.Component {
         let newState = {...this.state}
         newState.modules = this.moduleService.findAllModules(courseId);
         if (this.state.selectedModule == moduleId)
+        {
+            newState.selectedModule = '';
             newState.selectedModule = newState.modules.length == 0 ? '' : newState.modules[0].id;
+        }
         this.setState(newState);
     }
 
@@ -121,7 +124,10 @@ class CourseEditor extends React.Component {
         newState.modules = this.moduleService.findAllModules(courseId);
         let lessons = this.lessonService.findAllLessons(courseId, moduleId, lessonId);
         if (this.state.selectedLesson == lessonId)
+        {
+            newState.selectedLesson = '';
             newState.selectedLesson = lessons.length == 0 ? '' : lessons[0].id;
+        }
         this.setState(newState);
     }
 
@@ -163,7 +169,10 @@ class CourseEditor extends React.Component {
         newState.modules = this.moduleService.findAllModules(courseId);
         let topics = this.topicService.findAllTopics(courseId, moduleId, lessonId, topicId);
         if (this.state.selectedLesson == lessonId)
+        {
+            newState.selectedTopic = '';
             newState.selectedTopic = topics.length == 0 ? '' : topics[0].id;
+        }
         this.setState(newState);
     }
 
