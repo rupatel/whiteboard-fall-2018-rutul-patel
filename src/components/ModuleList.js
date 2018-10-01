@@ -33,24 +33,26 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
                 {
                     modules.map((module, index) => {
                         let className = "nav-link m-2 pt-0 pb-0 ";
-                        let editInputId = module.id + 'module' + 'edit';
+                        let editInputElem;
                         let mid = module.id;
                         if (module.id == selectedModule)
                             className = className + ' active ';
                         return (
-                            <span className={className} id="v-pills-course1-module1-tab" data-toggle="pill"
-                                  role="tab" aria-controls="v-pills-course1-module1"
+                            <span key={module.id + '-module-list-item'}
+                                  className={className}
                                   aria-selected="true"
                                   onClick={() => {
                                       selectModule(module.id);
                                   }}>
-                                <input disabled='true'
-                                    onChange={ (e) => {
+                                <input disabled={true}
+                                    ref = {(domNode) =>
+                                    {editInputElem = domNode;}
+                                    }
+                                    onChange={(e) => {
                                         let module = modules.filter(m => m.id==mid)[0];
                                         module.title = e.currentTarget.value;
                                         updateModule(module);
                                     }}
-                                    id = {editInputId}
                                     className="p-0 form-control w-75 d-inline" value={module.title}
                                        style={{backgroundColor:'transparent',
                                                 border:0,
@@ -69,10 +71,9 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
                                 <Link className="float-right mr-2"
                                       to="#"
                                       onClick={(e) => {
-                                          let updateElem = document.getElementById(editInputId);
-                                          updateElem.removeAttribute('disabled');
-                                          updateElem.focus();
-                                          updateElem.select();
+                                          editInputElem.removeAttribute('disabled');
+                                          editInputElem.focus();
+                                          editInputElem.select();
                                           e.stopPropagation();
                                       }}>
                                     <i className="action-icon fas fa-pencil-alt" style={actionIconStyle}></i>

@@ -3,9 +3,9 @@ import './LessonTabs.css'
 import {Link} from 'react-router-dom';
 
 const LessonTabs = ({
-                          courseTitle, updateLesson, deleteLesson, addLesson, selectedLesson,
-                          selectLesson, lessons
-                      }) => {
+                        courseTitle, updateLesson, deleteLesson, addLesson, selectedLesson,
+                        selectLesson, lessons
+                    }) => {
     let navBarStyle = {
         background: '#4e4747',
         height: '10vh'
@@ -30,31 +30,65 @@ const LessonTabs = ({
                         </span>
                         </div>
                     </div>
-                    <div className="col-5">
+                    <div className="col-6">
                         <nav className="navLessons">
                             <div className="nav nav-tabs border-bottom-0 hover-black" id="nav-module1-lesson1-tab"
                                  role="tablist">
                                 {
                                     lessons.map(lesson => {
+                                        let editInputElem;
                                         let className = "nav-item nav-link text-black";
-                                        if (lesson.id == selectedLesson)
+                                        let lid = lesson.id;
+                                        if (lid == selectedLesson)
                                             className = className + ' active show ';
                                         return (
-                                            <span className={className} id="nav-module1-lesson1-tab"
-                                                  data-toggle="tab" role="tab"
-                                                  aria-controls="nav-module1-lesson1"
-                                                  aria-selected="true"
-                                                  onClick={() => {
-                                                      selectLesson(lesson.id);
+                                            <span
+                                                key={lesson.id + '-lesson-tab-item'}
+                                                className={className}
+                                                onClick={() => {
+                                                    selectLesson(lesson.id);
+                                                }}>
+
+                                            <input disabled={true}
+                                                   ref={(domNode) => {
+                                                       editInputElem = domNode;
+                                                   }
+                                                   }
+                                                   onChange={(e) => {
+                                                       let lesson = lessons.filter(l => l.id == lid)[0];
+                                                       lesson.title = e.currentTarget.value;
+                                                       updateLesson(lesson);
+                                                   }}
+                                                   className="p-0 form-control d-inline text-truncate" value={lesson.title}
+                                                   style={{
+                                                       backgroundColor: 'transparent',
+                                                       border: 0,
+                                                       color: 'white',
+                                                       width: '50px',
+                                                       height: '2vh'
+                                                   }}
+                                                   onBlur={(e) => {
+                                                       e.currentTarget.setAttribute('disabled', 'true');
+                                                   }}/>
+
+                                            <Link className="float-right" to="#"
+                                                  onClick={(e) => {
+                                                      e.stopPropagation();
+                                                      deleteLesson(lesson.id);
                                                   }}>
-                                                <a className="pr-2"> {lesson.title} </a>
-                                                <Link className="float-right" to="#"
-                                                      onClick={(e) => {
-                                                          e.stopPropagation();
-                                                          deleteLesson(lesson.id);
-                                                      }}>
-                                                    <i className="fas fa-times"></i>
-                                                </Link>
+                                                <i className="fas fa-times" style={actionIconStyle}></i>
+                                            </Link>
+                                            <Link className="float-right mr-2"
+                                                  to="#"
+                                                  onClick={(e) => {
+                                                      editInputElem.removeAttribute('disabled');
+                                                      editInputElem.focus();
+                                                      editInputElem.select();
+                                                      e.stopPropagation();
+                                                  }}>
+                                                <i className="action-icon fas fa-pencil-alt"
+                                                   style={actionIconStyle}></i>
+                                            </Link>
                                             </span>
                                         )
                                     })}
@@ -62,7 +96,7 @@ const LessonTabs = ({
                         </nav>
                     </div>
 
-                    <div className="col-4">
+                    <div className="col-3">
                         <input defaultValue='New Lesson'
                                ref={selectDomElement => {
                                    lessonTitleElem = selectDomElement
@@ -77,18 +111,6 @@ const LessonTabs = ({
                             lessonTitleElem.value = 'New Lesson';
                         }}>
                             <i className="fas fa-plus fa-2x action-icon"></i>
-                        </Link>
-                        <Link className="ml-2"
-                              to="#"
-                              onClick={(e) => {
-                                  e.stopPropagation();
-                                  if (selectedLesson) {
-                                      let lesson = lessons.filter(l => l.id == selectedLesson)[0];
-                                      lesson.title = lessonTitleElem.value;
-                                      updateLesson(lesson);
-                                  }
-                              }}>
-                            <i className="action-icon fas fa-pencil-alt fa-2x" style={actionIconStyle}></i>
                         </Link>
                     </div>
                 </div>
