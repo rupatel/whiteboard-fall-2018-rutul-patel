@@ -10,7 +10,7 @@ export default class TopicService {
         return lesson.topics ? lesson.topics : [];
     }
     findTopicById(courseId,moduleId,lessonId,topicId){
-        let topics = this.findAllTopics(courseId,moduleId);
+        let topics = this.findAllTopics(courseId,moduleId,lessonId);
         return topics.filter(t => t.id == topicId)[0]
     }
     deleteTopic(courseId,moduleId,lessonId,topicId)

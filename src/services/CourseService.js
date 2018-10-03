@@ -1,5 +1,6 @@
 import React from 'react';
-
+import WidgetService from "./WidgetService";
+let widgetService = new WidgetService();
 let courses = [
     {
         "id": "123",
@@ -18,28 +19,23 @@ let courses = [
                                 "title": "DOM",
                                 "widgets": [
                                     {
-                                        "id":"1",
                                         "type": "HEADING",
                                         "size": 1,
                                         "text": "The Document Object Model"
                                     },
                                     {
-                                        "id":"2",
                                         "type": "PARAGRAPH",
                                         "text": "This topic introduces the DOM"
                                     },
                                     {
-                                        "id":"2",
                                         "type": "LIST",
                                         "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
                                     },
                                     {
-                                        "id":"3",
                                         "type": "IMAGE",
                                         "src": "https://picsum.photos/200"
                                     },
                                     {
-                                        "id":"4",
                                         "type": "LINK",
                                         "title": "The DOM",
                                         "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
@@ -154,6 +150,7 @@ let courses = [
     }
 ];
 export default class CourseService {
+    WidgetService wd = new Wi
     findAllCourses()
     {
         return courses ? courses : [];
@@ -184,4 +181,21 @@ export default class CourseService {
         courses.push(c)
     }
 
+    // these apis dont belong here need to just be in widget service
+    createWidget(courseId,moduleId,lessonId,topicId, widget){
+        widgetService.createWidget(courseId,moduleId,lessonId,topicId,widget);
+    }
+
+    findWidgets(courseId,moduleId,lessonId,topicId){
+        return widgetService.findAllWidgets(courseId,moduleId,lessonId,topicId);
+    }
+    findWidget(courseId,modulesId,lessonId,topicId,widgetId){
+        return widgetService.findWidgetById(courseId,modulesId,lessonId,topicId,widgetId)
+    }
+    updateWidget(courseId,moduleId,lessonId,topicId,widget){
+        widgetService.updateWidget(courseId,moduleId,lessonId,topicId,widget)
+    }
+    deleteWidget(courseId,moduleId,lessonId,topicId,widgetId){
+        widgetService.deleteWidget(courseId,moduleId,lessonId,topicId,widgetId);
+    }
 }
