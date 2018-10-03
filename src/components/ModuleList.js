@@ -7,7 +7,6 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
     }
 
     let moduleTitleElem;
-    let moduletTitleUpdate;
     return (
         <div className="container">
             <div className="row nav flex-column nav-pills" id="v-pills-module-tab" role="tablist"

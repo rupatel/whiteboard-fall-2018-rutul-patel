@@ -1,7 +1,6 @@
 import React from 'react';
 import TopicPills from "./TopicPills";
 import WidgetList from "./WidgetList";
-import ModuleTabContent from "./ModuleTabContent";
 
 const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
     return (
