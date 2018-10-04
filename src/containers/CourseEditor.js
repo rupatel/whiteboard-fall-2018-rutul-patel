@@ -230,6 +230,7 @@ class CourseEditor extends React.Component {
                     selectTopic={this.selectTopic}
                     topics={topics}
                     widgets={widgets}
+                    courseId = {this.props.match.params.courseId}
                 />
                 <button className="btn btn-danger bottom-right m-4">
                     <i className="fas fa-plus-circle"></i>

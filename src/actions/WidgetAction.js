@@ -11,7 +11,6 @@ export const FIND_ALL_WIDGETS = 'FIND_ALL_WIDGETS';
 
 let widgetService = new WidgetService();
 export function addWidget(title,courseId,moduleId,lessonId,topicId,widget) {
-    let widgets = widgetService.createWidget(courseId,moduleId,lessonId,topicId,widget);
     return {
         type: CREATE_WIDGET,
         widget: widget
@@ -43,7 +42,9 @@ export function findWidget(courseId,moduleId,lessonId,topicId,widgetId) {
 }
 
 export function findAllWidgetsForTopic(courseId,moduleId,lessonId, topicId) {
-    let widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
+    let widgets = [];
+    if(courseId && moduleId && lessonId && topicId)
+        widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
     return {
         type: FIND_ALL_WIDGETS_FOR_TOPIC,
         widgets : widgets
@@ -51,7 +52,9 @@ export function findAllWidgetsForTopic(courseId,moduleId,lessonId, topicId) {
 }
 
 export function findAllWidgets(courseId,moduleId,lessonId) {
-    let widgets = widgetService.findAllWidgets(courseId,moduleId,lessonId);
+    let widgets = [];
+    if(courseId && moduleId && lessonId)
+        widgets = widgetService.findAllWidgets(courseId,moduleId,lessonId);
     return {
         type: FIND_ALL_WIDGETS,
         widgets:widgets

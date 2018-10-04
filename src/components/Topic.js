@@ -1,8 +1,16 @@
 import React from 'react';
 import TopicPills from "./TopicPills";
 import WidgetList from "./WidgetList";
+import {WidgetListContainer} from '../containers/WidgetListContainer'
+import {Provider} from 'react-redux';
+import { createStore } from 'redux'
+import WidgetReducer from "../reducers/WidgetReducer";
 
-const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics,widgets}) => {
+const store = createStore(WidgetReducer);
+
+const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics,widgets,
+                   courseId,selectedModule,selectedLesson}) => {
+
     return (
         <div>
             <TopicPills
@@ -13,8 +21,14 @@ const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topic
                 selectTopic = {selectTopic}
                 topics = {topics}
             />
-            <WidgetList
-                widgets= {widgets}/>
+            <Provider store={store}>
+                <WidgetListContainer
+                    courseId = {courseId}
+                    moduleId = {selectedModule}
+                    lessonId = {selectedLesson}
+                    topicId = {selectedTopic}
+                    />
+            </Provider>
         </div>
     );
 }

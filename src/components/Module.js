@@ -7,7 +7,7 @@ import './Module.css';
 const Module = ({
                     deleteModule, addModule, modules, updateModule, selectedModule, selectModule,
                     selectedLesson,
-                    updateTopic, deleteTopic, addTopic, selectedTopic,selectTopic,topics, widgets
+                    updateTopic, deleteTopic, addTopic, selectedTopic,selectTopic,topics, widgets,courseId
                 }) => {
     return (
         <div className="container-fluid modules">
@@ -30,7 +30,11 @@ const Module = ({
                         selectedTopic={selectedTopic}
                         selectTopic={selectTopic}
                         topics={topics}
-                        widgets={widgets}/>
+                        widgets={widgets}
+                        courseId = {courseId}
+                        selectedModule = {selectedModule}
+                        selectedLesson = {selectedLesson}
+                    />
                 </div>
             </div>
         </div>
