@@ -10,9 +10,18 @@ export default class WidgetService {
         topicService.updateTopic(courseId, moduleId, lessonId, topic);
     }
 
-    findAllWidgets(courseId, moduleId, lessonId, topicId) {
+    findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId) {
         let topic = topicService.findTopicById(courseId, moduleId, lessonId, topicId);
         return topic.topics ? topic.widgets : [];
+    }
+
+    findAllWidgets(courseId, moduleId, lessonId) {
+        let topics = topicService.findAllTopics(courseId, moduleId, lessonId);
+        let widgets = topics.flatMap(t => {
+            if(t.widgets) return t.widgets
+            else return [];
+        });
+        return widgets;
     }
 
     findWidgetById(courseId, moduleId, lessonId, topicId, widgetId) {
