@@ -203,6 +203,8 @@ class CourseEditor extends React.Component {
 
         let lessons = (module ? (module.lessons ? module.lessons : []) : []);
         let topics = (lesson ? (lesson.topics ? lesson.topics : []) : []);
+        let widgets = (topic ? (topic.widgets ? topic.widgets : []) : []);
+
         return (
             <div className="container-fluid m-0 p-0">
                 <LessonTabs
@@ -214,7 +216,7 @@ class CourseEditor extends React.Component {
                     selectLesson={this.selectLesson}
                     lessons={lessons}
                 />
-                <Module
+                    <Module
                     deleteModule={this.deleteModule}
                     addModule={this.addModule}
                     modules={this.state.modules}
@@ -227,6 +229,7 @@ class CourseEditor extends React.Component {
                     selectedTopic={this.state.selectedTopic}
                     selectTopic={this.selectTopic}
                     topics={topics}
+                    widgets={widgets}
                 />
                 <button className="btn btn-danger bottom-right m-4">
                     <i className="fas fa-plus-circle"></i>

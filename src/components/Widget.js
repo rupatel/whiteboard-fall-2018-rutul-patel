@@ -12,7 +12,7 @@ import ParagraphWidgetPreview from './ParagraphWidgetPreview';
 import './Widget.css'
 import {Link} from 'react-router-dom';
 
-const Widget = (props) => {
+const Widget = ({widget}) => {
     const widgetContentStyle = {
         background: 'whitesmoke'
     }
@@ -30,11 +30,11 @@ const Widget = (props) => {
             <div className="container" style={widgetContentStyle}>
                 <div className="row mb-3">
                     <div className="col-5">
-                        {'Heading' == props.widget.widgetType && <h1>Heading widget</h1>}
-                        {'Paragraph' == props.widget.widgetType && <h1>Paragraph widget</h1>}
-                        {'List' == props.widget.widgetType && <h1>List widget</h1>}
-                        {'Image' == props.widget.widgetType && <h1>Image widget</h1>}
-                        {'Link' == props.widget.widgetType && <h1>Link widget</h1>}
+                        {'HEADING' == widget.type && <h1>Heading widget</h1>}
+                        {'PARAGRAPH' == widget.type && <h1>Paragraph widget</h1>}
+                        {'LIST' == widget.type && <h1>List widget</h1>}
+                        {'IMAGE' == widget.type && <h1>Image widget</h1>}
+                        {'LINK' == widget.type && <h1>Link widget</h1>}
                     </div>
                     <div className="col-7">
                         <button className="btn btn-danger float-right">
@@ -43,7 +43,7 @@ const Widget = (props) => {
 
                         <select
                             onChange={e => {
-                                props.widget.widgetType = selectedElement.value
+                                widget.type = selectedElement.value
                             }
                             }
                             className="mr-2 custom-select d-inline w-50 float-right"
@@ -65,22 +65,22 @@ const Widget = (props) => {
                             <i className="fas fa-arrow-up"></i>
                         </button>
                     </div>
-                    {'Heading' == props.widget.widgetType && <HeaderWidgetContent/>}
-                    {'Paragraph' == props.widget.widgetType && <ParagraphWidgetContent/>}
-                    {'List' == props.widget.widgetType && <ListWidgetContent/>}
-                    {'Image' == props.widget.widgetType && <ImageWidgetContent/>}
-                    {'Link' == props.widget.widgetType && <LinkWidgetContent/>}
+                    {'HEADING' == widget.type && <HeaderWidgetContent/>}
+                    {'PARAGRAPH' == widget.type && <ParagraphWidgetContent/>}
+                    {'LIST' == widget.type && <ListWidgetContent/>}
+                    {'IMAGE' == widget.type && <ImageWidgetContent/>}
+                    {'LINK' == widget.type && <LinkWidgetContent/>}
                 </div>
                 <div className="container">
                     <div className="row mb-3">
                         <span className="text-black font-weight-bold">Preview</span>
                     </div>
                     <div className="row mb-3">
-                        {'Heading' == props.widget.widgetType && <HeaderWidgetPreview/>}
-                        {'Paragraph' == props.widget.widgetType && <ParagraphWidgetPreview/>}
-                        {'List' == props.widget.widgetType && <ListWidgetPreview/>}
-                        {'Image' == props.widget.widgetType && <ImageWidgetPreview/>}
-                        {'Link' == props.widget.widgetType && <LinkWidgetPreview/>}
+                        {'HEADING' == widget.type && <HeaderWidgetPreview/>}
+                        {'PARAGRAPH' == widget.type && <ParagraphWidgetPreview/>}
+                        {'LIST' == widget.type && <ListWidgetPreview/>}
+                        {'IMAGE' == widget.type && <ImageWidgetPreview/>}
+                        {'LINK' == widget.type && <LinkWidgetPreview/>}
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import TopicPills from "./TopicPills";
 import WidgetList from "./WidgetList";
 
-const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
+const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics,widgets}) => {
     return (
         <div>
             <TopicPills
@@ -13,7 +13,8 @@ const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topic
                 selectTopic = {selectTopic}
                 topics = {topics}
             />
-            <WidgetList/>
+            <WidgetList
+                widgets= {widgets}/>
         </div>
     );
 }
