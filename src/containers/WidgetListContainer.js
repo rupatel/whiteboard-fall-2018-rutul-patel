@@ -9,12 +9,12 @@ const mapStateToProps = (state,props) => {
     }
 }
 const mapDispatchToProps = (dispatch,props) => {
-    let courseId = props.courseid;
+    let courseId = props.courseId;
     let moduleId = props.moduleId;
     let lessonId = props.lessonId;
     let topicId = props.topicId;
     return {
-    onWidgetAdd: (title) => {
+        onWidgetAdd: (title) => {
             return dispatch(addWidget(title,courseId,moduleId,lessonId, topicId));
         },
         onWidgetDelete: (widgetId) => {

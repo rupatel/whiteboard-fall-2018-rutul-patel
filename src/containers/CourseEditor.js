@@ -222,6 +222,7 @@ class CourseEditor extends React.Component {
                     modules={this.state.modules}
                     updateModule={this.updateModule}
                     selectedModule={this.state.selectedModule}
+                    selectedLesson = {this.state.selectedLesson}
                     selectModule={this.selectModule}
                     updateTopic={this.updateTopic}
                     deleteTopic={this.deleteTopic}

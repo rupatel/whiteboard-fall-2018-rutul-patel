@@ -20,7 +20,7 @@ const WidgetReducer = (state=initialState, action) => {
         }
         case DELETE_WIDGET: {
             let newState = {...state}
-            newState.widgets = newState.widgets.filter(w=> (w.id!=action.widget.id))
+            newState.widgets = newState.widgets.filter(w=> (w.id!=action.widgetId))
             return newState;
         }
         case UPDATE_WIDGET: {
@@ -33,7 +33,7 @@ const WidgetReducer = (state=initialState, action) => {
         }
         case FIND_WIDGET:{
             let newState = {...state}
-            newState.widgets = newState.widgets.filter(w=> w.id==action.widget.id);
+            newState.widgets = newState.widgets.filter(w=> w.id==action.widgetId);
             return newState;
         }
         case FIND_ALL_WIDGETS_FOR_TOPIC:{

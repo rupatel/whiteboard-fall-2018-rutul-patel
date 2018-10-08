@@ -7,11 +7,21 @@ class WidgetList extends React.Component
         super(props);
     }
 
-    componentDidMount(){
-        this.props.findAllWidgetsForTopic(this.props.courseId,
-                                    this.props.moduleId,
-                                    this.props.lessonId,
-                                    this.props.topicId);
+    componentDidUpdate(prevProps, prevState){
+        let courseId = prevProps.courseId
+        let moduleId = prevProps.moduleId
+        let lessonId = prevProps.lessonId
+        let topicId = prevProps.topicId
+
+        if(courseId != this.props.courseId ||
+            moduleId != this.props.moduleId ||
+            lessonId != this.props.lessonId ||
+            topicId != this.props.topicId) {
+            this.props.findAllWidgetsForTopic(this.props.courseId,
+                this.props.moduleId,
+                this.props.lessonId,
+                this.props.topicId);
+        }
     }
 
     render()

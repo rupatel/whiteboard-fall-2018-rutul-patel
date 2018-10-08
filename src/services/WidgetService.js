@@ -12,7 +12,7 @@ export default class WidgetService {
 
     findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId) {
         let topic = topicService.findTopicById(courseId, moduleId, lessonId, topicId);
-        return topic.topics ? topic.widgets : [];
+        return topic.widgets ? topic.widgets : [];
     }
 
     findAllWidgets(courseId, moduleId, lessonId) {
