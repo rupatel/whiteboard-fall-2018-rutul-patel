@@ -1,20 +1,14 @@
 import React from "react";
 
-const ListWidgetPreview = () => {
-    const listWidgetInfo = {
-        items: [
-            'put each',
-            'item',
-            'a seperate row'
-        ]
-    }
+const ListWidgetPreview = ({widget}) => {
+    const list = widget.items.split(',');
+    const items = list.map(item => {
+        return (<li>{item}</li>)
+    })
     return (
         <div className="container">
-            <ul>
-                {listWidgetInfo['items'].map(item => {
-                    return (<li>item</li>)
-                })}
-            </ul>
+            {widget.isOrdered && <ul> {items} </ul>}
+            {!widget.isOrdered && <ol> {items} </ol>}
         </div>
     )
 }

@@ -18,24 +18,31 @@ let courses = [
                                 "widgets": [
                                     {
                                         "type": "HEADING",
-                                        "text": "The Document Object Model"
+                                        "size": 2,
+                                        "text": "The Document Object Model",
+                                        "name" : 'Article Header'
                                     },
                                     {
                                         "type": "PARAGRAPH",
-                                        "text": "This topic introduces the DOM"
+                                        "text": "This topic introduces the DOM",
+                                        "name" : 'abstract'
                                     },
                                     {
                                         "type": "LIST",
-                                        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes"
+                                        "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes",
+                                        "name" : 'module list',
+                                        "isOrdered" : false
                                     },
                                     {
                                         "type": "IMAGE",
-                                        "src": "https://picsum.photos/200"
+                                        "src": "https://picsum.photos/200",
+                                        "name" : 'react lifecycle diagram'
                                     },
                                     {
                                         "type": "LINK",
                                         "title": "The DOM",
-                                        "href": "https://en.wikipedia.org/wiki/Document_Object_Model"
+                                        "href": "https://en.wikipedia.org/wiki/Document_Object_Model",
+                                        "name" : "react docs link"
                                     }
                                 ]
                             },
@@ -47,7 +54,8 @@ let courses = [
                                         "id": "1",
                                         "type": "HEADING",
                                         "size": 1,
-                                        "text": "HTML CSS"
+                                        "text": "HTML CSS",
+                                        "name" : "implementation header"
                                     }
                                 ]
                             }
@@ -65,7 +73,8 @@ let courses = [
                                         "id": "1",
                                         "type": "HEADING",
                                         "size": 1,
-                                        "text": "CSS#"
+                                        "text": "CSS#",
+                                        "name" : "results header"
                                     }
                                 ]
                             },
@@ -76,8 +85,9 @@ let courses = [
                                     {
                                         "id": "1",
                                         "type": "HEADING",
-                                        "size": 1,
-                                        "text": "bootstrap flex"
+                                        "size": 2,
+                                        "text": "bootstrap flex",
+                                        "name" : "analysis header"
                                     }
                                 ]
                             }
@@ -101,17 +111,21 @@ let courses = [
                                         "id": "1",
                                         "type": "HEADING",
                                         "size": 1,
-                                        "text": "The is JSX doc"
+                                        "text": "The is JSX doc",
+                                        "name" : "related work header"
                                     },
                                     {
                                         "id": "2",
                                         "type": "PARAGRAPH",
-                                        "text": "intro to Components"
+                                        "text": "intro to Components",
+                                        "name" : "future work"
                                     },
                                     {
                                         "id": "3",
                                         "type": "LIST",
-                                        "items": "lifecycle,componentdidmount,constructor"
+                                        "items": "lifecycle,componentdidmount,constructor",
+                                        "name" : "api lists",
+                                        "isOrdered" : true
                                     }
                                 ]
                             }
@@ -135,7 +149,8 @@ let courses = [
                                         "id": "1",
                                         "type": "HEADING",
                                         "size": 1,
-                                        "text": "The Redux Store"
+                                        "text": "The Redux Store",
+                                        "name" : "Redux Store header"
                                     }
                                 ]
                             }

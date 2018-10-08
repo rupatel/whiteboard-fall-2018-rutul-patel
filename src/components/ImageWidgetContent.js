@@ -1,12 +1,12 @@
 import React from 'react';
 
-const ImageWidgetContent = () => {
+const ImageWidgetContent = ({widget}) => {
     return (
         <div className="container">
             <input type="text"
-                   value="http://lorempixel.com/300/150"
+                   value={widget.src}
                    className="form-control mb-2"/>
-            <input type="text" className="form-control" placeholder="Widget name"/>
+            <input type="text" className="form-control" value={widget.name}/>
         </div>
     );
 }

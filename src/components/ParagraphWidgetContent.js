@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ParagraphWidgetContent = () => {
+const ParagraphWidgetContent = ({widget}) => {
     return (
         <div className="container">
-            <textarea className="form-control mb-2">Lorem ipsum</textarea>
-            <input type="text" className="form-control" placeholder="Widget name"/>
+            <textarea className="form-control mb-2">{widget.text}</textarea>
+            <input type="text" className="form-control" value={widget.name}/>
         </div>
     );
 }

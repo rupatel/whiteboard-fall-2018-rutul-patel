@@ -1,12 +1,9 @@
 import React from 'react';
 
-const ImageWidgetPreview = () => {
-    const imageWidgetInfo = {
-        imageLink: 'http://lorempixel.com/300/150'
-    }
+const ImageWidgetPreview = ({widget}) => {
     return (
         <div className="container">
-            <img src={imageWidgetInfo.imageLink}/>
+            <img src={widget.src}/>
         </div>
     );
 }

@@ -1,15 +1,15 @@
 import React from 'react';
 
-const LinkWidgetContent = () => {
+const LinkWidgetContent = ({widget}) => {
     return (
         <div className="container">
             <input type="text"
-                   value="http://www.youtube.com/user/jannuzi"
+                   value={widget.href}
                    className="form-control mb-2"/>
             <input type="text"
                    value="linke text"
                    className="form-control mb-2"/>
-            <input type="text" className="form-control" placeholder="Widget name"/>
+            <input type="text" className="form-control" value={widget.name}/>
         </div>
     );
 }

@@ -1,12 +1,9 @@
 import React from 'react';
 
-const ParagraphWidgetPreview = () => {
-    const paraWidgetInfo = {
-        para: 'Lorem ipsum'
-    }
+const ParagraphWidgetPreview = ({widget}) => {
     return (
         <div className="container">
-            <p>{paraWidgetInfo.para}</p>
+            <p>{widget.text}</p>
         </div>
     );
 }

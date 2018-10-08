@@ -65,22 +65,22 @@ const Widget = ({widget}) => {
                             <i className="fas fa-arrow-up"></i>
                         </button>
                     </div>
-                    {'HEADING' == widget.type && <HeaderWidgetContent/>}
-                    {'PARAGRAPH' == widget.type && <ParagraphWidgetContent/>}
-                    {'LIST' == widget.type && <ListWidgetContent/>}
-                    {'IMAGE' == widget.type && <ImageWidgetContent/>}
-                    {'LINK' == widget.type && <LinkWidgetContent/>}
+                    {'HEADING' == widget.type && <HeaderWidgetContent widget={widget}/>}
+                    {'PARAGRAPH' == widget.type && <ParagraphWidgetContent widget={widget}/>}
+                    {'LIST' == widget.type && <ListWidgetContent widget={widget}/>}
+                    {'IMAGE' == widget.type && <ImageWidgetContent widget={widget}/>}
+                    {'LINK' == widget.type && <LinkWidgetContent widget={widget}/>}
                 </div>
                 <div className="container">
                     <div className="row mb-3">
                         <span className="text-black font-weight-bold">Preview</span>
                     </div>
                     <div className="row mb-3">
-                        {'HEADING' == widget.type && <HeaderWidgetPreview/>}
-                        {'PARAGRAPH' == widget.type && <ParagraphWidgetPreview/>}
-                        {'LIST' == widget.type && <ListWidgetPreview/>}
-                        {'IMAGE' == widget.type && <ImageWidgetPreview/>}
-                        {'LINK' == widget.type && <LinkWidgetPreview/>}
+                        {'HEADING' == widget.type && <HeaderWidgetPreview widget={widget}/>}
+                        {'PARAGRAPH' == widget.type && <ParagraphWidgetPreview widget={widget}/>}
+                        {'LIST' == widget.type && <ListWidgetPreview widget={widget}/>}
+                        {'IMAGE' == widget.type && <ImageWidgetPreview widget={widget}/>}
+                        {'LINK' == widget.type && <LinkWidgetPreview widget={widget}/>}
                     </div>
                 </div>
             </div>

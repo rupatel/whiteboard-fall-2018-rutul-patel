@@ -1,13 +1,9 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-const LinkWidgetPreview = () => {
-    const linkWidgetInfo = {
-        link: 'http://www.youtube.com/user/jannuzi',
-        linkText: 'linke text'
-    }
+const LinkWidgetPreview = ({widget}) => {
     return (
         <div className="container">
-            <Link to={linkWidgetInfo.link}>{linkWidgetInfo.linkText}</Link>
+            <Link to={widget.href} >{widget.title}</Link>
         </div>
     );
 }
