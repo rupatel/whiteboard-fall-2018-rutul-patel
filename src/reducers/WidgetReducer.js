@@ -3,7 +3,7 @@ import {
     CREATE_WIDGET,
     DELETE_WIDGET, FIND_ALL_WIDGETS,
     FIND_ALL_WIDGETS_FOR_TOPIC,
-    FIND_WIDGET,
+    FIND_WIDGET, MOVE_WIDGET_DOWN, MOVE_WIDGET_UP,
     UPDATE_WIDGET
 } from "../actions/WidgetAction";
 
@@ -39,7 +39,15 @@ const WidgetReducer = (state=initialState, action) => {
             return newState;
         }
         case FIND_ALL_WIDGETS:{
-               newState.widgets = action.widgets;
+            newState.widgets = action.widgets;
+            return newState;
+        }
+        case MOVE_WIDGET_DOWN:{
+            newState.widgets = action.widgets;
+            return newState;
+        }
+        case MOVE_WIDGET_UP:{
+            newState.widgets = action.widgets;
             return newState;
         }
         default:

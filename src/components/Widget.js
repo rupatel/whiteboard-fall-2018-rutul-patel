@@ -12,12 +12,11 @@ import ParagraphWidgetPreview from './ParagraphWidgetPreview';
 import './Widget.css'
 import {Link} from 'react-router-dom';
 
-const Widget = ({widget,onWidgetDelete}) => {
+const Widget = ({widget,onWidgetDelete,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisabled}) => {
     const widgetContentStyle = {
         background: 'whitesmoke'
     }
     let selectedElement;
-
     return (
         <div className="container">
             <div className="row mb-3">
@@ -59,11 +58,15 @@ const Widget = ({widget,onWidgetDelete}) => {
                             <option>Link</option>
                         </select>
 
-                        <button className="mr-2 btn btn-warning float-right">
+                        <button disabled={isDownDisabled} className="mr-2 btn btn-warning float-right" onClick={e => {
+                            onWidgetMoveDown(widget.index);
+                        }}>
                             <i className="fas fa-arrow-down"></i>
                         </button>
 
-                        <button className="mr-2 btn btn-warning float-right">
+                        <button disabled={isUpDisabled} className="mr-2 btn btn-warning float-right" onClick={e => {
+                            onWidgetMoveUp(widget.index);
+                        }}>
                             <i className="fas fa-arrow-up"></i>
                         </button>
                     </div>

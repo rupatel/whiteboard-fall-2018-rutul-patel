@@ -1,5 +1,5 @@
 import {addWidget, deleteWidget, findAllWidgets,
-    findAllWidgetsForTopic, updateWidget,findWidget} from "../actions/WidgetAction";
+    findAllWidgetsForTopic, updateWidget,findWidget,moveWidgetDown,moveWidgetUp} from "../actions/WidgetAction";
 import {connect} from 'react-redux';
 import WidgetList from "../components/WidgetList";
 import WidgetService from "../services/WidgetService";
@@ -39,6 +39,12 @@ const mapDispatchToProps = (dispatch,props) => {
         },
         findAllWidgets: () => {
             return dispatch(findAllWidgets(courseId,moduleId,lessonId));
+        },
+        onWidgetMoveUp:(index) => {
+            return dispatch(moveWidgetUp(courseId,moduleId,lessonId, topicId,index));
+        },
+        onWidgetMoveDown:(index) => {
+            return dispatch(moveWidgetDown(courseId,moduleId,lessonId, topicId,index));
         }
     }
 }
