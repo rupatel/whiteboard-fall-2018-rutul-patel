@@ -42,7 +42,7 @@ export default class WidgetService {
 
     deleteWidget(courseId, moduleId, lessonId, topicId, widgetId) {
         let topic = {... topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
-        topic.widget = topic.topics.filter(w => w.id != widgetId);
+        topic.widgets = topic.widgets.filter(w => w.id != widgetId);
         topicService.updateTopic(courseId, moduleId, lessonId, topic);
     }
 }

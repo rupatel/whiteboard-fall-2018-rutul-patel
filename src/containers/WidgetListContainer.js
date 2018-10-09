@@ -28,19 +28,29 @@ const mapDispatchToProps = (dispatch,props) => {
             return dispatch(addWidget(widget));
         },
         onWidgetDelete: (widgetId) => {
-            return dispatch(deleteWidget(courseId,moduleId,lessonId,topicId,widgetId));
+            if(! (courseId && moduleId && lessonId && topicId)) return;
+            widgetService.deleteWidget(courseId,moduleId,lessonId,topicId,widgetId);
+            return dispatch(deleteWidget(widgetId));
         },
         onWidgetUpdate: (widget) => {
+            if(! (courseId && moduleId && lessonId && topicId)) return;
             return dispatch(updateWidget(courseId,moduleId,lessonId, topicId, widget));
         },
         findWidget:(widgetId) => {
+            if(! (courseId && moduleId && lessonId && topicId)) return;
             return dispatch(findWidget(courseId,moduleId,lessonId, topicId, widgetId));
         },
         findAllWidgetsForTopic : () =>{
-            return dispatch(findAllWidgetsForTopic(courseId,moduleId,lessonId, topicId))
+            if(! (courseId && moduleId && lessonId && topicId)) return;
+            let widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
+            widgets = widgets ? widgets : [];
+            return dispatch(findAllWidgetsForTopic(widgets));
         },
         findAllWidgets: () => {
-            return dispatch(findAllWidgets(courseId,moduleId,lessonId));
+            if(! (courseId && moduleId && lessonId)) return;
+            let widgets = widgetService.findAllWidgets(courseId,moduleId,lessonId);
+            widgets = widgets ? widgets : [];
+            return dispatch(findAllWidgets(widgets));
         }
     }
 }

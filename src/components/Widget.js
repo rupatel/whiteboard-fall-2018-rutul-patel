@@ -12,7 +12,7 @@ import ParagraphWidgetPreview from './ParagraphWidgetPreview';
 import './Widget.css'
 import {Link} from 'react-router-dom';
 
-const Widget = ({widget}) => {
+const Widget = ({widget,onWidgetDelete}) => {
     const widgetContentStyle = {
         background: 'whitesmoke'
     }
@@ -37,7 +37,9 @@ const Widget = ({widget}) => {
                         {'LINK' == widget.type && <h1>Link widget</h1>}
                     </div>
                     <div className="col-7">
-                        <button className="btn btn-danger float-right">
+                        <button className="btn btn-danger float-right" onClick={e => {
+                            onWidgetDelete(widget.id)
+                        }}>
                             <i className="fas fa-times-circle"></i>
                         </button>
 

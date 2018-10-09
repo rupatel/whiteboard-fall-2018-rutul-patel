@@ -17,44 +17,36 @@ export function     addWidget(widget) {
     }
 }
 
-export function deleteWidget(courseId,moduleId,lessonId,topicId,widgetId) {
-    widgetService.deleteWidget(courseId,moduleId,lessonId,topicId,widgetId);
+export function deleteWidget(widgetId) {
+   
     return {
         type: DELETE_WIDGET,
         widgetId:widgetId
     }
 }
 
-export function updateWidget(courseId,moduleId,lessonId, topicId, widget) {
-    widgetService.updateWidget(courseId,moduleId,lessonId,topicId,widget);
+export function updateWidget(widget) {
     return {
         type: UPDATE_WIDGET,
         widget: widget
     }
 }
 
-export function findWidget(courseId,moduleId,lessonId,topicId,widgetId) {
-    let widget = widgetService.findWidgetById(courseId,moduleId,lessonId,topicId,widgetId);
+export function findWidget(widgets) {
     return {
         type: FIND_WIDGET,
-        widgets:widget
+        widgets:widgets
     }
 }
 
-export function findAllWidgetsForTopic(courseId,moduleId,lessonId, topicId) {
-    let widgets = [];
-    if(courseId && moduleId && lessonId && topicId)
-        widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
+export function findAllWidgetsForTopic(widgets) {
     return {
         type: FIND_ALL_WIDGETS_FOR_TOPIC,
         widgets : widgets
     }
 }
 
-export function findAllWidgets(courseId,moduleId,lessonId) {
-    let widgets = [];
-    if(courseId && moduleId && lessonId)
-        widgets = widgetService.findAllWidgets(courseId,moduleId,lessonId);
+export function findAllWidgets(widgets) {
     return {
         type: FIND_ALL_WIDGETS,
         widgets:widgets

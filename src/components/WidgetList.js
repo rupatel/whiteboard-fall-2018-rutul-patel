@@ -30,12 +30,12 @@ class WidgetList extends React.Component
             <div className="tab-content" id="pills-tabContent-module1">
                 <div className="tab-pane fade show active" id='pills-module1-lesson1-topic1' role="tabpanel"
                      aria-labelledby='module1-lesson1-topic1'>
-                    {this.props.widgets.map(w => <Widget key={w.id} widget={w}/>)}
+                    {this.props.widgets.map(w => <Widget key={w.id} widget={w} onWidgetDelete={this.props.onWidgetDelete}/>)}
                 </div>
                 <button className="btn btn-danger bottom-right m-4" onClick={e => {
                     if(!(this.props.courseId && this.props.moduleId && this.props.lessonId && this.props.topicId))
                         return;
-                    this.props.onWidgetAdd('header test');
+                    this.props.onWidgetAdd('New Widget');
                 }}>
                     <i className="fas fa-plus-circle"></i>
                 </button>

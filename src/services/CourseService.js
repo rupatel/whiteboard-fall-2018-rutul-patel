@@ -17,28 +17,33 @@ let courses = [
                                 "title": "DOM",
                                 "widgets": [
                                     {
+                                        "id":1,
                                         "type": "HEADING",
                                         "size": 2,
                                         "text": "The Document Object Model",
                                         "name" : 'Article Header'
                                     },
                                     {
+                                        "id":2,
                                         "type": "PARAGRAPH",
                                         "text": "This topic introduces the DOM",
                                         "name" : 'abstract'
                                     },
                                     {
+                                        "id":3,
                                         "type": "LIST",
                                         "items": "Nodes,Attributes,Tag names,IDs,Styles,Classes",
                                         "name" : 'module list',
                                         "isOrdered" : false
                                     },
                                     {
+                                        "id":4,
                                         "type": "IMAGE",
                                         "src": "https://picsum.photos/200",
                                         "name" : 'react lifecycle diagram'
                                     },
                                     {
+                                        "id":5,
                                         "type": "LINK",
                                         "title": "The DOM",
                                         "href": "https://en.wikipedia.org/wiki/Document_Object_Model",
