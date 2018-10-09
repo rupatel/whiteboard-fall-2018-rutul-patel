@@ -32,6 +32,13 @@ class WidgetList extends React.Component
                      aria-labelledby='module1-lesson1-topic1'>
                     {this.props.widgets.map(w => <Widget key={w.id} widget={w}/>)}
                 </div>
+                <button className="btn btn-danger bottom-right m-4" onClick={e => {
+                    if(!(this.props.courseId && this.props.moduleId && this.props.lessonId && this.props.topicId))
+                        return;
+                    this.props.onWidgetAdd('header test');
+                }}>
+                    <i className="fas fa-plus-circle"></i>
+                </button>
             </div>
         )
     }

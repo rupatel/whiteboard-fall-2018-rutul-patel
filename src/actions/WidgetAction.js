@@ -10,7 +10,7 @@ export const FIND_ALL_WIDGETS_FOR_TOPIC = 'FIND_ALL_WIDGETS_FOR_TOPIC';
 export const FIND_ALL_WIDGETS = 'FIND_ALL_WIDGETS';
 
 let widgetService = new WidgetService();
-export function addWidget(title,courseId,moduleId,lessonId,topicId,widget) {
+export function     addWidget(widget) {
     return {
         type: CREATE_WIDGET,
         widget: widget

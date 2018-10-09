@@ -3,16 +3,17 @@ import TopicService from "./TopicService";
 let topicService = new TopicService();
 export default class WidgetService {
     createWidget(courseId, moduleId, lessonId, topicId, widget) {
-        let widgets = this.findAllWidgets(courseId, moduleId, lessonId, topicId);
+        let widgets = this.findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId);
         widgets.push(widget);
         let topic = {...topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
-        topic.wdgets = widgets;
+        topic.widgets = widgets;
         topicService.updateTopic(courseId, moduleId, lessonId, topic);
     }
 
     findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId) {
-        let topic = topicService.findTopicById(courseId, moduleId, lessonId, topicId);
-        return topic.widgets ? topic.widgets : [];
+        let topic = {...topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
+        let widgets = topic.widgets ? topic.widgets : [];
+        return [... widgets];
     }
 
     findAllWidgets(courseId, moduleId, lessonId) {

@@ -227,7 +227,7 @@ class CourseEditor extends React.Component {
                     selectLesson={this.selectLesson}
                     lessons={lessons}
                 />
-                    <Module
+                <Module
                     deleteModule={this.deleteModule}
                     addModule={this.addModule}
                     modules={this.state.modules}
@@ -244,9 +244,6 @@ class CourseEditor extends React.Component {
                     widgets={widgets}
                     courseId = {this.props.match.params.courseId}
                 />
-                <button className="btn btn-danger bottom-right m-4">
-                    <i className="fas fa-plus-circle"></i>
-                </button>
             </div>
         );
     }
