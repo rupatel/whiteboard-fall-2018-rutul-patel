@@ -10,43 +10,48 @@ export const FIND_ALL_WIDGETS_FOR_TOPIC = 'FIND_ALL_WIDGETS_FOR_TOPIC';
 export const FIND_ALL_WIDGETS = 'FIND_ALL_WIDGETS';
 
 let widgetService = new WidgetService();
-export function     addWidget(widget) {
+export function     addWidget(courseId,moduleId,lessonId,topicId,widget) {
+    widgetService.createWidget(courseId,moduleId,lessonId,topicId,widget)
     return {
         type: CREATE_WIDGET,
         widget: widget
     }
 }
 
-export function deleteWidget(widgetId) {
-   
+export function deleteWidget(courseId,moduleId,lessonId,topicId,widgetId) {
+    widgetService.deleteWidget(courseId,moduleId,lessonId,topicId,widgetId);
     return {
         type: DELETE_WIDGET,
         widgetId:widgetId
     }
 }
 
-export function updateWidget(widget) {
+export function updateWidget(courseId,moduleId,lessonId,topicId,widget) {
+    widgetService.updateWidget(courseId,moduleId,lessonId,topicId,widget);
     return {
         type: UPDATE_WIDGET,
         widget: widget
     }
 }
 
-export function findWidget(widgets) {
+export function findWidget(courseId,moduleId,lessonId,topicId,widgetId) {
+    let widget = widgetService.findWidget(courseId,moduleId,lessonId,topicId,widgetId);
     return {
         type: FIND_WIDGET,
-        widgets:widgets
+        widgets:[widget]
     }
 }
 
-export function findAllWidgetsForTopic(widgets) {
+export function findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId) {
+    let widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
     return {
         type: FIND_ALL_WIDGETS_FOR_TOPIC,
         widgets : widgets
     }
 }
 
-export function findAllWidgets(widgets) {
+export function findAllWidgets(courseId,moduleId,lessonId) {
+    let widgets = widgetService.findAllWidgets(courseId,moduleId,lessonId);
     return {
         type: FIND_ALL_WIDGETS,
         widgets:widgets

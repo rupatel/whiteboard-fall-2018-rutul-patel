@@ -17,40 +17,28 @@ const mapDispatchToProps = (dispatch,props) => {
     let topicId = props.topicId;
     return {
         onWidgetAdd: (title) => {
-            if(! (courseId && moduleId && lessonId && topicId)) return;
             let widget = {
                 "type": "HEADING",
                 "size": 1,
                 "text": title,
                 "name" : 'New Widget'
             }
-            widgetService.createWidget(courseId,moduleId,lessonId,topicId,widget)
-            return dispatch(addWidget(widget));
+            return dispatch(addWidget(courseId,moduleId,lessonId,topicId,widget));
         },
         onWidgetDelete: (widgetId) => {
-            if(! (courseId && moduleId && lessonId && topicId)) return;
-            widgetService.deleteWidget(courseId,moduleId,lessonId,topicId,widgetId);
-            return dispatch(deleteWidget(widgetId));
+            return dispatch(deleteWidget(courseId,moduleId,lessonId,topicId,widgetId));
         },
         onWidgetUpdate: (widget) => {
-            if(! (courseId && moduleId && lessonId && topicId)) return;
             return dispatch(updateWidget(courseId,moduleId,lessonId, topicId, widget));
         },
         findWidget:(widgetId) => {
-            if(! (courseId && moduleId && lessonId && topicId)) return;
             return dispatch(findWidget(courseId,moduleId,lessonId, topicId, widgetId));
         },
         findAllWidgetsForTopic : () =>{
-            if(! (courseId && moduleId && lessonId && topicId)) return;
-            let widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
-            widgets = widgets ? widgets : [];
-            return dispatch(findAllWidgetsForTopic(widgets));
+            return dispatch(findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId));
         },
         findAllWidgets: () => {
-            if(! (courseId && moduleId && lessonId)) return;
-            let widgets = widgetService.findAllWidgets(courseId,moduleId,lessonId);
-            widgets = widgets ? widgets : [];
-            return dispatch(findAllWidgets(widgets));
+            return dispatch(findAllWidgets(courseId,moduleId,lessonId));
         }
     }
 }
