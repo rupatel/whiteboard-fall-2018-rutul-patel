@@ -49,7 +49,7 @@ class CourseEditor extends React.Component {
             let module = newState.modules.filter(m => {
                 return m.id == newState.selectedModule
             })[0];
-            newState.selectedLesson = (modules.lessons || module.lessons.length == 0) ? '' :
+            newState.selectedLesson = (module.lessons.length == 0) ? '' : module.lessons[0].id
                 module.lessons[0].id;
         }
         if (newState.selectedLesson) {
@@ -101,6 +101,12 @@ class CourseEditor extends React.Component {
     selectModule = (moduleId) => {
         let state = {...this.state};
         state.selectedModule = moduleId;
+        let module = this.state.modules.filter(m => {
+            return m.id == moduleId
+        })[0];
+        let lesson = module.lessons.length == 0 ? '' : module.lessons[0];
+        state.selectedLesson = lesson ? lesson.id : '';
+        state.selectedTopic = lesson ? (lesson.topics.length == 0) ? '' : lesson.topics[0].id : '';
         this.setState(state);
     }
 
@@ -143,6 +149,11 @@ class CourseEditor extends React.Component {
     selectLesson = (lessonId) => {
         let state = {...this.state};
         state.selectedLesson = lessonId;
+        let module = this.state.modules.filter(m => {
+            return m.id == state.selectedModule
+        })[0];
+        let lesson = module.lessons.filter(l=>l.id == lessonId)[0];
+        state.selectedTopic = (lesson.topics.length == 0) ? '' : lesson.topics[0].id;
         this.setState(state);
     }
 
