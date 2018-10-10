@@ -1,5 +1,6 @@
 import React from 'react';
 import Widget from './Widget';
+import {Link} from "react-router-dom";
 
 class WidgetList extends React.Component
 {
@@ -8,10 +9,10 @@ class WidgetList extends React.Component
     }
 
     componentDidUpdate(prevProps, prevState){
-        let courseId = prevProps.courseId
-        let moduleId = prevProps.moduleId
-        let lessonId = prevProps.lessonId
-        let topicId = prevProps.topicId
+        let courseId = prevProps.courseId;
+        let moduleId = prevProps.moduleId;
+        let lessonId = prevProps.lessonId;
+        let topicId = prevProps.topicId;
 
         if(courseId != this.props.courseId ||
             moduleId != this.props.moduleId ||
@@ -35,6 +36,19 @@ class WidgetList extends React.Component
             <div className="tab-content" id="pills-tabContent-module1">
                 <div className="tab-pane fade show active" id='pills-module1-lesson1-topic1' role="tabpanel"
                      aria-labelledby='module1-lesson1-topic1'>
+                    <div className="row mb-3">
+                        <div className="offset-9">
+                            <button className="btn btn-success mr-2" onClick={e => {
+                                this.props.onSaveWidgetsForTopic(this.props.courseId,
+                                                        this.props.moduleId,
+                                                        this.props.lessonId,
+                                                        this.props.topicId,
+                                                        this.props.widgets);
+                            }}>Save</button>
+                            <span className="mr-2">Preview</span>
+                            <Link className="no-decorate" to="#"><i className="fas fa-2x fa-toggle-off"></i></Link>
+                        </div>
+                    </div>
                     {widgets.map(w => <Widget key={w.id} widget={w}
                                               onWidgetDelete={this.props.onWidgetDelete}
                                               onWidgetMoveUp = {this.props.onWidgetMoveUp}

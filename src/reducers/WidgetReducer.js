@@ -72,6 +72,7 @@ const WidgetReducer = (state=initialState, action) => {
             newState.widgets = widgets;
             return newState;
         }
+
         default:
             return state
     }

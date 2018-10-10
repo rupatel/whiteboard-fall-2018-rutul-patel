@@ -46,7 +46,8 @@ const mapDispatchToProps = (dispatch,props) => {
         },
         onWidgetMoveDown:(index) => {
             return dispatch(moveWidgetDown(index));
-        }
+        },
+        onSaveWidgetsForTopic: widgetService.saveWidgets
     }
 }
 

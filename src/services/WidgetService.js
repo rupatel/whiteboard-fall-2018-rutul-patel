@@ -45,4 +45,10 @@ export default class WidgetService {
         topic.widgets = topic.widgets.filter(w => w.id != widgetId);
         topicService.updateTopic(courseId, moduleId, lessonId, topic);
     }
+
+    saveWidgets(courseId, moduleId, lessonId, topicId, widgets){
+        let topic = {... topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
+        topic.widgets = widgets;
+        topicService.updateTopic(courseId, moduleId, lessonId, topic);
+    }
 }

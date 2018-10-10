@@ -19,13 +19,6 @@ const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisab
     let selectedElement;
     return (
         <div className="container">
-            <div className="row mb-3">
-                <div className="offset-9">
-                    <button className="btn btn-success mr-2">Save</button>
-                    <span className="mr-2">Preview</span>
-                    <Link className="no-decorate" to="#"><i className="fas fa-2x fa-toggle-off"></i></Link>
-                </div>
-            </div>
             <div className="container" style={widgetContentStyle}>
                 <div className="row mb-3">
                     <div className="col-5">
