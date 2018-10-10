@@ -16,10 +16,11 @@ const HeaderWidgetContnet = ({widget,updateWidget}) => {
                 w.size = e.currentTarget.value == 'Heading1' ? 1 :
                     e.currentTarget.value == 'Heading2' ? 2 : 3;
                 updateWidget(w);
-            }}>
-                {widget.size == 1 ? <option selected>Heading1</option> : <option>Heading1</option>}
-                {widget.size == 2 ? <option selected>Heading2</option> : <option>Heading2</option>}
-                {widget.size == 3 ? <option selected>Heading3</option> : <option>Heading3</option>}
+            }}
+            value={widget.size ? (widget.size==1 ? 'Heading1' : widget.size==2 ? 'Heading2' : 'Heading3') : 'Heading1'}>
+                <option>Heading1</option>
+                <option>Heading2</option>
+                <option>Heading3</option>
             </select>
             <label>Widget Name</label>
             <input type="text" className="form-control" value={widget.name} placeholder="Widget Name"

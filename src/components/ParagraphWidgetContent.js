@@ -9,7 +9,8 @@ const ParagraphWidgetContent = ({widget, updateWidget}) => {
                           w.text = e.currentTarget.value;
                           updateWidget(w);
                       }}
-            >{widget.text}</textarea>
+                      value={widget.text}
+            />
             <input type="text" className="form-control" value={widget.name}
                    placeholder="Widget Name"
                    onChange={e=> {

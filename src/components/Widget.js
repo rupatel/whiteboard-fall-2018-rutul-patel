@@ -18,7 +18,6 @@ const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisab
     const widgetContentStyle = {
         background: 'whitesmoke'
     }
-    let selectedElement;
     return (
         <div className="container">
             <div className="container" style={widgetContentStyle}>
@@ -40,14 +39,15 @@ const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisab
                             </button>
 
                             <select
-                                onChange={e => {
-                                    widget.type = selectedElement.value
-                                }
-                                }
+                                onChange={e=> {
+                                    let w = {};
+                                    w.type = e.currentTarget.value;
+                                    w.name = widget.name
+                                    w.id = widget.id
+                                    updateWidget(w);
+                                }}
                                 className="mr-2 custom-select d-inline w-50 float-right"
-                                ref={selectDomElement => {
-                                    selectedElement = selectDomElement
-                                }}>
+                                >
                                 <option>Heading</option>
                                 <option>Paragraph</option>
                                 <option>List</option>

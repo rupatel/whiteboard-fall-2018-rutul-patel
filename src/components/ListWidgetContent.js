@@ -9,15 +9,17 @@ const ListWidgetContent = ({widget, updateWidget}) => {
                           let w = {...widget};
                           w.items = e.currentTarget.value.split('\n').join(',');
                           updateWidget(w);
-                      }}>{widget.items.split(',').join('\n')}</textarea>
+                      }}
+            value={widget.items.split(',').join('\n')}/>
             <select className="custom-select d-inline mb-2"
                     onChange={e=> {
                         let w = {...widget};
                         w.isOrdered = e.currentTarget.value == 'unordered list' ? false : true;
                         updateWidget(w);
-                    }}>
-                {(!widget.isOrdered) ? <option selected>unordered list</option> : <option>unordered list</option>}
-                {(widget.isOrdered) ? <option selected>ordered list</option> : <option>ordered list</option>}
+                    }}
+             value={widget.isOrdered ? 'ordered list' : 'unordered list'}>
+                <option>unordered list</option>
+                <option>ordered list</option>
             </select>
 
             <input type="text" className="form-control" value={widget.name}
