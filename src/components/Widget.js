@@ -69,10 +69,14 @@ const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisab
                         </div>
                         {'HEADING' == widget.type && <HeaderWidgetContent widget={widget}
                                                                           updateWidget={updateWidget}/>}
-                        {'PARAGRAPH' == widget.type && <ParagraphWidgetContent widget={widget}/>}
-                        {'LIST' == widget.type && <ListWidgetContent widget={widget}/>}
-                        {'IMAGE' == widget.type && <ImageWidgetContent widget={widget}/>}
-                        {'LINK' == widget.type && <LinkWidgetContent widget={widget}/>}
+                        {'PARAGRAPH' == widget.type && <ParagraphWidgetContent widget={widget}
+                                                                               updateWidget={updateWidget}/>}
+                        {'LIST' == widget.type && <ListWidgetContent widget={widget}
+                                                                     updateWidget={updateWidget}/>}
+                        {'IMAGE' == widget.type && <ImageWidgetContent widget={widget}
+                                                                       updateWidget={updateWidget}/>}
+                        {'LINK' == widget.type && <LinkWidgetContent widget={widget}
+                                                                     updateWidget={updateWidget}/>}
                     </div>
                 }
                 <div className="container">
