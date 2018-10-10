@@ -10,6 +10,7 @@ export const UPDATE_WIDGET = 'UPDATE_WIDGET';
 export const FIND_WIDGET = 'FIND_WIDGET';
 export const FIND_ALL_WIDGETS_FOR_TOPIC = 'FIND_ALL_WIDGETS_FOR_TOPIC';
 export const FIND_ALL_WIDGETS = 'FIND_ALL_WIDGETS';
+export const PREVIEW_MODE_TOGGLE = 'PREVIEW_MODE_TOGGLE';
 
 let widgetService = new WidgetService();
 export function     addWidget(widget) {
@@ -69,5 +70,11 @@ export function moveWidgetDown(curIndex) {
     return {
         type: MOVE_WIDGET_DOWN,
         curIndex:curIndex
+    }
+}
+
+export function previewModeToggle(){
+    return {
+        type: PREVIEW_MODE_TOGGLE
     }
 }

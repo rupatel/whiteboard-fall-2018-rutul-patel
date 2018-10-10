@@ -4,11 +4,12 @@ import {
     DELETE_WIDGET, FIND_ALL_WIDGETS,
     FIND_ALL_WIDGETS_FOR_TOPIC,
     FIND_WIDGET, MOVE_WIDGET_DOWN, MOVE_WIDGET_UP,
-    UPDATE_WIDGET
+    UPDATE_WIDGET,PREVIEW_MODE_TOGGLE
 } from "../actions/WidgetAction";
 
 const initialState = {
-    widgets: []
+    widgets: [],
+    isPreview:false
 }
 const WidgetReducer = (state=initialState, action) => {
     let newState = {...state}
@@ -72,7 +73,10 @@ const WidgetReducer = (state=initialState, action) => {
             newState.widgets = widgets;
             return newState;
         }
-
+        case PREVIEW_MODE_TOGGLE:{
+            newState.isPreview = !newState.isPreview;
+            return newState;
+        }
         default:
             return state
     }

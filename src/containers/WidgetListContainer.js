@@ -1,5 +1,6 @@
 import {addWidget, deleteWidget, findAllWidgets,
-    findAllWidgetsForTopic, updateWidget,findWidget,moveWidgetDown,moveWidgetUp} from "../actions/WidgetAction";
+    findAllWidgetsForTopic, updateWidget,findWidget,moveWidgetDown,moveWidgetUp
+,previewModeToggle} from "../actions/WidgetAction";
 import {connect} from 'react-redux';
 import WidgetList from "../components/WidgetList";
 import WidgetService from "../services/WidgetService";
@@ -7,7 +8,8 @@ import WidgetService from "../services/WidgetService";
 let widgetService = new WidgetService();
 const mapStateToProps = (state,props) => {
     return {
-        widgets: state.widgets
+        widgets: state.widgets,
+        isPreview : state.isPreview
     }
 }
 const mapDispatchToProps = (dispatch,props) => {
@@ -47,7 +49,11 @@ const mapDispatchToProps = (dispatch,props) => {
         onWidgetMoveDown:(index) => {
             return dispatch(moveWidgetDown(index));
         },
-        onSaveWidgetsForTopic: widgetService.saveWidgets
+        onSaveWidgetsForTopic: widgetService.saveWidgets,
+
+        onPreviewModeToggle: () => {
+            return dispatch(previewModeToggle());
+        }
     }
 }
 

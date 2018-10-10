@@ -46,7 +46,9 @@ class WidgetList extends React.Component
                                                         this.props.widgets);
                             }}>Save</button>
                             <span className="mr-2">Preview</span>
-                            <Link className="no-decorate" to="#"><i className="fas fa-2x fa-toggle-off"></i></Link>
+                            <Link className="no-decorate" to="#" onClick={e => this.props.onPreviewModeToggle()}>
+                                <i className="fas fa-2x fa-toggle-off"></i>
+                            </Link>
                         </div>
                     </div>
                     {widgets.map(w => <Widget key={w.id} widget={w}
@@ -54,7 +56,8 @@ class WidgetList extends React.Component
                                               onWidgetMoveUp = {this.props.onWidgetMoveUp}
                                               onWidgetMoveDown = {this.props.onWidgetMoveDown}
                                               isUpDisabled={w.index == 1}
-                                              isDownDisabled={w.index == widgets.length}/>)}
+                                              isDownDisabled={w.index == widgets.length}
+                                              isPreview = {this.props.isPreview}/>)}
                 </div>
                 <button className="btn btn-danger bottom-right m-4" onClick={e => {
                     if(!(this.props.courseId && this.props.moduleId && this.props.lessonId && this.props.topicId))
