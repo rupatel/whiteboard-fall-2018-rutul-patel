@@ -4,7 +4,7 @@ const ListWidgetContent = ({widget, updateWidget}) => {
     return (
         <div className="container">
             <textarea className="form-control mb-2"
-                      placeholder={'put each item' + '\n' + 'in seperate' + '\n' + 'row'}
+                      placeholder={'Enter one' + '\n' + 'list item' + '\n' + 'per line'}
                       onChange={e=> {
                           let w = {...widget};
                           w.items = e.currentTarget.value.split('\n').join(',');

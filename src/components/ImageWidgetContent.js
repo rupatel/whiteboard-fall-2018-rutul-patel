@@ -4,7 +4,7 @@ const ImageWidgetContent = ({widget, updateWidget}) => {
     return (
         <div className="container">
             <input type="text"
-                   placeholder="Image Source"
+                   placeholder="Image URL"
                    value={widget.src ? widget.src : ''}
                    className="form-control mb-2"
                    onChange={e=> {
