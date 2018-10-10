@@ -43,11 +43,33 @@ const WidgetReducer = (state=initialState, action) => {
             return newState;
         }
         case MOVE_WIDGET_DOWN:{
-            newState.widgets = action.widgets;
+           let widgets = state.widgets.map(w => {
+                if(w.index == action.curIndex)
+                {
+                    w.index = action.curIndex+1;
+                }
+                else if(w.index == action.curIndex+1)
+                {
+                    w.index = action.curIndex;
+                }
+                return w;
+            });
+            newState.widgets = widgets;
             return newState;
         }
         case MOVE_WIDGET_UP:{
-            newState.widgets = action.widgets;
+            let widgets = state.widgets.map(w => {
+                if(w.index == action.curIndex)
+                {
+                    w.index = action.curIndex-1;
+                }
+                else if(w.index == action.curIndex-1)
+                {
+                    w.index = action.curIndex;
+                }
+                return w;
+            });
+            newState.widgets = widgets;
             return newState;
         }
         default:

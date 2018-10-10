@@ -16,20 +16,21 @@ const mapDispatchToProps = (dispatch,props) => {
     let lessonId = props.lessonId;
     let topicId = props.topicId;
     return {
-        onWidgetAdd: (title) => {
+        onWidgetAdd: (title, index) => {
             let widget = {
                 "type": "HEADING",
                 "size": 1,
                 "text": title,
-                "name" : 'New Widget'
+                "name" : 'New Widget',
+                "index" : index
             }
-            return dispatch(addWidget(courseId,moduleId,lessonId,topicId,widget));
+            return dispatch(addWidget(widget));
         },
         onWidgetDelete: (widgetId) => {
-            return dispatch(deleteWidget(courseId,moduleId,lessonId,topicId,widgetId));
+            return dispatch(deleteWidget(widgetId));
         },
         onWidgetUpdate: (widget) => {
-            return dispatch(updateWidget(courseId,moduleId,lessonId, topicId, widget));
+            return dispatch(updateWidget(widget));
         },
         findWidget:(widgetId) => {
             return dispatch(findWidget(courseId,moduleId,lessonId, topicId, widgetId));
@@ -41,10 +42,10 @@ const mapDispatchToProps = (dispatch,props) => {
             return dispatch(findAllWidgets(courseId,moduleId,lessonId));
         },
         onWidgetMoveUp:(index) => {
-            return dispatch(moveWidgetUp(courseId,moduleId,lessonId, topicId,index));
+            return dispatch(moveWidgetUp(index));
         },
         onWidgetMoveDown:(index) => {
-            return dispatch(moveWidgetDown(courseId,moduleId,lessonId, topicId,index));
+            return dispatch(moveWidgetDown(index));
         }
     }
 }

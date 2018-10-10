@@ -45,7 +45,7 @@ class WidgetList extends React.Component
                 <button className="btn btn-danger bottom-right m-4" onClick={e => {
                     if(!(this.props.courseId && this.props.moduleId && this.props.lessonId && this.props.topicId))
                         return;
-                    this.props.onWidgetAdd('New Widget');
+                    this.props.onWidgetAdd('New Widget',widgets.length);
                 }}>
                     <i className="fas fa-plus-circle"></i>
                 </button>

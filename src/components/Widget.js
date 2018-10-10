@@ -12,7 +12,7 @@ import ParagraphWidgetPreview from './ParagraphWidgetPreview';
 import './Widget.css'
 import {Link} from 'react-router-dom';
 
-const Widget = ({widget,onWidgetDelete,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisabled}) => {
+const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisabled,onWidgetDelete}) => {
     const widgetContentStyle = {
         background: 'whitesmoke'
     }

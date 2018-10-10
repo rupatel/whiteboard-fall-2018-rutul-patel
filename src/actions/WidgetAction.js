@@ -12,24 +12,21 @@ export const FIND_ALL_WIDGETS_FOR_TOPIC = 'FIND_ALL_WIDGETS_FOR_TOPIC';
 export const FIND_ALL_WIDGETS = 'FIND_ALL_WIDGETS';
 
 let widgetService = new WidgetService();
-export function     addWidget(courseId,moduleId,lessonId,topicId,widget) {
-    widgetService.createWidget(courseId,moduleId,lessonId,topicId,widget)
+export function     addWidget(widget) {
     return {
         type: CREATE_WIDGET,
         widget: widget
     }
 }
 
-export function deleteWidget(courseId,moduleId,lessonId,topicId,widgetId) {
-    widgetService.deleteWidget(courseId,moduleId,lessonId,topicId,widgetId);
+export function deleteWidget(widgetId) {
     return {
         type: DELETE_WIDGET,
         widgetId:widgetId
     }
 }
 
-export function updateWidget(courseId,moduleId,lessonId,topicId,widget) {
-    widgetService.updateWidget(courseId,moduleId,lessonId,topicId,widget);
+export function updateWidget(widget) {
     return {
         type: UPDATE_WIDGET,
         widget: widget
@@ -41,7 +38,7 @@ export function findWidget(courseId,moduleId,lessonId,topicId,widgetId) {
     let widgets = widget ? [widget] : [];
     return {
         type: FIND_WIDGET,
-        widgets:widgets
+        widgets:widgetId
     }
 }
 
@@ -61,42 +58,16 @@ export function findAllWidgets(courseId,moduleId,lessonId) {
     }
 }
 
-export function moveWidgetUp(courseId,moduleId,lessonId,topicId,curIndex) {
-    let widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
-    widgets.map(w => {
-        if(w.index == curIndex)
-        {
-            w.index = curIndex-1;
-        }
-        else if(w.index == curIndex-1)
-        {
-            w.index = curIndex;
-        }
-        return w;
-    });
-    return {
-        type: FIND_ALL_WIDGETS,
-        widgets:widgets
+export function moveWidgetUp(curIndex) {
+   return {
+        type: MOVE_WIDGET_UP,
+        curIndex:curIndex
     }
 }
 
-export function moveWidgetDown(courseId,moduleId,lessonId,topicId,curIndex) {
-    let widgets = widgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
-    let w1;
-    let w2;
-    widgets.map(w => {
-        if(w.index == curIndex)
-        {
-            w.index = curIndex+1;
-        }
-        else if(w.index == curIndex+1)
-        {
-            w.index = curIndex;
-        }
-        return w;
-    });
+export function moveWidgetDown(curIndex) {
     return {
-        type: FIND_ALL_WIDGETS,
-        widgets:widgets
+        type: MOVE_WIDGET_DOWN,
+        curIndex:curIndex
     }
 }
