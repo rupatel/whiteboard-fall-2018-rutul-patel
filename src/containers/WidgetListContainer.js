@@ -18,12 +18,12 @@ const mapDispatchToProps = (dispatch,props) => {
     let lessonId = props.lessonId;
     let topicId = props.topicId;
     return {
-        onWidgetAdd: (title, index) => {
+        onWidgetAdd: (index) => {
             let widget = {
                 "type": "HEADING",
                 "size": 1,
-                "text": title,
-                "name" : 'New Widget',
+                "text": '',
+                "name" : '',
                 "index" : index
             }
             return dispatch(addWidget(widget));

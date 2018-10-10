@@ -1,6 +1,7 @@
 import React from 'react';
 import Widget from './Widget';
 import {Link} from "react-router-dom";
+import {updateWidget} from "../actions/WidgetAction";
 
 class WidgetList extends React.Component
 {
@@ -51,18 +52,19 @@ class WidgetList extends React.Component
                             </Link>
                         </div>
                     </div>
-                    {widgets.map(w => <Widget key={w.id} widget={w}
+                    {widgets.map(w => <Widget key={w.id} id={w.name} widget={w}
                                               onWidgetDelete={this.props.onWidgetDelete}
                                               onWidgetMoveUp = {this.props.onWidgetMoveUp}
                                               onWidgetMoveDown = {this.props.onWidgetMoveDown}
                                               isUpDisabled={w.index == 1}
                                               isDownDisabled={w.index == widgets.length}
-                                              isPreview = {this.props.isPreview}/>)}
+                                              isPreview = {this.props.isPreview}
+                                              updateWidget={this.props.onWidgetUpdate}/>)}
                 </div>
                 <button className="btn btn-danger bottom-right m-4" onClick={e => {
                     if(!(this.props.courseId && this.props.moduleId && this.props.lessonId && this.props.topicId))
                         return;
-                    this.props.onWidgetAdd('New Widget',widgets.length);
+                    this.props.onWidgetAdd(widgets.length);
                 }}>
                     <i className="fas fa-plus-circle"></i>
                 </button>

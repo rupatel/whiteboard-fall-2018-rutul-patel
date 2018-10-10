@@ -11,8 +11,10 @@ import ParagraphWidgetContent from './ParagraphWidgetContent';
 import ParagraphWidgetPreview from './ParagraphWidgetPreview';
 import './Widget.css'
 import {Link} from 'react-router-dom';
+import {updateWidget} from "../actions/WidgetAction";
 
-const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisabled,onWidgetDelete,isPreview}) => {
+const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisabled,onWidgetDelete,isPreview,
+                updateWidget}) => {
     const widgetContentStyle = {
         background: 'whitesmoke'
     }
@@ -65,7 +67,8 @@ const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisab
                                 <i className="fas fa-arrow-up"></i>
                             </button>
                         </div>
-                        {'HEADING' == widget.type && <HeaderWidgetContent widget={widget}/>}
+                        {'HEADING' == widget.type && <HeaderWidgetContent widget={widget}
+                                                                          updateWidget={updateWidget}/>}
                         {'PARAGRAPH' == widget.type && <ParagraphWidgetContent widget={widget}/>}
                         {'LIST' == widget.type && <ListWidgetContent widget={widget}/>}
                         {'IMAGE' == widget.type && <ImageWidgetContent widget={widget}/>}
