@@ -10,7 +10,7 @@ const ListWidgetContent = ({widget, updateWidget}) => {
                           w.items = e.currentTarget.value.split('\n').join(',');
                           updateWidget(w);
                       }}
-            value={widget.items.split(',').join('\n')}/>
+            value={widget.items ? widget.items.split(',').join('\n'):''}/>
             <select className="custom-select d-inline mb-2"
                     onChange={e=> {
                         let w = {...widget};

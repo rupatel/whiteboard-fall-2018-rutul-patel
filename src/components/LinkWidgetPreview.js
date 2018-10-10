@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 const LinkWidgetPreview = ({widget}) => {
     return (
         <div className="container">
-            <Link to={widget.href} >{widget.title}</Link>
+            <Link to={widget.href ? widget.href : '#'} >{widget.title}</Link>
         </div>
     );
 }

@@ -4,7 +4,7 @@ const LinkWidgetContent = ({widget,updateWidget}) => {
     return (
         <div className="container">
             <input type="text"
-                   value={widget.href}
+                   value={widget.href ? widget.href : ''}
                    className="form-control mb-2"
                    placeholder="Link URL"
                    onChange={e=> {
@@ -13,7 +13,7 @@ const LinkWidgetContent = ({widget,updateWidget}) => {
                        updateWidget(w);
                    }}/>
             <input type="text"
-                   value={widget.title}
+                   value={widget.title ? widget.title : ''}
                    className="form-control mb-2"
                    placeholder="Link Text"
                    onChange={e=> {
@@ -21,7 +21,8 @@ const LinkWidgetContent = ({widget,updateWidget}) => {
                        w.title = e.currentTarget.value;
                        updateWidget(w);
                    }}/>
-            <input type="text" className="form-control" value={widget.name}
+            <input type="text" className="form-control"
+                   value={widget.name}
                    placeholder="Widget Name"
                    onChange={e=> {
                        let w = {...widget};

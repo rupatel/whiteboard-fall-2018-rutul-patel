@@ -48,11 +48,11 @@ const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisab
                                 }}
                                 className="mr-2 custom-select d-inline w-50 float-right"
                                 >
-                                <option>Heading</option>
-                                <option>Paragraph</option>
-                                <option>List</option>
-                                <option>Image</option>
-                                <option>Link</option>
+                                <option>HEADING</option>
+                                <option>PARAGRAPH</option>
+                                <option>LIST</option>
+                                <option>IMAGE</option>
+                                <option>LINK</option>
                             </select>
 
                             <button disabled={isDownDisabled} className="mr-2 btn btn-warning float-right" onClick={e => {

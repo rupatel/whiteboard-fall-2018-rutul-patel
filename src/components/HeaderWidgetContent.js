@@ -4,7 +4,8 @@ const HeaderWidgetContnet = ({widget,updateWidget}) => {
     return (
         <div className="container">
             <label>Heading Text</label>
-            <input type="text" className="form-control mb-2" value={widget.text} placeholder="Heading Text"
+            <input type="text" className="form-control mb-2" value={widget.text ? widget.text : ''}
+                   placeholder="Heading Text"
             onChange={e=> {
                 let w = {...widget};
                 w.text = e.currentTarget.value;

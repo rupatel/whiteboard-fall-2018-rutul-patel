@@ -1,7 +1,7 @@
 import React from "react";
 
 const ListWidgetPreview = ({widget}) => {
-    const list = widget.items.split(',');
+    const list = widget.items ? widget.items.split(',') : [];
     const items = list.map((item,index) => {
         return (<li key={index}>{item}</li>)
     })
