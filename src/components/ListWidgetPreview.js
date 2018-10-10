@@ -7,8 +7,8 @@ const ListWidgetPreview = ({widget}) => {
     })
     return (
         <div className="container">
-            {widget.isOrdered && <ul> {items} </ul>}
-            {!widget.isOrdered && <ol> {items} </ol>}
+            {!widget.isOrdered && <ul> {items} </ul>}
+            {widget.isOrdered && <ol> {items} </ol>}
         </div>
     )
 }
