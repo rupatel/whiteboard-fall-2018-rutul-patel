@@ -14,12 +14,13 @@ export function login(username, password,role){
         .then(
             response =>
                 response.json())
-        .catch()
         .then(u =>{
             user = u;
             console.log(u);
             history.push("/home");
-        });
+        }).catch(
+            msg => alert('invalid user name/ password')
+        );
     return {
      currentUser : user,
      type:LOGIN
