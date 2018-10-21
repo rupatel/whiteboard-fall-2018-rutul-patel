@@ -38,6 +38,8 @@ const CourseTableNavBar = ({addCourse}) => {
                     </Link>
                 </div>
             </form>
+            <Link to="/profile" className="mr-2" style={{color:'white'}}><i className="fas fa-user-alt"></i></Link>
+            <Link to='/' style={{color:'red'}}><i className="fas fa-sign-out-alt"></i></Link>
         </nav>
     )
 }

@@ -2,9 +2,8 @@ import React from 'react';
 import CourseService from "../services/CourseService";
 import CourseTable from "../components/CourseTable";
 import CourseGrid from "../components/CourseGrid";
-import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
+import {Router,Route,Switch,Redirect} from 'react-router-dom'
 import CourseEditor from "./CourseEditor";
-import Switch from "react-router/es/Switch";
 import ModuleService from "../services/ModuleService";
 import {history} from '../helpers/history'
 export default class WhiteBoard extends React.Component
@@ -43,6 +42,7 @@ export default class WhiteBoard extends React.Component
     render() {
         return (
             <div>
+
                 <Router history={history}>
                     <Switch>
                         <Redirect exact path="/home" to="/course/table"/>
