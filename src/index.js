@@ -4,5 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import WhiteBoard from "./containers/WhiteBoard";
+import Login from "./components/Login";
+import Profile from "./components/Profile";
+import Register from "./components/Register";
 
-ReactDom.render(<WhiteBoard/>,document.getElementById('root'));
+ReactDom.render(<Register/>,document.getElementById('root'));
