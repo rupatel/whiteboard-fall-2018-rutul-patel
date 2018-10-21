@@ -1,5 +1,6 @@
 import React from 'react';
-
+import {history} from "../helpers/history";
+import {Link} from 'react-router-dom'
 const Login = ({login,setUserName,setPassword,username,password,currentUser}) => {
     return(
         <div className="container-fluid" style={{background: "#e6e6e6",height:"100vh"}}>
@@ -42,18 +43,13 @@ const Login = ({login,setUserName,setPassword,username,password,currentUser}) =>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <button type="button" className="btn btn-primary btn-block"
-                                    onClick="window.location.href='/home/home.template.client.html'">
-                                Cancel
-                                <i className="fas fa-home"></i>
-                            </button>
                             <div className="row">
                                 <div className="col-12">
-                                    <a href="/register/register.template.client.html" className="float-right"
+                                    <Link to='/register' className="float-right"
                                        style={{textDecoration:"none"}}>
                                         Sign up
                                         <i className="fas fa-user-plus ml-1"></i>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

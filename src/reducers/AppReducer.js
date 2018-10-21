@@ -6,14 +6,23 @@ import {
     UPDATE_WIDGET,PREVIEW_MODE_TOGGLE
 } from "../actions/WidgetAction";
 import WidgetReducer from "./WidgetReducer";
-import {LOGIN, SET_PASSWORD, SET_USERNAME} from "../actions/UserActions";
+import {
+    LOGIN, REGISTER,
+    SET_PASSWORD, SET_REGISTER_FIRST_NAME, SET_REGISTER_LAST_NAME, SET_REGISTER_PASSWORD,
+    SET_REGISTER_ROLE, SET_REGISTER_USERNAME,
+    SET_REGISTER_VERIFY_PASSWORD,
+    SET_USERNAME
+} from "../actions/UserActions";
 import UserReducer from "./UserReducer";
 
 const initialState = {
     widgets: [],
     isPreview:false,
     currentUser:{},
-    login:{}
+    login:{},
+    register:{
+        role:'STUDENT'
+    }
 }
 const AppReducer = (state=initialState, action) => {
     let newState = {...state}
@@ -53,6 +62,27 @@ const AppReducer = (state=initialState, action) => {
             return UserReducer(state,action);
         }
         case SET_PASSWORD:{
+            return UserReducer(state,action);
+        }
+        case REGISTER:{
+            return UserReducer(state,action);
+        }
+        case SET_REGISTER_USERNAME:{
+            return UserReducer(state,action);
+        }
+        case SET_REGISTER_PASSWORD:{
+            return UserReducer(state,action);
+        }
+        case SET_REGISTER_VERIFY_PASSWORD:{
+            return UserReducer(state,action);
+        }
+        case SET_REGISTER_ROLE:{
+            return UserReducer(state,action);
+        }
+        case SET_REGISTER_FIRST_NAME:{
+            return UserReducer(state,action);
+        }
+        case SET_REGISTER_LAST_NAME:{
             return UserReducer(state,action);
         }
         default:

@@ -6,6 +6,9 @@ import {LoginContainer} from './LoginContainer'
 import {history} from "../helpers/history";
 import WhiteBoard from "./WhiteBoard";
 import {Router,Route,Switch} from 'react-router-dom'
+import Register from "../components/Register";
+import Profile from "../components/Profile";
+import {RegisterContainer} from "./RegisterContainer";
 
 const App = () => {
     const store = createStore(AppReducer)
@@ -14,6 +17,8 @@ const App = () => {
             <Router history={history}>
                 <Switch>
                    <Route exact={true} path="/home" component={WhiteBoard}/>
+                    <Route exact={true} path="/register" component={RegisterContainer}/>
+                    <Route exact={true} path="/profile" component={Profile}/>
                     <Route exact={true} path="/" component={LoginContainer}/>
                 </Switch>
             </Router>

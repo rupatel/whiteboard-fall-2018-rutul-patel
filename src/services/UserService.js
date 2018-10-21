@@ -33,8 +33,20 @@ export default class UserService {
 
     }
 
-    static register(c) {
-
+    static register(username,password,role,firstName,lastName) {
+        return fetch(
+            URL + '/api/register',
+            {
+                method:"POST",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify({
+                    userName: username,
+                    password: password,
+                    role:role
+                })
+            });
     }
 
     static profile(){
