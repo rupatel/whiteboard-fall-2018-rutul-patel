@@ -21,14 +21,13 @@ const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topic
                 selectTopic = {selectTopic}
                 topics = {topics}
             />
-            <Provider store={store}>
-                <WidgetListContainer
-                    courseId = {courseId}
-                    moduleId = {selectedModule}
-                    lessonId = {selectedLesson}
-                    topicId = {selectedTopic}
-                    />
-            </Provider>
+
+            <WidgetListContainer
+                courseId = {courseId}
+                moduleId = {selectedModule}
+                lessonId = {selectedLesson}
+                topicId = {selectedTopic}
+                />
         </div>
     );
 }

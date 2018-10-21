@@ -1,4 +1,3 @@
-import {WidgetListContainer} from "../containers/WidgetListContainer";
 import {
     CREATE_WIDGET,
     DELETE_WIDGET, FIND_ALL_WIDGETS,

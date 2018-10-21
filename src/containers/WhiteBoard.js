@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Redirect, Route} from 'react-router-dom';
 import CourseEditor from "./CourseEditor";
 import Switch from "react-router/es/Switch";
 import ModuleService from "../services/ModuleService";
-
+import {history} from '../helpers/history'
 export default class WhiteBoard extends React.Component
 {
     constructor(props){
@@ -43,9 +43,9 @@ export default class WhiteBoard extends React.Component
     render() {
         return (
             <div>
-                <Router>
+                <Router history={history}>
                     <Switch>
-                        <Redirect exact path="/" to="/course/table"/>
+                        <Redirect exact path="/home" to="/course/table"/>
                         <Route exact path="/course/table"
                                render={() =>
                                    <CourseTable

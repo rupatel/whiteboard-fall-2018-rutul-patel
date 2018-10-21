@@ -7,5 +7,7 @@ import WhiteBoard from "./containers/WhiteBoard";
 import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Register from "./components/Register";
+import App from "./containers/App";
 
-ReactDom.render(<Register/>,document.getElementById('root'));
+
+ReactDom.render(<App/>,document.getElementById('root'));

@@ -1,20 +1,20 @@
 import React from 'react';
 
-const Login = (login) => {
-
+const Login = ({login,setUserName,setPassword,username,password,currentUser}) => {
     return(
         <div className="container-fluid" style={{background: "#e6e6e6",height:"100vh"}}>
             <div className="container">
                 <h1>
-                    Sign In
+                    <span className="mr-2">Sign In</span>
                     <i className="fas fa-chalkboard-teacher"></i>
                 </h1>
-                <form className="p-2" action="/profile/profile.template.client.html" style={{background: "#FFFFFF"}}>
+                <div className="p-2" action="/profile/profile.template.client.html" style={{background: "#FFFFFF"}}>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label">
                             Username </label>
                         <div className="col-sm-10">
-                            <input className="form-control" id="username" placeholder="Alice"/>
+                            <input className="form-control" id="username" placeholder="Alice"
+                            onChange={(e)=>setUserName(e.currentTarget.value)}/>
                         </div>
                     </div>
                     <div className="form-group row">
@@ -22,13 +22,18 @@ const Login = (login) => {
                             Password </label>
                         <div className="col-sm-10">
                             <input type="password" className="form-control"
-                                   id="password" placeholder="123qwe#$%"/>
+                                   id="password" placeholder="123qwe#$%"
+                                   onChange={(e)=>setPassword(e.currentTarget.value)}/>
                         </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <button type="submit" className="btn btn-primary btn-block">
+                            <button className="btn btn-primary btn-block"
+                            onClick={() =>
+                            {
+                                let user = login(username,password,"FACULTY");
+                            }}>
                                 Sign in
                                 <i className="fas fa-sign-in-alt"></i>
                             </button>
@@ -53,7 +58,7 @@ const Login = (login) => {
                             </div>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     )
