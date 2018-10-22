@@ -1,9 +1,24 @@
 import {
-    LOGIN, REGISTER,
-    SET_PASSWORD, SET_REGISTER_FIRST_NAME, SET_REGISTER_LAST_NAME, SET_REGISTER_PASSWORD,
-    SET_REGISTER_ROLE, SET_REGISTER_USERNAME,
+    LOGIN,
+    REGISTER,
+    SET_PASSWORD,
+    SET_REGISTER_FIRST_NAME,
+    SET_REGISTER_LAST_NAME,
+    SET_REGISTER_PASSWORD,
+    SET_REGISTER_ROLE,
+    SET_REGISTER_USERNAME,
     SET_REGISTER_VERIFY_PASSWORD,
-    SET_USERNAME
+    SET_USERNAME,
+    UPDATE_PROFILE,
+    SET_PROFILE_DOB,
+    SET_PROFILE_PHONE,
+    SET_PROFILE_FIRST_NAME,
+    SET_PROFILE_LAST_NAME,
+    SET_REGISTER_DOB,
+    SET_REGISTER_PHONE,
+    SET_REGISTER_EMAIL,
+    SET_PROFILE_USERNAME,
+    SET_PROFILE_EMAIL
 } from '../actions/UserActions';
 
 const initialState = {
@@ -53,6 +68,47 @@ const UserReducer = (state=initialState, action) => {
         }
         case SET_REGISTER_LAST_NAME:{
             newState.register.lastName = action.lastName;
+            return newState;
+        }
+        case SET_REGISTER_DOB:{
+            newState.register.dob = action.dob;
+            return newState;
+        }
+        case SET_REGISTER_PHONE:{
+            newState.register.phone = action.phone;
+            return newState;
+        }
+        case SET_REGISTER_EMAIL:{
+            newState.register.email = action.email;
+            return newState;
+        }
+
+        case UPDATE_PROFILE:{
+            newState.currentUser = action.user;
+            return newState;
+        }
+        case SET_PROFILE_DOB:{
+            newState.currentUser.dob = action.dob;
+            return newState;
+        }
+        case SET_PROFILE_PHONE:{
+            newState.currentUser.phone = action.phone;
+            return newState;
+        }
+        case SET_PROFILE_FIRST_NAME:{
+            newState.currentUser.firstName = action.firstName;
+            return newState;
+        }
+        case SET_PROFILE_LAST_NAME:{
+            newState.currentUser.lastName = action.lastName;
+            return newState;
+        }
+        case SET_PROFILE_USERNAME:{
+            newState.currentUser.username = action.username;
+            return newState;
+        }
+        case SET_PROFILE_EMAIL:{
+            newState.currentUser.email = action.email;
             return newState;
         }
     }

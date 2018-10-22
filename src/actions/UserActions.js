@@ -7,33 +7,26 @@ export const REGISTER = "REGISTER";
 export const FIND_PROFILE = "FIND_PROFILE";
 export const SET_USERNAME = "SET_USERNAME";
 export const SET_PASSWORD = "SET_PASSWORD";
+
 export const SET_REGISTER_USERNAME = "SET_REGISTER_USERNAME";
 export const SET_REGISTER_PASSWORD = "SET_REGISTER_PASSWORD";
 export const SET_REGISTER_VERIFY_PASSWORD = 'SET_REGISTER_VERIFY_PASSWORD';
 export const SET_REGISTER_ROLE='SET_REGISTER_ROLE';
 export const SET_REGISTER_FIRST_NAME='SET_REGISTER_FIRST_NAME';
 export const SET_REGISTER_LAST_NAME='SET_REGISTER_LAST_NAME';
+export const SET_REGISTER_DOB='SET_REGISTER_DOB';
+export const SET_REGISTER_PHONE='SET_REGISTER_PHONE';
+export const SET_REGISTER_EMAIL='SET_REGISTER_EMAIL';
 
-export function login(username, password,role){
-    let user;
-    UserService.login(username,password,role)
-        .then(
-            response =>
-            {
-                if(response.status != 200) {
-                    alert('invalid user name/ password');
-                    return;
-                }
-                return response.json()
-            })
-        .then(u =>{
-            if(!u) return;
-            user = u;
-            console.log(u);
-            history.push("/home");
-        }).catch(
-            msg => alert('invalid user name/ password')
-        );
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+export const SET_PROFILE_DOB='SET_PROFILE_DOB';
+export const SET_PROFILE_PHONE='SET_PROFILE_PHONE';
+export const SET_PROFILE_FIRST_NAME='SET_PROFILE_FIRST_NAME';
+export const SET_PROFILE_LAST_NAME='SET_PROFILE_LAST_NAME';
+export const SET_PROFILE_USERNAME='SET_PROFILE_USERNAME';
+export const SET_PROFILE_EMAIL='SET_PROFILE_EMAIL';
+
+export function login(user){
     return {
      currentUser : user,
      type:LOGIN
@@ -54,32 +47,9 @@ export function setPassword(password){
     }
 }
 
-export function register(username,password,verifyPassword,role,firstName,lastName){
-    if(password != verifyPassword){
-        alert('verify password and password do not match');
-        return;
-    }
-    let user;
-    UserService.register(username,password,role,firstName,lastName)
-        .then(
-            response =>
-            {
-                if(response.status != 200) {
-                    alert('incorrect registration information');
-                    return
-                };
-                return response.json()
-            })
-        .then(u =>{
-            if(!u) return;
-            user = u;
-            console.log(u);
-            history.push("/home");
-        }).catch(
-        msg => alert('incorrect registration information')
-        );
+export function register(u){
     return {
-        currentUser : '',
+        currentUser : u,
         type:REGISTER
     }
 }
@@ -119,5 +89,67 @@ export function setRegisterLastName(lastName){
     return {
         lastName :lastName,
         type:SET_REGISTER_LAST_NAME
+    }
+}
+
+export function setRegisterDOB(dob){
+    return {
+        dob :dob,
+        type:SET_REGISTER_DOB
+    }
+}
+export function setRegisterPhone(phone){
+    return {
+        phone :phone,
+        type:SET_REGISTER_PHONE
+    }
+}
+export function setRegisterEmail(email){
+    return {
+        email :email,
+        type:SET_REGISTER_EMAIL
+    }
+}
+
+export function updateProfile(u){
+    return {
+        user :u,
+        type:UPDATE_PROFILE
+    }
+}
+export function setProfileDOB(dob){
+    return {
+        dob :dob,
+        type:SET_PROFILE_DOB
+    }
+}
+export function setProfilePhone(phone){
+    return {
+        phone :phone,
+        type:SET_PROFILE_PHONE
+    }
+}
+export function setProfileFirstName(firstName){
+    return {
+        firstName :firstName,
+        type:SET_PROFILE_FIRST_NAME
+    }
+}
+export function setProfileLastName(lastName){
+    return {
+        lastName :lastName,
+        type:SET_PROFILE_LAST_NAME
+    }
+}
+export function setProfileUserName(username){
+    return {
+        username :username,
+        type:SET_PROFILE_USERNAME
+    }
+}
+export function setProfileEmail(email){
+    return {
+        email :email,
+        type:SET_PROFILE_EMAIL
     }
 }

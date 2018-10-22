@@ -16,7 +16,7 @@ export default class UserService {
                     "Content-Type":'application/json'
                 },
                 body: JSON.stringify({
-                    userName: username,
+                    username: username,
                     password: password,
                     role:role
                 })
@@ -33,7 +33,7 @@ export default class UserService {
 
     }
 
-    static register(username,password,role,firstName,lastName) {
+    static register(user) {
         return fetch(
             URL + '/api/register',
             {
@@ -41,15 +41,18 @@ export default class UserService {
                 headers:{
                     "Content-Type":'application/json'
                 },
-                body: JSON.stringify({
-                    userName: username,
-                    password: password,
-                    role:role
-                })
+                body: JSON.stringify(user)
             });
     }
 
-    static profile(){
-
+    static updateProfile(user){
+        return fetch(URL + '/api/profile',
+            {
+                method:"PUT",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify(user)
+            });
     }
 }

@@ -33,7 +33,7 @@ const Login = ({login,setUserName,setPassword,username,password,currentUser}) =>
                             <button className="btn btn-primary btn-block"
                             onClick={() =>
                             {
-                                let user = login(username,password,"FACULTY");
+                                login(username,password,"FACULTY");
                             }}>
                                 Sign in
                                 <i className="fas fa-sign-in-alt"></i>
