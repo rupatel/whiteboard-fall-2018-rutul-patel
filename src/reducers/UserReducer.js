@@ -18,14 +18,9 @@ import {
     SET_REGISTER_PHONE,
     SET_REGISTER_EMAIL,
     SET_PROFILE_USERNAME,
-    SET_PROFILE_EMAIL
+    SET_PROFILE_EMAIL, LOGOUT
 } from '../actions/UserActions';
-
-const initialState = {
-    currentUser: {},
-    login:{},
-    register:{}
-};
+import {initialState} from '../reducers/AppReducer';
 
 const UserReducer = (state=initialState, action) => {
     let newState = {...state};
@@ -110,6 +105,9 @@ const UserReducer = (state=initialState, action) => {
         case SET_PROFILE_EMAIL:{
             newState.currentUser.email = action.email;
             return newState;
+        }
+        case LOGOUT:{
+            return initialState
         }
     }
 }

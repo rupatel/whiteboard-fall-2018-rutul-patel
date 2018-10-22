@@ -3,7 +3,7 @@ import CourseTableNavBar from "./CourseTableNavBar";
 import CourseGridHeader from "./CourseGridHeader";
 import CourseCard from "./CourseCard";
 
-const CourseGrid = ({addCourse,deleteCourse,courses}) => {
+const CourseGrid = ({addCourse,deleteCourse,courses,logout}) => {
     const gridContainerStyle = {
         marginTop: "10vh",
         background: "#e6e6e6",
@@ -13,7 +13,8 @@ const CourseGrid = ({addCourse,deleteCourse,courses}) => {
     return (
         <div>
             <CourseTableNavBar
-                addCourse={addCourse}/>
+                addCourse={addCourse}
+                logout={logout}/>
             <div className="container-fluid" style={gridContainerStyle}>
                 <CourseGridHeader/>
                 <div className="row mr-2">

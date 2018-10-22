@@ -4,7 +4,7 @@ import CourseRowHeader from './CourseRowHeader';
 import CourseRow from "./CourseRow";
 import './CourseTable.css';
 
-const CourseTable = ({addCourse,deleteCourse,courses}) =>
+const CourseTable = ({addCourse,deleteCourse,courses,logout}) =>
 {
     const rowGroupstyle = {
         background: '#FFFFFF'
@@ -17,7 +17,8 @@ const CourseTable = ({addCourse,deleteCourse,courses}) =>
     }
     return (
         <div>
-            <CourseTableNavBar addCourse={addCourse}/>
+            <CourseTableNavBar addCourse={addCourse}
+            logout={logout}/>
             <div className="container-fluid"  style={tableContainerStyle}>
                 <CourseRowHeader/>
                 <div style={rowGroupstyle} className="mt-2 container mr-sm-5 ml-sm-4 mb-sm-2">

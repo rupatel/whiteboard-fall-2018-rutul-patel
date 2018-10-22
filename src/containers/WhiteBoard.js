@@ -5,7 +5,10 @@ import CourseGrid from "../components/CourseGrid";
 import {Router,Route,Switch,Redirect} from 'react-router-dom'
 import CourseEditor from "./CourseEditor";
 import ModuleService from "../services/ModuleService";
-import {history} from '../helpers/history'
+import {history} from '../helpers/history';
+import {connect} from 'react-redux';
+import {login, logout} from "../actions/UserActions";
+import UserService from "../services/UserService";
 export default class WhiteBoard extends React.Component
 {
     constructor(props){
@@ -40,12 +43,24 @@ export default class WhiteBoard extends React.Component
 
 
     render() {
+        let CourseTableContainer = connect((state,props) => {},
+                                   (dispatch,props) => ({logout : () =>
+                                           UserService.logout()
+                                               .then(
+                                                   response => dispatch(logout()))
+                                       }))(CourseTable);
+        let CourseGridContainer = connect((state,props) => {},
+            (dispatch,props) => ({logout : () =>
+                    UserService.logout()
+                        .then(
+                            response => dispatch(logout()))
+            }))(CourseGrid);
         return (
             <div>
 
                 <Route exact path="/course/grid"
                        render={() =>
-                           <CourseGrid
+                           <CourseGridContainer
                                addCourse={this.addCourse}
                                deleteCourse={this.deleteCourse}
                                courses={this.state.courses}/>}/>
@@ -60,7 +75,7 @@ export default class WhiteBoard extends React.Component
                     path="/course/:courseId/edit"/>
                 <Route exact path="/home"
                        render={() =>
-                           <CourseTable
+                           <CourseTableContainer
                                addCourse={this.addCourse}
                                deleteCourse={this.deleteCourse}
                                courses={this.state.courses}/>}/>

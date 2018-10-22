@@ -1,7 +1,7 @@
 import React from 'react';
 import './CourseTableNavBar.css';
 import {Link} from 'react-router-dom';
-const CourseTableNavBar = ({addCourse}) => {
+const CourseTableNavBar = ({addCourse,logout}) => {
     const navbarHeight = {
         height: "10vh"
     }
@@ -39,7 +39,10 @@ const CourseTableNavBar = ({addCourse}) => {
                 </div>
             </form>
             <Link to="/profile" className="mr-2" style={{color:'white'}}><i className="fas fa-user-alt"></i></Link>
-            <Link to='/' style={{color:'red'}}><i className="fas fa-sign-out-alt"></i></Link>
+            <Link to='/' style={{color:'red'}}><i className="fas fa-sign-out-alt"
+            onClick={e => {
+                logout();
+            }}></i></Link>
         </nav>
     )
 }

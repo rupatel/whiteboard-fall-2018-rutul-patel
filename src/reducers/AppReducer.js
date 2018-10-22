@@ -7,7 +7,7 @@ import {
 } from "../actions/WidgetAction";
 import WidgetReducer from "./WidgetReducer";
 import {
-    LOGIN,
+    LOGIN, LOGOUT,
     REGISTER,
     SET_PASSWORD,
     SET_PROFILE_DOB, SET_PROFILE_EMAIL, SET_PROFILE_FIRST_NAME, SET_PROFILE_LAST_NAME,
@@ -23,7 +23,7 @@ import {
 } from "../actions/UserActions";
 import UserReducer from "./UserReducer";
 
-const initialState = {
+export const initialState = {
     widgets: [],
     isPreview:false,
     currentUser:{},
@@ -123,6 +123,9 @@ const AppReducer = (state=initialState, action) => {
             return UserReducer(state,action);
         }
         case SET_PROFILE_LAST_NAME:{
+            return UserReducer(state,action);
+        }
+        case LOGOUT:{
             return UserReducer(state,action);
         }
         default:

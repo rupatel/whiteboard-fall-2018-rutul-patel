@@ -6,12 +6,13 @@ export default class UserService {
 
     }
 
-    static login(username,password,role) {
+        static login(username,password,role) {
 
         return fetch(
             URL + '/api/login',
             {
                 method:"POST",
+                credentials: 'include',
                 headers:{
                     "Content-Type":'application/json'
                 },
@@ -25,8 +26,16 @@ export default class UserService {
     }
 
 
-    static logout(id, course) {
-
+    static logout() {
+        return fetch(
+            URL + '/api/logout',
+            {
+                method:"POST",
+                credentials: 'include',
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
     static findUserById(id) {
@@ -37,6 +46,7 @@ export default class UserService {
         return fetch(
             URL + '/api/register',
             {
+                credentials: 'include',
                 method:"POST",
                 headers:{
                     "Content-Type":'application/json'
@@ -48,6 +58,7 @@ export default class UserService {
     static updateProfile(user){
         return fetch(URL + '/api/profile',
             {
+                credentials: 'include',
                 method:"PUT",
                 headers:{
                     "Content-Type":'application/json'

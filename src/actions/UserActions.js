@@ -2,7 +2,6 @@ import UserService from '../services/UserService';
 import {history} from "../helpers/history";
 
 export const LOGIN = "LOGIN";
-export const LOGOUT = "LOGOUT";
 export const REGISTER = "REGISTER";
 export const FIND_PROFILE = "FIND_PROFILE";
 export const SET_USERNAME = "SET_USERNAME";
@@ -25,6 +24,8 @@ export const SET_PROFILE_FIRST_NAME='SET_PROFILE_FIRST_NAME';
 export const SET_PROFILE_LAST_NAME='SET_PROFILE_LAST_NAME';
 export const SET_PROFILE_USERNAME='SET_PROFILE_USERNAME';
 export const SET_PROFILE_EMAIL='SET_PROFILE_EMAIL';
+
+export const LOGOUT='LOGOUT';
 
 export function login(user){
     return {
@@ -151,5 +152,10 @@ export function setProfileEmail(email){
     return {
         email :email,
         type:SET_PROFILE_EMAIL
+    }
+}
+export function logout(){
+    return {
+        type:LOGOUT
     }
 }
