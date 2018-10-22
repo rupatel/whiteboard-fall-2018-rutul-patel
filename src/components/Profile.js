@@ -8,7 +8,7 @@ const Profile = ({updateProfile,setUserName,setDOB,setPhone,setFirstName,setLast
                 <h1>
                     Profile
                 </h1>
-                <form className="p-2" style={{background: "#FFFFFF"}}>
+                <div className="p-2" style={{background: "#FFFFFF"}}>
                     <div className="form-group row">
                         <label htmlFor="username" className="col-sm-2 col-form-label">
                             <span className="mr-2">Username</span>
@@ -105,9 +105,9 @@ const Profile = ({updateProfile,setUserName,setDOB,setPhone,setFirstName,setLast
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label"></label>
                         <div className="col-sm-10">
-                            <span className="btn btn-primary btn-block btn-success"
+                            <button className="btn btn-primary btn-block btn-success"
+                                    onClick={(e) => {
 
-                                    onClick={e => {
                                         updateProfile({username:username,
                                             id:id,
                                             role:role,
@@ -116,11 +116,10 @@ const Profile = ({updateProfile,setUserName,setDOB,setPhone,setFirstName,setLast
                                             dob:dob,
                                             phone:phone,
                                             email:email})
-                                        e.stopPropagation();
                                     }}>
                                 Update
                                 <i className="fas fa-pen"></i>
-                            </span>
+                            </button>
                         </div>
                     </div>
 
@@ -135,7 +134,7 @@ const Profile = ({updateProfile,setUserName,setDOB,setPhone,setFirstName,setLast
                             </button>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     );
