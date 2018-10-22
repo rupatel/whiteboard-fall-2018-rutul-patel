@@ -1,4 +1,6 @@
 import React from 'react';
+
+const URL = 'http://localhost:8080';
 let courses = [
     {
         "id": "123",
@@ -205,6 +207,14 @@ export default class CourseService {
     }
 
     createCourse(c) {
-        courses.push(c)
+        return fetch(URL + '/api/course',
+            {
+                credentials: 'include',
+                method:"POST",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify(c)
+            });
     }
 }

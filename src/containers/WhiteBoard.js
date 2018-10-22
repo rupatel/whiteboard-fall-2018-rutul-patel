@@ -9,6 +9,8 @@ import {history} from '../helpers/history';
 import {connect} from 'react-redux';
 import {login, logout} from "../actions/UserActions";
 import UserService from "../services/UserService";
+import {CourseGridContainer} from "./CourseGridContainer";
+import {CourseTableContainer} from "./CourseTableContainer";
 export default class WhiteBoard extends React.Component
 {
     constructor(props){
@@ -21,10 +23,16 @@ export default class WhiteBoard extends React.Component
     }
 
     addCourse = c => {
-        this.courseService.createCourse(c);
-        this.setState({
-            courses: this.courseService.findAllCourses()
-        })
+        this.courseService.createCourse(c)
+            .then(res=>res.json()).then(c=>{
+            this.setState(state => {
+                let newState = {...state}
+                let oldCourses = [... state.courses]
+                oldCourses.push(c);
+                newState.courses= oldCourses;
+                return newState;
+            })
+        });
     }
 
     deleteCourse = c => {
@@ -43,18 +51,6 @@ export default class WhiteBoard extends React.Component
 
 
     render() {
-        let CourseTableContainer = connect((state,props) => {},
-                                   (dispatch,props) => ({logout : () =>
-                                           UserService.logout()
-                                               .then(
-                                                   response => dispatch(logout()))
-                                       }))(CourseTable);
-        let CourseGridContainer = connect((state,props) => {},
-            (dispatch,props) => ({logout : () =>
-                    UserService.logout()
-                        .then(
-                            response => dispatch(logout()))
-            }))(CourseGrid);
         return (
             <div>
 

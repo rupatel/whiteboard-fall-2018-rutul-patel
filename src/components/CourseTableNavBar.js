@@ -25,7 +25,6 @@ const CourseTableNavBar = ({addCourse,logout}) => {
                 <div className="col-2 p-0">
                     <Link to = "#" onClick={() => {
                         addCourse({
-                        id: (new Date()).getTime() + '',
                         title: courseTitleElem.value,
                         modules :[]
                         });

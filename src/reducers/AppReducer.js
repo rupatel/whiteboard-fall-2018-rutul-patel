@@ -26,7 +26,7 @@ import UserReducer from "./UserReducer";
 export const initialState = {
     widgets: [],
     isPreview:false,
-    currentUser:{},
+    currentUser:{courses:[]},
     login:{},
     profile:{},
     register:{
