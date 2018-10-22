@@ -43,32 +43,27 @@ export default class WhiteBoard extends React.Component
         return (
             <div>
 
-                <Router history={history}>
-                    <Switch>
-                        <Redirect exact path="/home" to="/course/table"/>
-                        <Route exact path="/course/table"
-                               render={() =>
-                                   <CourseTable
-                                       addCourse={this.addCourse}
-                                       deleteCourse={this.deleteCourse}
-                                       courses={this.state.courses}/>}/>
-                        <Route exact path="/course/grid"
-                               render={() =>
-                                   <CourseGrid
-                                       addCourse={this.addCourse}
-                                       deleteCourse={this.deleteCourse}
-                                       courses={this.state.courses}/>}/>
-                        <Route
-                            exact
-                            render={(props) =>
-                                <CourseEditor
-                                    {...props}
-                                    findCourseById = {this.courseService.findCourseById}
-                                    updateCourse = {this.updateCourse}
-                                    />}
-                            path="/course/:courseId/edit"/>
-                    </Switch>
-                </Router>
+                <Route exact path="/course/grid"
+                       render={() =>
+                           <CourseGrid
+                               addCourse={this.addCourse}
+                               deleteCourse={this.deleteCourse}
+                               courses={this.state.courses}/>}/>
+                <Route
+                    exact
+                    render={(props) =>
+                        <CourseEditor
+                            {...props}
+                            findCourseById = {this.courseService.findCourseById}
+                            updateCourse = {this.updateCourse}
+                            />}
+                    path="/course/:courseId/edit"/>
+                <Route exact path="/home"
+                       render={() =>
+                           <CourseTable
+                               addCourse={this.addCourse}
+                               deleteCourse={this.deleteCourse}
+                               courses={this.state.courses}/>}/>
             </div>
         );
     }

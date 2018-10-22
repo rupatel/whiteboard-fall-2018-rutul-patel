@@ -16,10 +16,10 @@ const App = () => {
         <Provider store={store}>
             <Router history={history}>
                 <Switch>
-                   <Route exact={true} path="/home" component={WhiteBoard}/>
                     <Route exact={true} path="/register" component={RegisterContainer}/>
                     <Route exact={true} path="/profile" component={Profile}/>
                     <Route exact={true} path="/" component={LoginContainer}/>
+                    <WhiteBoard/>
                 </Switch>
             </Router>
         </Provider>
