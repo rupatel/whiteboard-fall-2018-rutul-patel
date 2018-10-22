@@ -2,22 +2,22 @@ import TopicService from "./TopicService";
 
 let topicService = new TopicService();
 export default class WidgetService {
-    createWidget(courseId, moduleId, lessonId, topicId, widget) {
+    static createWidget(courseId, moduleId, lessonId, topicId, widget) {
         let widgets = this.findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId);
         widgets.push(widget);
-        let topic = {...topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
+        let topic = {...TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
         topic.widgets = widgets;
-        topicService.updateTopic(courseId, moduleId, lessonId, topic);
+        TopicService.updateTopic(courseId, moduleId, lessonId, topic);
     }
 
-    findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId) {
-        let topic = {...topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
+    static findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId) {
+        let topic = {...TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
         let widgets = topic.widgets ? topic.widgets : [];
         return [... widgets];
     }
 
-    findAllWidgets(courseId, moduleId, lessonId) {
-        let topics = topicService.findAllTopics(courseId, moduleId, lessonId);
+    static findAllWidgets(courseId, moduleId, lessonId) {
+        let topics = TopicService.findAllTopics(courseId, moduleId, lessonId);
         let widgets = topics.flatMap(t => {
             if(t.widgets) return t.widgets
             else return [];
@@ -25,29 +25,29 @@ export default class WidgetService {
         return widgets;
     }
 
-    findWidgetById(courseId, moduleId, lessonId, topicId, widgetId) {
+    static findWidgetById(courseId, moduleId, lessonId, topicId, widgetId) {
         let widgets = this.findAllWidgets(courseId, moduleId, lessonId, topicId);
         return widgets.filter(w => w.id == widgetId)[0]
     }
 
-    updateWidget(courseId, moduleId, lessonId, topicId, widget) {
+    static updateWidget(courseId, moduleId, lessonId, topicId, widget) {
         let widgets = this.findAllWidgets(courseId, moduleId, lessonId, topicId).map(w => {
             if (w.id == widget.id) return widget;
             else return w;
         });
-        let topic = {...topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
+        let topic = {...TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
         topic.wdgets = widgets
-        topicService.updateTopic(courseId, moduleId, lessonId, topic);
+        TopicService.updateTopic(courseId, moduleId, lessonId, topic);
     }
 
-    deleteWidget(courseId, moduleId, lessonId, topicId, widgetId) {
-        let topic = {... topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
+    static deleteWidget(courseId, moduleId, lessonId, topicId, widgetId) {
+        let topic = {... TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
         topic.widgets = topic.widgets.filter(w => w.id != widgetId);
-        topicService.updateTopic(courseId, moduleId, lessonId, topic);
+        TopicService.updateTopic(courseId, moduleId, lessonId, topic);
     }
 
-    saveWidgets(courseId, moduleId, lessonId, topicId, widgets){
-        let topic = {... topicService.findTopicById(courseId, moduleId, lessonId, topicId)};
+    static  saveWidgets(courseId, moduleId, lessonId, topicId, widgets){
+        let topic = {... TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
         topic.widgets = widgets;
         topicService.updateTopic(courseId, moduleId, lessonId, topic);
     }

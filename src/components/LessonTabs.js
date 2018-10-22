@@ -3,7 +3,7 @@ import './LessonTabs.css'
 import {Link} from 'react-router-dom';
 
 const LessonTabs = ({
-                        courseTitle, updateLesson, deleteLesson, addLesson, selectedLesson,
+                        courseTitle, updateLesson,saveLesson, deleteLesson, addLesson, selectedLesson,
                         selectLesson, lessons
                     }) => {
     let navBarStyle = {
@@ -68,6 +68,9 @@ const LessonTabs = ({
                                                        height: '2vh'
                                                    }}
                                                    onBlur={(e) => {
+                                                       let lesson = lessons.filter(l => l.id == lid)[0];
+                                                       lesson.title = e.currentTarget.value;
+                                                       saveLesson(lesson);
                                                        e.currentTarget.setAttribute('disabled', 'true');
                                                    }}/>
 

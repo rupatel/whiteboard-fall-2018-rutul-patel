@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-const TopicPills = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
+const TopicPills = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics}) => {
     let topicTitleElem;
     let actionIconStyle = {
         color: 'white'
@@ -46,6 +46,9 @@ const TopicPills = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,
                                                        height: '2vh'
                                                    }}
                                                    onBlur={(e) => {
+                                                       let topic = topics.filter(l => l.id == tid)[0];
+                                                       topic.title = e.currentTarget.value;
+                                                       saveTopic(topic);
                                                        e.currentTarget.setAttribute('disabled', 'true');
                                                    }}/>
 

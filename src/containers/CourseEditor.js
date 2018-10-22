@@ -5,39 +5,40 @@ import ModuleService from "../services/ModuleService";
 import CourseService from "../services/CourseService";
 import LessonService from "../services/LessonService";
 import TopicService from "../services/TopicService";
+import WidgetService from "../services/WidgetService";
 
 class CourseEditor extends React.Component {
     constructor(props) {
         super(props);
-        this.moduleService = new ModuleService();
-        this.courseService = new CourseService();
-        this.lessonService = new LessonService();
-        this.topicService = new TopicService();
 
         this.state = {
             modules: [],
-            lessons:[],
-            topics:[],
-            widgets:[],
             selectedModule: '',
             selectedLesson: '',
             selectedTopic: '',
-            courseTitle: ''
+            courseTitle: '',
+            lessons:[],
+            topics:[],
+            widgets:[]
         };
         this.deleteModule = this.deleteModule.bind(this);
         this.addModule = this.addModule.bind(this);
         this.selectModule = this.selectModule.bind(this);
         this.updateModule = this.updateModule.bind(this);
+        this.saveModule = this.saveModule.bind(this);
+
 
         this.deleteLesson = this.deleteLesson.bind(this);
         this.addLesson = this.addLesson.bind(this);
         this.selectLesson = this.selectLesson.bind(this);
         this.updateLesson = this.updateLesson.bind(this);
+        this.saveLesson = this.saveLesson.bind(this);
 
         this.deleteTopic = this.deleteTopic.bind(this);
         this.addTopic = this.addTopic.bind(this);
         this.selectTopic = this.selectTopic.bind(this);
         this.updateTopic = this.updateTopic.bind(this);
+        this.saveTopic = this.saveTopic.bind(this);
     }
 
     componentDidMount() {
@@ -60,11 +61,15 @@ class CourseEditor extends React.Component {
                 let lessons = newState.selectedModule.lessons;
                 if(lessons && lessons.length != 0)
                 {
+                    newState.lessons = [... lessons];
                     newState.selectedLesson = lessons[0].id;
                     let topics =  newState.selectedLesson.topics;
                     if(topics && topics.length != 0)
                     {
+                        newState.topics = [...topics]
                         newState.selectedTopic = topics[0].id;
+                        if(newState.selectedTopic && newState.selectedTopic.widgets)
+                            newState.widgets = newState.selectedTopic.widgets;
                     }
                 }
             }
@@ -122,33 +127,50 @@ class CourseEditor extends React.Component {
     }
 
     saveModule = (module) => {
+        let changeState = this.updateModule;
         let courseId = this.props.match.params.courseId;
         ModuleService.updateModule(courseId,module)
             .then(res => res.json())
             .then(mod => {
-                this.setState(state => {
-                    let newState = {...state}
-                    let oldModules = [... state.modules]
-                    newState.modules= oldModules.map(m => {
-                        if(m.id != mod.id)
-                            return m;
-                        else
-                            return mod;
-                    });
-                    return newState;
-                });
+                changeState(mod);
             });
     }
 
     selectModule = (moduleId) => {
+        let courseId = this.props.match.params.courseId;
+        LessonService.findAllLessons(courseId,moduleId)
+            .then(res => res.json())
+            .then(lessons => {
+                let newState = {...this.state};
+                newState.lessons = lessons;
+                newState.selectedModule = moduleId;
+                if(newState.lessons && newState.lessons.length !=0)
+                {
+                    newState.selectedLesson = newState.lessons[0].id;
+                    if(newState.selectedLesson.topics && newState.selectedLesson.topics.length >0)
+                    {
+                        newState.topics = newState.selectedLesson.topics;
+                        newState.selectedTopic = newState.topics[0].id;
+                        if(newState.topics && newState.topics.length !=0)
+                        {
+
+                            let widgets = newState.topics[0].widgets;
+                            newState.widgets = widgets;
+
+                        }
+                    }
+                }
+                this.setState(newState);
+            })
         let state = {...this.state};
         state.selectedModule = moduleId;
         let module = this.state.modules.filter(m => {
             return m.id == moduleId
         })[0];
-        let lesson = module.lessons.length == 0 ? '' : module.lessons[0];
+        let lesson = (!module.lessons || module.lessons.length == 0) ? '' : module.lessons[0];
         state.selectedLesson = lesson ? lesson.id : '';
-        state.selectedTopic = lesson ? (lesson.topics.length == 0) ? '' : lesson.topics[0].id : '';
+        state.selectedTopic = lesson ? ((!lesson.topics || lesson.topics.length == 0)) ? '' :
+            lesson.topics[0].id : '';
         this.setState(state);
     }
 
@@ -156,47 +178,80 @@ class CourseEditor extends React.Component {
     addLesson = (lesson) => {
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
-        this.lessonService.createLesson(courseId, moduleId, lesson);
-        let newState = {...this.state}
-        newState['modules'] = this.moduleService.findAllModules(courseId);
-        let selectedLesson = (!this.state.selectedLesson ? lesson.id : this.state.selectedLesson);
-        newState.selectedLesson = selectedLesson;
-        this.setState(newState);
+        LessonService.createLesson(courseId,moduleId,lesson)
+            .then(res => res.json())
+            .then(module => {
+                this.setState(state => {
+                    let newState = {...state}
+                    let oldLessons = [... state.lessons]
+                    oldLessons.push(lesson);
+                    newState.lessons= oldLessons;
+                    if(!newState.selectedLesson)
+                        newState.selectedLesson = lesson.id;
+                    return newState;
+                });
+            });
     }
 
     deleteLesson = (lessonId) => {
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
-        this.lessonService.deleteLesson(courseId, moduleId, lessonId);
-        let newState = {...this.state}
-        newState.modules = this.moduleService.findAllModules(courseId);
-        let lessons = this.lessonService.findAllLessons(courseId, moduleId, lessonId);
-        if (this.state.selectedLesson == lessonId)
-        {
-            newState.selectedLesson = '';
-            newState.selectedLesson = lessons.length == 0 ? '' : lessons[0].id;
-        }
-        this.setState(newState);
+        LessonService.deleteLesson(courseId,moduleId,lessonId)
+            .then(res => {
+                this.setState(state => {
+                    let newState = {...state}
+                    let oldLessons = [... state.lessons]
+                    newState.lessons= oldLessons.filter(lesson => lesson.id != lessonId);
+                    if (this.state.selectedLesson == lessonId){
+                        newState.selectedLesson = '';
+                        if(newState.lessons.length != 0)
+                            newState.selectedLesson = newState.lessons[0].id;
+                    }
+                    return newState;
+                })
+            });
+    }
+    updateLesson = (lesson) => {
+        this.setState(state => {
+            let newState = {...state}
+            let oldLessons = [... state.lessons]
+            newState.lessons= oldLessons.map(l => {
+                if(l.id != lesson.id)
+                    return l;
+                else
+                    return lesson;
+            });
+            return newState;
+        });
     }
 
-    updateLesson = (lesson) => {
+    saveLesson = (lesson) => {
+        let changeState = this.updateLesson;
+        let mid = this.state.selectedModule;
         let courseId = this.props.match.params.courseId;
-        let moduleId = this.state.selectedModule;
-        this.lessonService.updateLesson(courseId, moduleId, lesson);
-        let newState = {...this.state}
-        newState.modules = this.moduleService.findAllModules(courseId);
-        this.setState(newState);
+        LessonService.updateLesson(courseId,mid,lesson)
+            .then(res => res.json())
+            .then(mod => {
+                changeState(mod);
+            });
     }
 
     selectLesson = (lessonId) => {
-        let state = {...this.state};
-        state.selectedLesson = lessonId;
-        let module = this.state.modules.filter(m => {
-            return m.id == state.selectedModule
-        })[0];
-        let lesson = module.lessons.filter(l=>l.id == lessonId)[0];
-        state.selectedTopic = (lesson.topics.length == 0) ? '' : lesson.topics[0].id;
-        this.setState(state);
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        TopicService.findAllTopics(courseId,moduleId,lessonId)
+            .then(res => res.json())
+            .then(topics => {
+                let newState = {...this.state};
+                newState.topics = topics;
+                newState.selectedLesson = lessonId;
+                if(newState.topics && newState.topics.length !=0)
+                {
+                    newState.selectedTopic = newState.topics[0].id;
+                    newState.widgets = topics[0].widgets;
+                }
+                this.setState(newState);
+            })
     }
 
     //updating Topic State
@@ -205,44 +260,79 @@ class CourseEditor extends React.Component {
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
         let lessonId = this.state.selectedLesson;
-        this.topicService.createTopic(courseId, moduleId, lessonId, topic);
-        let newState = {...this.state}
-        newState['modules'] = this.moduleService.findAllModules(courseId);
-        let selectedLesson = (!this.state.selectedTopic ? topic.id : this.state.selectedTopic);
-        newState.selectedTopic = selectedLesson;
-        this.setState(newState);
+
+        TopicService.createTopic(courseId,moduleId,lessonId,topic)
+            .then(res => res.json())
+            .then(topic => {
+                this.setState(state => {
+                    let newState = {...state}
+                    let oldTopics = [... state.modules]
+                    oldTopics.push(topic);
+                    newState.topics= oldTopics;
+                    if(!newState.selectedTopic)
+                        newState.selectedTopic = topic.id;
+                    return newState;
+                });
+            });
     }
 
     deleteTopic = (topicId) => {
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
         let lessonId = this.state.selectedLesson;
-        this.topicService.deleteTopic(courseId, moduleId, lessonId, topicId);
-        let newState = {...this.state}
-        newState.modules = this.moduleService.findAllModules(courseId);
-        let topics = this.topicService.findAllTopics(courseId, moduleId, lessonId, topicId);
-        if (this.state.selectedLesson == lessonId)
-        {
-            newState.selectedTopic = '';
-            newState.selectedTopic = topics.length == 0 ? '' : topics[0].id;
-        }
-        this.setState(newState);
+        TopicService.deleteTopic(courseId,moduleId,lessonId,topicId)
+            .then(res => {
+                this.setState(state => {
+                    let newState = {...state}
+                    let oldTopics = [... state.modules]
+                    newState.modules= oldTopics.filter(topic => topic.id != topicId);
+                    if (this.state.selectedTopic == topicId){
+                        newState.selectedModule = '';
+                        if(newState.topics.length != 0)
+                            newState.selectedTopic = newState.topics[0].id;
+                    }
+                    return newState;
+                })
+            });
+    }
+    updateTopic = (topic) => {
+        this.setState(state => {
+            let newState = {...state}
+            let oldTopics = [... state.topics]
+            newState.topics= oldTopics.map(t => {
+                if(t.id != topic.id)
+                    return t;
+                else
+                    return topic;
+            });
+            return newState;
+        });
     }
 
-    updateTopic = (topic) => {
+    saveTopic = (topic) => {
+        let changeState = this.updateModule;
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
         let lessonId = this.state.selectedLesson;
-        this.topicService.updateTopic(courseId, moduleId, lessonId, topic);
-        let newState = {...this.state}
-        newState.modules = this.moduleService.findAllModules(courseId);
-        this.setState(newState);
+        TopicService.updateTopic(courseId,moduleId,lessonId,topic)
+            .then(res => res.json())
+            .then(topic => {
+                changeState(topic);
+            });
     }
 
     selectTopic = (topicId) => {
-        let state = {...this.state};
-        state.selectedTopic = topicId;
-        this.setState(state);
+        let courseId = this.props.match.params.courseId;
+        let moduleId = this.state.selectedModule;
+        let lessonId = this.state.selectedLesson;
+        WidgetService.findAllWidgetsForTopic(courseId.moduleId,lessonId,topicId)
+            .then(res => res.json())
+            .then(widgets => {
+                let newState = {...this.state};
+                newState.widgets.selectedTopic = topicId;
+                newState.widgets = widgets;
+                this.setState(newState);
+            })
     }
 
     render() {
@@ -263,11 +353,12 @@ class CourseEditor extends React.Component {
                 <LessonTabs
                     courseTitle={this.state.courseTitle}
                     updateLesson={this.updateLesson}
+                    saveLesson={this.saveLesson}
                     deleteLesson={this.deleteLesson}
                     addLesson={this.addLesson}
                     selectedLesson={this.state.selectedLesson}
                     selectLesson={this.selectLesson}
-                    lessons={lessons}
+                    lessons={this.state.lessons}
                 />
                 <Module
                     deleteModule={this.deleteModule}
@@ -279,12 +370,13 @@ class CourseEditor extends React.Component {
                     selectedLesson = {this.state.selectedLesson}
                     selectModule={this.selectModule}
                     updateTopic={this.updateTopic}
+                    saveTopic={this.saveTopic}
                     deleteTopic={this.deleteTopic}
                     addTopic={this.addTopic}
                     selectedTopic={this.state.selectedTopic}
                     selectTopic={this.selectTopic}
-                    topics={topics}
-                    widgets={widgets}
+                    topics={this.state.topics}
+                    widgets={this.state.widgets}
                     courseId = {this.props.match.params.courseId}
                 />
             </div>

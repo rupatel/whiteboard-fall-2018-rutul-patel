@@ -205,14 +205,15 @@ export default class CourseService {
             });
     }
 
-    static updateCourse(id) {
+    static updateCourse(id,course) {
         return fetch(URL + '/api/course/' + id,
             {
                 credentials: 'include',
                 method:"PUT",
                 headers:{
                     "Content-Type":'application/json'
-                }
+                },
+                body:JSON.stringify(course)
             });
     }
 

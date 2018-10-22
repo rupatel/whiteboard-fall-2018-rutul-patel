@@ -1,41 +1,63 @@
 import React from 'react';
 import LessonService from "./LessonService";
 
-let lessonService = new LessonService();
+const URL = 'http://localhost:8080';
 
 export default class TopicService {
-    findAllTopics(courseId, moduleId, lessonId) {
-        let lesson = lessonService.findLessonById(courseId, moduleId, lessonId);
-        return lesson && lesson.topics ? lesson.topics : [];
+    static findAllTopics(cid,mid,lid) {
+        return fetch(URL + '/api/lesson/'+ lid + '/topic',
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    findTopicById(courseId, moduleId, lessonId, topicId) {
-        let topics = this.findAllTopics(courseId, moduleId, lessonId);
-        return topics.filter(t => t.id == topicId)[0]
+    static findTopicById(cid,mid,lid,tid) {
+        return fetch(URL + '/api/topic/' + tid,
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    deleteTopic(courseId, moduleId, lessonId, topicId) {
-        let lesson = {... lessonService.findLessonById(courseId, moduleId, lessonId)};
-        let newTopics = lesson.topics.filter(t => t.id != topicId);
-        lesson.topics = newTopics;
-        lessonService.updateLesson(courseId, moduleId, lesson);
+    static updateTopic(cid,mid,lid,topic) {
+        return fetch(URL + '/api/topic/' + topic.id,
+            {
+                credentials: 'include',
+                method:"PUT",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body:JSON.stringify(topic)
+            });
     }
 
-    updateTopic(courseId, moduleId, lessonId, topic) {
-        let topics = this.findAllTopics(courseId, moduleId, lessonId).map(t => {
-            if (t.id == topic.id) return topic;
-            else return t;
-        });
-        let lesson = {...lessonService.findLessonById(courseId, moduleId, lessonId)};
-        lesson.topics = topics
-        lessonService.updateLesson(courseId, moduleId, lesson);
+    static deleteTopic(cid,mid,lid,tid) {
+        return fetch(URL + '/api/topic/' + tid,
+            {
+                credentials: 'include',
+                method:"DELETE",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    createTopic(courseId, moduleId, lessonId, topic) {
-        let topics = this.findAllTopics(courseId, moduleId, lessonId);
-        topics.push(topic);
-        let lesson = {...lessonService.findLessonById(courseId, moduleId, lessonId)};
-        lesson.topics = topics;
-        lessonService.updateLesson(courseId, moduleId, lesson);
+    static createTopic(cid,mid,lid,topic) {
+        return fetch(URL + '/api/lesson/'+ lid + '/topic',
+            {
+                credentials: 'include',
+                method:"POST",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify(topic)
+            });
     }
 }

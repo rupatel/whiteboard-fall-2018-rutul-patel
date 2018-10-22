@@ -1,41 +1,63 @@
 import React from 'react';
 import ModuleService from "./ModuleService";
 
-let moduleService = new ModuleService();
+const URL = 'http://localhost:8080';
 
 export default class LessonService {
-    findAllLessons(courseId, moduleId) {
-        let module = ModuleService.findModuleById(courseId, moduleId);
-        return module.lessons ? module.lessons : [];
+    static findAllLessons(cid,mid) {
+        return fetch(URL + '/api/module/'+ mid + '/lesson',
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    findLessonById(courseId, moduleId, lessonId) {
-        let lessons = this.findAllLessons(courseId, moduleId);
-        return lessons.filter(l => l.id == lessonId)[0]
+    static findLessonById(cid,mid,lid) {
+        return fetch(URL + '/api/lesson/' + lid,
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    deleteLesson(courseId, moduleId, lessonId) {
-        let module = {... ModuleService.findModuleById(courseId, moduleId)};
-        let newLessons = module.lessons.filter(l => l.id != lessonId);
-        module.lessons = newLessons;
-        moduleService.updateModule(courseId, module);
+    static updateLesson(cid,mid,lesson) {
+        return fetch(URL + '/api/lesson/' + lesson.id,
+            {
+                credentials: 'include',
+                method:"PUT",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body:JSON.stringify(lesson)
+            });
     }
 
-    updateLesson(courseId, moduleId, lesson) {
-        let lessons = this.findAllLessons(courseId, moduleId).map(l => {
-            if (l.id == lesson.id) return lesson;
-            else return l;
-        });
-        let module = {...ModuleService.findModuleById(courseId, moduleId)};
-        module.lessons = lessons
-        moduleService.updateModule(courseId, module);
+    static deleteLesson(cid,mid,lid) {
+        return fetch(URL + '/api/lesson/' + lid,
+            {
+                credentials: 'include',
+                method:"DELETE",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    createLesson(courseId, moduleId, lesson) {
-        let lessons = this.findAllLessons(courseId, moduleId)
-        lessons.push(lesson);
-        let module = {...ModuleService.findModuleById(courseId, moduleId)};
-        module.lessons = lessons;
-        moduleService.updateModule(courseId, module);
+    static createLesson(cid,mid,lesson) {
+        return fetch(URL + '/api/module/'+ mid + '/lesson',
+            {
+                credentials: 'include',
+                method:"POST",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify(lesson)
+            });
     }
 }

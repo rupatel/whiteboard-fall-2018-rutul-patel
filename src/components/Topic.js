@@ -8,13 +8,14 @@ import WidgetReducer from "../reducers/WidgetReducer";
 
 const store = createStore(WidgetReducer);
 
-const Topic = ({updateTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics,widgets,
+const Topic = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,selectTopic,topics,widgets,
                    courseId,selectedModule,selectedLesson}) => {
 
     return (
         <div>
             <TopicPills
                 updateTopic = {updateTopic}
+                saveTopic = {saveTopic}
                 deleteTopic = {deleteTopic}
                 addTopic = {addTopic}
                 selectedTopic = {selectedTopic}

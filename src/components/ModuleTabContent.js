@@ -1,7 +1,7 @@
 import React from 'react';
 import Topic from "./Topic";
 
-const ModuleTabContent = ({updateTopic,deleteTopic,addTopic,selectedTopic,
+const ModuleTabContent = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,
                           selectTopic,topics,widgets,courseId,
                               selectedModule,selectedLesson}) => {
     return (
@@ -10,6 +10,7 @@ const ModuleTabContent = ({updateTopic,deleteTopic,addTopic,selectedTopic,
                  aria-labelledby="v-pills-module1-tab">
                 <Topic
                     updateTopic = {updateTopic}
+                    saveTopic = {saveTopic}
                     deleteTopic = {deleteTopic}
                     addTopic = {addTopic}
                     selectedTopic = {selectedTopic}
