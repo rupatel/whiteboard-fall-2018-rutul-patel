@@ -1,21 +1,13 @@
 import React from 'react';
 import CourseService from "../services/CourseService";
-import CourseTable from "../components/CourseTable";
-import CourseGrid from "../components/CourseGrid";
 import {Router,Route,Switch,Redirect} from 'react-router-dom'
 import CourseEditor from "./CourseEditor";
-import ModuleService from "../services/ModuleService";
-import {history} from '../helpers/history';
-import {connect} from 'react-redux';
-import {login, logout} from "../actions/UserActions";
-import UserService from "../services/UserService";
 import {CourseGridContainer} from "./CourseGridContainer";
 import {CourseTableContainer} from "./CourseTableContainer";
 export default class WhiteBoard extends React.Component
 {
     constructor(props){
         super(props);
-        this.courseService = new CourseService();
         let courses = [];
         CourseService.findAllCourses().
             then(res => res.json()).then(user=> {
@@ -30,7 +22,7 @@ export default class WhiteBoard extends React.Component
     }
 
     addCourse = c => {
-        this.courseService.createCourse(c)
+        CourseService.createCourse(c)
             .then(res=>res.json()).then(c=>{
             this.setState(state => {
                 let newState = {...state}
@@ -43,17 +35,32 @@ export default class WhiteBoard extends React.Component
     }
 
     deleteCourse = c => {
-        this.courseService.deleteCourse(c.id)
-        this.setState({
-            courses: this.courseService.findAllCourses()
-        })
+        CourseService.deleteCourse(c.id)
+            .then(res=>{
+            this.setState(state => {
+                let newState = {...state}
+                let oldCourses = [... state.courses]
+                newState.courses= oldCourses.filter(course => course.id != c.id);
+                return newState;
+            })
+        });
     }
 
     updateCourse = courseId => {
-        this.courseService.updateCourse(courseId)
-        let newState = {...this.state}
-        newState.courses = this.courseService.findAllCourses();
-        this.setState(newState);
+        CourseService.updateCourse(courseId)
+            .then(res=>res.json()).then(c=>{
+            this.setState(state => {
+                let newState = {...state}
+                let oldCourses = [... state.courses]
+                newState.courses= oldCourses.map(course => {
+                    if(course.id != c.id)
+                        return course;
+                    else
+                        return c;
+                });
+                return newState;
+            })
+        });
     }
 
 
@@ -72,7 +79,7 @@ export default class WhiteBoard extends React.Component
                     render={(props) =>
                         <CourseEditor
                             {...props}
-                            findCourseById = {this.courseService.findCourseById}
+                            findCourseById = {CourseService.findCourseById}
                             updateCourse = {this.updateCourse}
                             />}
                     path="/course/:courseId/edit"/>

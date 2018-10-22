@@ -194,23 +194,37 @@ export default class CourseService {
             });
     }
 
-    findCourseById(id) {
-        return courses.filter(course => course.id == id)[0];
+    static findCourseById(id) {
+        return fetch(URL + '/api/course/' + id,
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    updateCourse(id, course) {
-        courses = courses.map(c => {
-            if (c.id == id) {
-                return course
-            }
-            else return c;
-        });
+    static updateCourse(id) {
+        return fetch(URL + '/api/course/' + id,
+            {
+                credentials: 'include',
+                method:"PUT",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    deleteCourse(id) {
-        courses = courses.filter(c => {
-            return c.id != id;
-        });
+    static deleteCourse(id) {
+        return fetch(URL + '/api/course/' + id,
+            {
+                credentials: 'include',
+                method:"DELETE",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
     static createCourse(c) {

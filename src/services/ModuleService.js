@@ -3,17 +3,23 @@ import CourseService from "./CourseService";
 
 let courseService = new CourseService();
 export default class ModuleService {
-    findAllModules(courseId) {
-        let course = courseService.findCourseById(courseId);
-        return course.modules ? course.modules : [];
+    static findAllModules(courseId) {
+        return fetch(URL + '/api/profile',
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
-    findModuleById(courseId, moduleId) {
+    static findModuleById(courseId, moduleId) {
         let course = courseService.findCourseById(courseId);
         return course.modules.filter(m => m.id == moduleId)[0]
     }
 
-    deleteModule(courseId, moduleId) {
+    static deleteModule(courseId, moduleId) {
 
         let course = {... courseService.findCourseById(courseId)};
         let newModules = course.modules.filter(m => m.id != moduleId);
@@ -21,7 +27,7 @@ export default class ModuleService {
         courseService.updateCourse(courseId, course);
     }
 
-    updateModule(courseId, module) {
+    static updateModule(courseId, module) {
         let modules = this.findAllModules(courseId).map(m => {
             if (m.id == module.id) return module;
             else return m;
@@ -31,7 +37,7 @@ export default class ModuleService {
         courseService.updateCourse(courseId, course);
     }
 
-    createModule(courseId, module) {
+    static createModule(courseId, module) {
         let modules = this.findAllModules(courseId)
         modules.push(module);
         let course = {...courseService.findCourseById(courseId)};

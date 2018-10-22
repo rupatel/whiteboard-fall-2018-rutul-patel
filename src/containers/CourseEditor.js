@@ -39,31 +39,33 @@ class CourseEditor extends React.Component {
 
     componentDidMount() {
         let courseId = this.props.match.params.courseId;
-        const modules = this.moduleService.findAllModules(courseId);
-        let newState = {...this.state};
-        newState.modules = modules;
-        const course = this.courseService.findCourseById(courseId);
-        newState.courseTitle = course.title;
-        newState.selectedModule = modules.length == 0 ? '' : modules[0].id;
-        if (newState.selectedModule) {
-            let module = newState.modules.filter(m => {
-                return m.id == newState.selectedModule
-            })[0];
-            newState.selectedLesson = (module.lessons.length == 0) ? '' : module.lessons[0].id
-                module.lessons[0].id;
-        }
-        if (newState.selectedLesson) {
-            let module = newState.modules.filter(m => {
-                return m.id == newState.selectedModule
-            })[0];
-            let lesson = module.lessons.filter(l => {
-                return l.id == newState.selectedLesson
-            })[0];
+        CourseService.findCourseById(courseId)
+            .then(res => res.json()).then(course=> {
+            let newState = {...this.state};
+            newState.courseTitle = course.title;
+            this.setState(newState);
+        });
 
-            newState.selectedTopic = (lesson.topics || lesson.topics.length) == 0 ? '' :
-                lesson.topics[0].id;
-        }
-        this.setState(newState);
+        ModuleService.findAllModules(courseId)
+            .then(res => res.json()).then(mods=> {
+            let newState = {...this.state};
+            newState.modules = mods;
+            if(mods.length != 0)
+            {
+                newState.selectedModule = mods[0].id;
+                let lessons = newState.selectedModule.lessons;
+                if(lessons.length != 0)
+                {
+                    newState.selectedLesson = lessons[0];
+                    let topics =  newState.selectedLesson.topics;
+                    if(topics.length != 0)
+                    {
+                        newState.selectedTopic = topics[0];
+                    }
+                }
+            }
+            this.setState(newState);
+        });
     }
 
     //updating module state
