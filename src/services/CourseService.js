@@ -183,8 +183,15 @@ let courses = [
 
 
 export default class CourseService {
-    findAllCourses() {
-        return courses ? courses : [];
+    static findAllCourses() {
+        return fetch(URL + '/api/profile',
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
     findCourseById(id) {
@@ -206,7 +213,7 @@ export default class CourseService {
         });
     }
 
-    createCourse(c) {
+    static createCourse(c) {
         return fetch(URL + '/api/course',
             {
                 credentials: 'include',
