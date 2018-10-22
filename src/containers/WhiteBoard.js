@@ -10,7 +10,12 @@ export default class WhiteBoard extends React.Component
         super(props);
         let courses = [];
         CourseService.findAllCourses().
-            then(res => res.json()).then(user=> {
+            then(res =>{
+                if(!res)
+                    return {courses:[]}
+                else
+                    return res.json()})
+            .then(user=> {
                 courses = user.courses;
                 let newState = {...this.state};
                 newState.courses = courses;

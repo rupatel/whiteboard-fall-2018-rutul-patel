@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addModule, updateModule}) => {
+const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addModule, updateModule,saveModule}) => {
     let actionIconStyle = {
         color: 'white'
     }
@@ -50,13 +50,16 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
                                     onChange={(e) => {
                                         let module = modules.filter(m => m.id==mid)[0];
                                         module.title = e.currentTarget.value;
-                                        updateModule(module);
+                                        updateModule(module)
                                     }}
                                     className="p-0 form-control w-75 d-inline" value={module.title}
                                        style={{backgroundColor:'transparent',
                                                 border:0,
                                                 color:'white'}}
                                         onBlur = {(e) =>{
+                                            let module = modules.filter(m => m.id==mid)[0];
+                                            module.title = e.currentTarget.value;
+                                            saveModule(module);
                                             e.currentTarget.setAttribute('disabled','true');
                                         }}/>
 

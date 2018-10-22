@@ -16,6 +16,9 @@ class CourseEditor extends React.Component {
 
         this.state = {
             modules: [],
+            lessons:[],
+            topics:[],
+            widgets:[],
             selectedModule: '',
             selectedLesson: '',
             selectedTopic: '',
@@ -47,20 +50,21 @@ class CourseEditor extends React.Component {
         });
 
         ModuleService.findAllModules(courseId)
-            .then(res => res.json()).then(mods=> {
+            .then(res =>
+                res.json()).then(mods => {
             let newState = {...this.state};
             newState.modules = mods;
             if(mods.length != 0)
             {
                 newState.selectedModule = mods[0].id;
                 let lessons = newState.selectedModule.lessons;
-                if(lessons.length != 0)
+                if(lessons && lessons.length != 0)
                 {
-                    newState.selectedLesson = lessons[0];
+                    newState.selectedLesson = lessons[0].id;
                     let topics =  newState.selectedLesson.topics;
-                    if(topics.length != 0)
+                    if(topics && topics.length != 0)
                     {
-                        newState.selectedTopic = topics[0];
+                        newState.selectedTopic = topics[0].id;
                     }
                 }
             }
@@ -71,33 +75,69 @@ class CourseEditor extends React.Component {
     //updating module state
     addModule = (module) => {
         let courseId = this.props.match.params.courseId;
-        this.moduleService.createModule(courseId, module);
-        let newState = {...this.state}
-        newState['modules'] = this.moduleService.findAllModules(courseId);
-        let selectedModule = (!this.state.selectedModule ? module.id : this.state.selectedModule);
-        newState.selectedModule = selectedModule;
-        this.setState(newState);
+        ModuleService.createModule(courseId,module)
+            .then(res => res.json())
+            .then(module => {
+                this.setState(state => {
+                    let newState = {...state}
+                    let oldModules = [... state.modules]
+                    oldModules.push(module);
+                    newState.modules= oldModules;
+                    if(!newState.selectedModule)
+                        newState.selectedModule = module.id;
+                    return newState;
+                });
+            });
     }
 
     deleteModule = (moduleId) => {
         let courseId = this.props.match.params.courseId;
-        this.moduleService.deleteModule(courseId, moduleId);
-        let newState = {...this.state}
-        newState.modules = this.moduleService.findAllModules(courseId);
-        if (this.state.selectedModule == moduleId)
-        {
-            newState.selectedModule = '';
-            newState.selectedModule = newState.modules.length == 0 ? '' : newState.modules[0].id;
-        }
-        this.setState(newState);
+        ModuleService.deleteModule(courseId,moduleId)
+            .then(res => {
+                this.setState(state => {
+                    let newState = {...state}
+                    let oldModules = [... state.modules]
+                    newState.modules= oldModules.filter(module => module.id != moduleId);
+                    if (this.state.selectedModule == moduleId){
+                        newState.selectedModule = '';
+                        if(newState.modules.length != 0)
+                            newState.selectedModule = newState.modules[0].id;
+                    }
+                    return newState;
+                })
+            });
+    }
+    updateModule = (mod) => {
+        this.setState(state => {
+            let newState = {...state}
+            let oldModules = [... state.modules]
+            newState.modules= oldModules.map(m => {
+                if(m.id != mod.id)
+                    return m;
+                else
+                    return mod;
+            });
+            return newState;
+        });
     }
 
-    updateModule = (module) => {
+    saveModule = (module) => {
         let courseId = this.props.match.params.courseId;
-        this.moduleService.updateModule(courseId, module);
-        let newState = {...this.state}
-        newState.modules = this.moduleService.findAllModules(courseId);
-        this.setState(newState);
+        ModuleService.updateModule(courseId,module)
+            .then(res => res.json())
+            .then(mod => {
+                this.setState(state => {
+                    let newState = {...state}
+                    let oldModules = [... state.modules]
+                    newState.modules= oldModules.map(m => {
+                        if(m.id != mod.id)
+                            return m;
+                        else
+                            return mod;
+                    });
+                    return newState;
+                });
+            });
     }
 
     selectModule = (moduleId) => {
@@ -234,6 +274,7 @@ class CourseEditor extends React.Component {
                     addModule={this.addModule}
                     modules={this.state.modules}
                     updateModule={this.updateModule}
+                    saveModule={this.saveModule}
                     selectedModule={this.state.selectedModule}
                     selectedLesson = {this.state.selectedLesson}
                     selectModule={this.selectModule}

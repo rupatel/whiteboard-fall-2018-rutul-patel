@@ -5,7 +5,7 @@ import './Module.css';
 
 
 const Module = ({
-                    deleteModule, addModule, modules, updateModule, selectedModule, selectModule,
+                    deleteModule, addModule, modules, updateModule,saveModule, selectedModule, selectModule,
                     selectedLesson,
                     updateTopic, deleteTopic, addTopic, selectedTopic,selectTopic,topics, widgets,courseId
                 }) => {
@@ -20,6 +20,7 @@ const Module = ({
                         deleteModule={deleteModule}
                         addModule={addModule}
                         updateModule={updateModule}
+                        saveModule = {saveModule}
                     />
                 </div>
                 <div className="col-9 offset-3">

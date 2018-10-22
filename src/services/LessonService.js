@@ -5,7 +5,7 @@ let moduleService = new ModuleService();
 
 export default class LessonService {
     findAllLessons(courseId, moduleId) {
-        let module = moduleService.findModuleById(courseId, moduleId);
+        let module = ModuleService.findModuleById(courseId, moduleId);
         return module.lessons ? module.lessons : [];
     }
 
@@ -15,7 +15,7 @@ export default class LessonService {
     }
 
     deleteLesson(courseId, moduleId, lessonId) {
-        let module = {... moduleService.findModuleById(courseId, moduleId)};
+        let module = {... ModuleService.findModuleById(courseId, moduleId)};
         let newLessons = module.lessons.filter(l => l.id != lessonId);
         module.lessons = newLessons;
         moduleService.updateModule(courseId, module);
@@ -26,7 +26,7 @@ export default class LessonService {
             if (l.id == lesson.id) return lesson;
             else return l;
         });
-        let module = {...moduleService.findModuleById(courseId, moduleId)};
+        let module = {...ModuleService.findModuleById(courseId, moduleId)};
         module.lessons = lessons
         moduleService.updateModule(courseId, module);
     }
@@ -34,7 +34,7 @@ export default class LessonService {
     createLesson(courseId, moduleId, lesson) {
         let lessons = this.findAllLessons(courseId, moduleId)
         lessons.push(lesson);
-        let module = {...moduleService.findModuleById(courseId, moduleId)};
+        let module = {...ModuleService.findModuleById(courseId, moduleId)};
         module.lessons = lessons;
         moduleService.updateModule(courseId, module);
     }

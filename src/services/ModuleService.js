@@ -1,10 +1,9 @@
 import React from 'react';
-import CourseService from "./CourseService";
+const URL = 'http://localhost:8080';
 
-let courseService = new CourseService();
 export default class ModuleService {
     static findAllModules(courseId) {
-        return fetch(URL + '/api/profile',
+        return fetch(URL + '/api/course/'+courseId+'/module',
             {
                 credentials: 'include',
                 method:"GET",
@@ -15,33 +14,48 @@ export default class ModuleService {
     }
 
     static findModuleById(courseId, moduleId) {
-        let course = courseService.findCourseById(courseId);
-        return course.modules.filter(m => m.id == moduleId)[0]
+        return fetch(URL + '/api/module/' + moduleId,
+            {
+                credentials: 'include',
+                method:"GET",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
     static deleteModule(courseId, moduleId) {
-
-        let course = {... courseService.findCourseById(courseId)};
-        let newModules = course.modules.filter(m => m.id != moduleId);
-        course.modules = newModules;
-        courseService.updateCourse(courseId, course);
+        return fetch(URL + '/api/module/' + moduleId,
+            {
+                credentials: 'include',
+                method:"DELETE",
+                headers:{
+                    "Content-Type":'application/json'
+                }
+            });
     }
 
     static updateModule(courseId, module) {
-        let modules = this.findAllModules(courseId).map(m => {
-            if (m.id == module.id) return module;
-            else return m;
-        });
-        let course = {...courseService.findCourseById(courseId)};
-        course.modules = modules;
-        courseService.updateCourse(courseId, course);
+        return fetch(URL + '/api/module/' + module.id,
+            {
+                credentials: 'include',
+                method:"PUT",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body:JSON.stringify(module)
+            });
     }
 
     static createModule(courseId, module) {
-        let modules = this.findAllModules(courseId)
-        modules.push(module);
-        let course = {...courseService.findCourseById(courseId)};
-        course.modules = modules;
-        courseService.updateCourse(courseId, course);
+        return fetch(URL + '/api/course/'+courseId+'/module',
+            {
+                credentials: 'include',
+                method:"POST",
+                headers:{
+                    "Content-Type":'application/json'
+                },
+                body: JSON.stringify(module)
+            });
     }
 }
