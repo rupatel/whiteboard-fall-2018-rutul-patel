@@ -1,11 +1,10 @@
-import {addWidget, deleteWidget, findAllWidgets,
-    findAllWidgetsForTopic, updateWidget,findWidget,moveWidgetDown,moveWidgetUp
+import {addWidget, deleteWidget,
+    findAllWidgetsForTopic, updateWidget,moveWidgetDown,moveWidgetUp
 ,previewModeToggle} from "../actions/WidgetAction";
 import {connect} from 'react-redux';
 import WidgetList from "../components/WidgetList";
 import WidgetService from "../services/WidgetService";
 
-let widgetService = new WidgetService();
 const mapStateToProps = (state,props) => {
     return {
         widgets: state.widgets,
@@ -34,14 +33,17 @@ const mapDispatchToProps = (dispatch,props) => {
         onWidgetUpdate: (widget) => {
             return dispatch(updateWidget(widget));
         },
-        findWidget:(widgetId) => {
-            return dispatch(findWidget(courseId,moduleId,lessonId, topicId, widgetId));
-        },
         findAllWidgetsForTopic : () =>{
-            return dispatch(findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId));
-        },
-        findAllWidgets: () => {
-            return dispatch(findAllWidgets(courseId,moduleId,lessonId));
+            if(!courseId || !moduleId || !lessonId || !topicId) return;
+            WidgetService.findAllWidgets(courseId,moduleId,lessonId,topicId)
+                .then(res =>
+                {if(res.status == 200)
+                    return res.json()
+                else
+                    return []})
+                .then(widgets => {
+                    dispatch(findAllWidgetsForTopic(widgets));
+                });
         },
         onWidgetMoveUp:(index) => {
             return dispatch(moveWidgetUp(index));
@@ -49,12 +51,17 @@ const mapDispatchToProps = (dispatch,props) => {
         onWidgetMoveDown:(index) => {
             return dispatch(moveWidgetDown(index));
         },
-        onSaveWidgetsForTopic: widgetService.saveWidgets,
-
+        onSaveWidgetsForTopic: (courseId, moduleId, lessonId, topicId, widgets) => {
+            WidgetService.saveWidgets(courseId, moduleId, lessonId, topicId, widgets)
+                .then(res => res.json())
+                .then(widgets => {
+                    dispatch(findAllWidgetsForTopic(widgets));
+                })
+        },
         onPreviewModeToggle: () => {
             return dispatch(previewModeToggle());
         }
     }
 }
 
-export const WidgetListContainer = connect(mapStateToProps,mapDispatchToProps)(WidgetList)
+export const WidgetListContainer = connect(mapStateToProps,mapDispatchToProps)(WidgetList);

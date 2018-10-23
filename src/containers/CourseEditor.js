@@ -325,7 +325,8 @@ class CourseEditor extends React.Component {
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
         let lessonId = this.state.selectedLesson;
-        WidgetService.findAllWidgetsForTopic(courseId.moduleId,lessonId,topicId)
+        if(!courseId || !moduleId || !lessonId || !topicId) return;
+        WidgetService.findAllWidgets(courseId.moduleId,lessonId,topicId)
             .then(res => res.json())
             .then(widgets => {
                 let newState = {...this.state};

@@ -78,7 +78,7 @@ const TopicPills = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,se
                 </ul>
             </div>
             <div className="col-4">
-                <input defaultValue='New Lesson'
+                <input defaultValue='New Topic'
                        ref={selectDomElement => {
                            topicTitleElem = selectDomElement
                        }}

@@ -2,27 +2,22 @@ const URL = 'http://localhost:8080';
 
 export default class UserService {
 
-    static findAllUser() {
 
-    }
-
-        static login(username,password,role) {
-
+    static login(username, password, role) {
         return fetch(
             URL + '/api/login',
             {
-                method:"POST",
+                method: "POST",
                 credentials: 'include',
-                headers:{
-                    "Content-Type":'application/json'
+                headers: {
+                    "Content-Type": 'application/json'
                 },
                 body: JSON.stringify({
                     username: username,
                     password: password,
-                    role:role
+                    role: role
                 })
             });
-
     }
 
 
@@ -30,16 +25,12 @@ export default class UserService {
         return fetch(
             URL + '/api/logout',
             {
-                method:"POST",
+                method: "POST",
                 credentials: 'include',
-                headers:{
-                    "Content-Type":'application/json'
+                headers: {
+                    "Content-Type": 'application/json'
                 }
             });
-    }
-
-    static findUserById(id) {
-
     }
 
     static register(user) {
@@ -47,21 +38,21 @@ export default class UserService {
             URL + '/api/register',
             {
                 credentials: 'include',
-                method:"POST",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
                 },
                 body: JSON.stringify(user)
             });
     }
 
-    static updateProfile(user){
+    static updateProfile(user) {
         return fetch(URL + '/api/profile',
             {
                 credentials: 'include',
-                method:"PUT",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
                 },
                 body: JSON.stringify(user)
             });

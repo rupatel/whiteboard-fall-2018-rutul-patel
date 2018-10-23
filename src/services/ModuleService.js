@@ -1,14 +1,15 @@
 import React from 'react';
+
 const URL = 'http://localhost:8080';
 
 export default class ModuleService {
     static findAllModules(courseId) {
-        return fetch(URL + '/api/course/'+courseId+'/module',
+        return fetch(URL + '/api/course/' + courseId + '/module',
             {
                 credentials: 'include',
-                method:"GET",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
                 }
             });
     }
@@ -17,9 +18,9 @@ export default class ModuleService {
         return fetch(URL + '/api/module/' + moduleId,
             {
                 credentials: 'include',
-                method:"GET",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
                 }
             });
     }
@@ -28,9 +29,9 @@ export default class ModuleService {
         return fetch(URL + '/api/module/' + moduleId,
             {
                 credentials: 'include',
-                method:"DELETE",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
                 }
             });
     }
@@ -39,21 +40,21 @@ export default class ModuleService {
         return fetch(URL + '/api/module/' + module.id,
             {
                 credentials: 'include',
-                method:"PUT",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
                 },
-                body:JSON.stringify(module)
+                body: JSON.stringify(module)
             });
     }
 
     static createModule(courseId, module) {
-        return fetch(URL + '/api/course/'+courseId+'/module',
+        return fetch(URL + '/api/course/' + courseId + '/module',
             {
                 credentials: 'include',
-                method:"POST",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
                 },
                 body: JSON.stringify(module)
             });

@@ -34,30 +34,13 @@ export function updateWidget(widget) {
     }
 }
 
-export function findWidget(courseId,moduleId,lessonId,topicId,widgetId) {
-    let widget = WidgetService.findWidget(courseId,moduleId,lessonId,topicId,widgetId);
-    let widgets = widget ? [widget] : [];
-    return {
-        type: FIND_WIDGET,
-        widgets:widgetId
-    }
-}
-
-export function findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId) {
-    let widgets = WidgetService.findAllWidgetsForTopic(courseId,moduleId,lessonId,topicId);
-    return {
+export function findAllWidgetsForTopic(widgets) {
+   return {
         type: FIND_ALL_WIDGETS_FOR_TOPIC,
         widgets : widgets
     }
 }
 
-export function findAllWidgets(courseId,moduleId,lessonId) {
-    let widgets = WidgetService.findAllWidgets(courseId,moduleId,lessonId);
-    return {
-        type: FIND_ALL_WIDGETS,
-        widgets:widgets
-    }
-}
 
 export function moveWidgetUp(curIndex) {
    return {

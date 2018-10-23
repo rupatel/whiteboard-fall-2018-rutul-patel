@@ -1,54 +1,75 @@
-import TopicService from "./TopicService";
+import React from 'react';
+import LessonService from "./LessonService";
 
-let topicService = new TopicService();
+const URL = 'http://localhost:8080';
+
 export default class WidgetService {
-    static createWidget(courseId, moduleId, lessonId, topicId, widget) {
-        let widgets = this.findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId);
-        widgets.push(widget);
-        let topic = {...TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
-        topic.widgets = widgets;
-        TopicService.updateTopic(courseId, moduleId, lessonId, topic);
+    static findAllWidgets(cid, mid, lid, tid) {
+        return fetch(URL + '/api/topic/' + tid + '/widget',
+            {
+                credentials: 'include',
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
     }
 
-    static findAllWidgetsForTopic(courseId, moduleId, lessonId, topicId) {
-        let topic = {...TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
-        let widgets = topic.widgets ? topic.widgets : [];
-        return [... widgets];
+    static findWidgetById(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/widget/' + wid,
+            {
+                credentials: 'include',
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
     }
 
-    static findAllWidgets(courseId, moduleId, lessonId) {
-        let topics = TopicService.findAllTopics(courseId, moduleId, lessonId);
-        let widgets = topics.flatMap(t => {
-            if(t.widgets) return t.widgets
-            else return [];
-        });
-        return widgets;
+    static updateWidget(cid, mid, lid, tid, widget) {
+        return fetch(URL + '/api/widget/' + widget.id,
+            {
+                credentials: 'include',
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(widget)
+            });
     }
 
-    static findWidgetById(courseId, moduleId, lessonId, topicId, widgetId) {
-        let widgets = this.findAllWidgets(courseId, moduleId, lessonId, topicId);
-        return widgets.filter(w => w.id == widgetId)[0]
+    static deleteWidget(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/topic/' + wid,
+            {
+                credentials: 'include',
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
     }
 
-    static updateWidget(courseId, moduleId, lessonId, topicId, widget) {
-        let widgets = this.findAllWidgets(courseId, moduleId, lessonId, topicId).map(w => {
-            if (w.id == widget.id) return widget;
-            else return w;
-        });
-        let topic = {...TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
-        topic.wdgets = widgets
-        TopicService.updateTopic(courseId, moduleId, lessonId, topic);
-    }
-
-    static deleteWidget(courseId, moduleId, lessonId, topicId, widgetId) {
-        let topic = {... TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
-        topic.widgets = topic.widgets.filter(w => w.id != widgetId);
-        TopicService.updateTopic(courseId, moduleId, lessonId, topic);
+    static createWidget(cid, mid, lid, topicId,widget) {
+        return fetch(URL + '/api/topic/' + topicId + '/widget',
+            {
+                credentials: 'include',
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(widget)
+            });
     }
 
     static  saveWidgets(courseId, moduleId, lessonId, topicId, widgets){
-        let topic = {... TopicService.findTopicById(courseId, moduleId, lessonId, topicId)};
-        topic.widgets = widgets;
-        topicService.updateTopic(courseId, moduleId, lessonId, topic);
+        return fetch(URL + '/api/topic/' + topicId + '/widgets',
+            {
+                credentials: 'include',
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
+                },
+                body: JSON.stringify(widgets)
+            });
     }
 }

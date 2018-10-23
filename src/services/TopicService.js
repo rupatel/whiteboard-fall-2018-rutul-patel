@@ -4,58 +4,58 @@ import LessonService from "./LessonService";
 const URL = 'http://localhost:8080';
 
 export default class TopicService {
-    static findAllTopics(cid,mid,lid) {
-        return fetch(URL + '/api/lesson/'+ lid + '/topic',
+    static findAllTopics(cid, mid, lid) {
+        return fetch(URL + '/api/lesson/' + lid + '/topic',
             {
                 credentials: 'include',
-                method:"GET",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
                 }
             });
     }
 
-    static findTopicById(cid,mid,lid,tid) {
+    static findTopicById(cid, mid, lid, tid) {
         return fetch(URL + '/api/topic/' + tid,
             {
                 credentials: 'include',
-                method:"GET",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
                 }
             });
     }
 
-    static updateTopic(cid,mid,lid,topic) {
+    static updateTopic(cid, mid, lid, topic) {
         return fetch(URL + '/api/topic/' + topic.id,
             {
                 credentials: 'include',
-                method:"PUT",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "PUT",
+                headers: {
+                    "Content-Type": 'application/json'
                 },
-                body:JSON.stringify(topic)
+                body: JSON.stringify(topic)
             });
     }
 
-    static deleteTopic(cid,mid,lid,tid) {
+    static deleteTopic(cid, mid, lid, tid) {
         return fetch(URL + '/api/topic/' + tid,
             {
                 credentials: 'include',
-                method:"DELETE",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "DELETE",
+                headers: {
+                    "Content-Type": 'application/json'
                 }
             });
     }
 
-    static createTopic(cid,mid,lid,topic) {
-        return fetch(URL + '/api/lesson/'+ lid + '/topic',
+    static createTopic(cid, mid, lid, topic) {
+        return fetch(URL + '/api/lesson/' + lid + '/topic',
             {
                 credentials: 'include',
-                method:"POST",
-                headers:{
-                    "Content-Type":'application/json'
+                method: "POST",
+                headers: {
+                    "Content-Type": 'application/json'
                 },
                 body: JSON.stringify(topic)
             });
