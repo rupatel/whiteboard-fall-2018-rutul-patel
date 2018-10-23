@@ -86,7 +86,6 @@ const TopicPills = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,se
                 <Link
                     to="#" onClick={() => {
                     addTopic({
-                        id: (new Date()).getTime() + '',
                         title: topicTitleElem.value,
                         widgets: []
                     });

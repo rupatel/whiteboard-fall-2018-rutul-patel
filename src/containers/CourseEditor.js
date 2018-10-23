@@ -58,18 +58,18 @@ class CourseEditor extends React.Component {
             if(mods.length != 0)
             {
                 newState.selectedModule = mods[0].id;
-                let lessons = newState.selectedModule.lessons;
+                let lessons = mods[0].lessons;
                 if(lessons && lessons.length != 0)
                 {
-                    newState.lessons = [... lessons];
+                    newState.lessons = lessons;
                     newState.selectedLesson = lessons[0].id;
-                    let topics =  newState.selectedLesson.topics;
+                    let topics =  lessons[0].topics;
                     if(topics && topics.length != 0)
                     {
-                        newState.topics = [...topics]
+                        newState.topics = [...topics];
                         newState.selectedTopic = topics[0].id;
-                        if(newState.selectedTopic && newState.selectedTopic.widgets)
-                            newState.widgets = newState.selectedTopic.widgets;
+                        if(topics[0].widgets)
+                            newState.widgets = topics[0].widgets;
                     }
                 }
             }
@@ -82,14 +82,14 @@ class CourseEditor extends React.Component {
         let courseId = this.props.match.params.courseId;
         ModuleService.createModule(courseId,module)
             .then(res => res.json())
-            .then(module => {
+            .then(m => {
                 this.setState(state => {
                     let newState = {...state}
                     let oldModules = [... state.modules]
-                    oldModules.push(module);
+                    oldModules.push(m);
                     newState.modules= oldModules;
                     if(!newState.selectedModule)
-                        newState.selectedModule = module.id;
+                        newState.selectedModule = m.id;
                     return newState;
                 });
             });
@@ -147,9 +147,9 @@ class CourseEditor extends React.Component {
                 if(newState.lessons && newState.lessons.length !=0)
                 {
                     newState.selectedLesson = newState.lessons[0].id;
-                    if(newState.selectedLesson.topics && newState.selectedLesson.topics.length >0)
+                    if(newState.lessons[0].topics && newState.lessons[0].length >0)
                     {
-                        newState.topics = newState.selectedLesson.topics;
+                        newState.topics = newState.lessons[0].topics;
                         newState.selectedTopic = newState.topics[0].id;
                         if(newState.topics && newState.topics.length !=0)
                         {
@@ -180,14 +180,14 @@ class CourseEditor extends React.Component {
         let moduleId = this.state.selectedModule;
         LessonService.createLesson(courseId,moduleId,lesson)
             .then(res => res.json())
-            .then(module => {
+            .then(l => {
                 this.setState(state => {
                     let newState = {...state}
                     let oldLessons = [... state.lessons]
-                    oldLessons.push(lesson);
+                    oldLessons.push(l);
                     newState.lessons= oldLessons;
                     if(!newState.selectedLesson)
-                        newState.selectedLesson = lesson.id;
+                        newState.selectedLesson = l.id;
                     return newState;
                 });
             });
@@ -263,14 +263,14 @@ class CourseEditor extends React.Component {
 
         TopicService.createTopic(courseId,moduleId,lessonId,topic)
             .then(res => res.json())
-            .then(topic => {
+            .then(t => {
                 this.setState(state => {
                     let newState = {...state}
-                    let oldTopics = [... state.modules]
-                    oldTopics.push(topic);
+                    let oldTopics = [... state.topics]
+                    oldTopics.push(t);
                     newState.topics= oldTopics;
                     if(!newState.selectedTopic)
-                        newState.selectedTopic = topic.id;
+                        newState.selectedTopic = t.id;
                     return newState;
                 });
             });
@@ -284,8 +284,8 @@ class CourseEditor extends React.Component {
             .then(res => {
                 this.setState(state => {
                     let newState = {...state}
-                    let oldTopics = [... state.modules]
-                    newState.modules= oldTopics.filter(topic => topic.id != topicId);
+                    let oldTopics = [... state.topics]
+                    newState.topics= oldTopics.filter(topic => topic.id != topicId);
                     if (this.state.selectedTopic == topicId){
                         newState.selectedModule = '';
                         if(newState.topics.length != 0)
