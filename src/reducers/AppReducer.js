@@ -3,7 +3,7 @@ import {
     DELETE_WIDGET, FIND_ALL_WIDGETS,
     FIND_ALL_WIDGETS_FOR_TOPIC,
     FIND_WIDGET, MOVE_WIDGET_DOWN, MOVE_WIDGET_UP,
-    UPDATE_WIDGET,PREVIEW_MODE_TOGGLE
+    UPDATE_WIDGET, PREVIEW_MODE_TOGGLE, DELETE_ALL
 } from "../actions/WidgetAction";
 import WidgetReducer from "./WidgetReducer";
 import {
@@ -42,6 +42,9 @@ const AppReducer = (state=initialState, action) => {
             return WidgetReducer(state,action);
         }
         case DELETE_WIDGET: {
+            return WidgetReducer(state,action);
+        }
+        case DELETE_ALL: {
             return WidgetReducer(state,action);
         }
         case UPDATE_WIDGET: {

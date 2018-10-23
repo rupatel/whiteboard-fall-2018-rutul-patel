@@ -1,6 +1,8 @@
-import {addWidget, deleteWidget,
-    findAllWidgetsForTopic, updateWidget,moveWidgetDown,moveWidgetUp
-,previewModeToggle} from "../actions/WidgetAction";
+import {
+    addWidget, deleteWidget,
+    findAllWidgetsForTopic, updateWidget, moveWidgetDown, moveWidgetUp
+    , previewModeToggle, deleteAll
+} from "../actions/WidgetAction";
 import {connect} from 'react-redux';
 import WidgetList from "../components/WidgetList";
 import WidgetService from "../services/WidgetService";
@@ -29,6 +31,9 @@ const mapDispatchToProps = (dispatch,props) => {
         },
         onWidgetDelete: (widgetId) => {
             return dispatch(deleteWidget(widgetId));
+        },
+        onDeleteAll: () => {
+            return dispatch(deleteAll());
         },
         onWidgetUpdate: (widget) => {
             return dispatch(updateWidget(widget));

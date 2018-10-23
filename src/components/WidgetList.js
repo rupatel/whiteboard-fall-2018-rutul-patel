@@ -14,11 +14,13 @@ class WidgetList extends React.Component
         let moduleId = prevProps.moduleId;
         let lessonId = prevProps.lessonId;
         let topicId = prevProps.topicId;
-
         if(courseId != this.props.courseId ||
             moduleId != this.props.moduleId ||
             lessonId != this.props.lessonId ||
             topicId != this.props.topicId) {
+            if((!this.props.courseId || !this.props.moduleId ||  !this.props.lessonId || !this.props.topicId))
+                this.props.onDeleteAll();
+            else
             this.props.findAllWidgetsForTopic(this.props.courseId,
                 this.props.moduleId,
                 this.props.lessonId,

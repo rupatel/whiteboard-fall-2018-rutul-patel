@@ -6,6 +6,7 @@ export const CREATE_WIDGET = 'CREATE_WIDGET';
 export const MOVE_WIDGET_UP = 'MOVE_WIDGET_UP'
 export const MOVE_WIDGET_DOWN = 'MOVE_WIDGET_DOWN';
 export const DELETE_WIDGET = 'DELETE_WIDGET';
+export const DELETE_ALL = 'DELETE_ALL';
 export const UPDATE_WIDGET = 'UPDATE_WIDGET';
 export const FIND_WIDGET = 'FIND_WIDGET';
 export const FIND_ALL_WIDGETS_FOR_TOPIC = 'FIND_ALL_WIDGETS_FOR_TOPIC';
@@ -24,6 +25,12 @@ export function deleteWidget(widgetId) {
     return {
         type: DELETE_WIDGET,
         widgetId:widgetId
+    }
+}
+
+export function deleteAll() {
+    return {
+        type: DELETE_ALL
     }
 }
 

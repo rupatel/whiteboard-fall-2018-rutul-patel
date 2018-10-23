@@ -3,7 +3,7 @@ import {
     DELETE_WIDGET, FIND_ALL_WIDGETS,
     FIND_ALL_WIDGETS_FOR_TOPIC,
     FIND_WIDGET, MOVE_WIDGET_DOWN, MOVE_WIDGET_UP,
-    UPDATE_WIDGET,PREVIEW_MODE_TOGGLE
+    UPDATE_WIDGET, PREVIEW_MODE_TOGGLE, DELETE_ALL
 } from "../actions/WidgetAction";
 
 const initialState = {
@@ -21,6 +21,10 @@ const WidgetReducer = (state=initialState, action) => {
         }
         case DELETE_WIDGET: {
             newState.widgets = newState.widgets.filter(w=> (w.id!=action.widgetId))
+            return newState;
+        }
+        case DELETE_ALL: {
+            newState.widgets = [];
             return newState;
         }
         case UPDATE_WIDGET: {
