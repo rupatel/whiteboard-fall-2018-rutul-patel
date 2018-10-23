@@ -54,8 +54,8 @@ const TopicPills = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,se
 
                                             <Link className="float-right" to="#"
                                                   onClick={(e) => {
-                                                      e.stopPropagation();
                                                       deleteTopic(topic.id);
+                                                      e.stopPropagation();
                                                   }}>
                                                 <i className="fas fa-times" style={actionIconStyle}></i>
                                             </Link>

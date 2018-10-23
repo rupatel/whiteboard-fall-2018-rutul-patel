@@ -18,8 +18,8 @@ const Register  = ({register,setUserName,setPassword,setVerifyPassword,setRole,s
                         <div className="col-sm-10">
                             <input className="form-control" id="username" placeholder="Alice"
                                    value={username}
-                            onChange={e=>{
-                                setUserName(e.currentTarget.value)}}/>
+                                   onChange={e=>{
+                                            setUserName(e.currentTarget.value)}}/>
                         </div>
                     </div>
 
@@ -28,7 +28,7 @@ const Register  = ({register,setUserName,setPassword,setVerifyPassword,setRole,s
                             <span className="mr-2">First Name</span>
                         </label>
                         <div className="col-sm-10">
-                            <input className="form-control" id="username"
+                            <input className="form-control" id="firstName"
                                    value={firstName} placeholder="Alice"
                                    onChange={e => {
                                        setFirstName(e.currentTarget.value)
@@ -40,7 +40,7 @@ const Register  = ({register,setUserName,setPassword,setVerifyPassword,setRole,s
                             <span className="mr-2">Last Name</span>
                         </label>
                         <div className="col-sm-10">
-                            <input className="form-control" id="username"
+                            <input className="form-control" id="lastname"
                                    value={lastName} placeholder="Alice"
                                    onChange={e => {
                                        setLastName(e.currentTarget.value)
@@ -143,19 +143,6 @@ const Register  = ({register,setUserName,setPassword,setVerifyPassword,setRole,s
                                 Sign Up
                                 <i className="fas fa-user-plus"></i>
                             </button>
-                        </div>
-                    </div>
-                    <div className="form-group row">
-                        <label className="col-sm-2 col-form-label"></label>
-                        <div className="col-sm-10">
-                            <div className="row">
-                                <div className="col-12">
-                                    <Link to="/" className="float-left">
-                                        Login
-                                        <i className="fas fa-sign-in-alt"></i>
-                                    </Link>
-                                </div>
-                            </div>
                         </div>
                     </div>
             </div>

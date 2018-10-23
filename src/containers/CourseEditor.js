@@ -18,8 +18,7 @@ class CourseEditor extends React.Component {
             selectedTopic: '',
             courseTitle: '',
             lessons:[],
-            topics:[],
-            widgets:[]
+            topics:[]
         };
         this.deleteModule = this.deleteModule.bind(this);
         this.addModule = this.addModule.bind(this);
@@ -68,8 +67,6 @@ class CourseEditor extends React.Component {
                     {
                         newState.topics = [...topics];
                         newState.selectedTopic = topics[0].id;
-                        if(topics[0].widgets)
-                            newState.widgets = topics[0].widgets;
                     }
                 }
             }
@@ -105,11 +102,16 @@ class CourseEditor extends React.Component {
                     newState.modules= oldModules.filter(module => module.id != moduleId);
                     if (this.state.selectedModule == moduleId){
                         newState.selectedModule = '';
+                        newState.topics = [];
+                        newState.lessons = [];
                         if(newState.modules.length != 0)
                             newState.selectedModule = newState.modules[0].id;
                     }
                     return newState;
                 })
+            }).then(res => {
+                if(this.state.selectedModule)
+                    this.selectModule(this.state.selectedModule);
             });
     }
     updateModule = (mod) => {
@@ -142,36 +144,19 @@ class CourseEditor extends React.Component {
             .then(res => res.json())
             .then(lessons => {
                 let newState = {...this.state};
-                newState.lessons = lessons;
                 newState.selectedModule = moduleId;
+                newState.selectedLesson = '';
+                newState.lessons = lessons;
+                newState.topics = [];
                 if(newState.lessons && newState.lessons.length !=0)
                 {
                     newState.selectedLesson = newState.lessons[0].id;
-                    if(newState.lessons[0].topics && newState.lessons[0].length >0)
-                    {
-                        newState.topics = newState.lessons[0].topics;
-                        newState.selectedTopic = newState.topics[0].id;
-                        if(newState.topics && newState.topics.length !=0)
-                        {
-
-                            let widgets = newState.topics[0].widgets;
-                            newState.widgets = widgets;
-
-                        }
-                    }
                 }
                 this.setState(newState);
-            })
-        let state = {...this.state};
-        state.selectedModule = moduleId;
-        let module = this.state.modules.filter(m => {
-            return m.id == moduleId
-        })[0];
-        let lesson = (!module.lessons || module.lessons.length == 0) ? '' : module.lessons[0];
-        state.selectedLesson = lesson ? lesson.id : '';
-        state.selectedTopic = lesson ? ((!lesson.topics || lesson.topics.length == 0)) ? '' :
-            lesson.topics[0].id : '';
-        this.setState(state);
+            }).then(()=>{
+                if(this.state.selectedLesson)
+                    this.selectLesson(this.state.selectedLesson)
+        })
     }
 
     // updating lesson state
@@ -204,11 +189,15 @@ class CourseEditor extends React.Component {
                     newState.lessons= oldLessons.filter(lesson => lesson.id != lessonId);
                     if (this.state.selectedLesson == lessonId){
                         newState.selectedLesson = '';
+                        newState.topics = [];
                         if(newState.lessons.length != 0)
                             newState.selectedLesson = newState.lessons[0].id;
                     }
                     return newState;
                 })
+            }).then(res => {
+                if(this.state.selectedLesson)
+                    this.selectLesson(this.state.selectedLesson);
             });
     }
     updateLesson = (lesson) => {
@@ -245,10 +234,10 @@ class CourseEditor extends React.Component {
                 let newState = {...this.state};
                 newState.topics = topics;
                 newState.selectedLesson = lessonId;
+                newState.selectedTopic = '';
                 if(newState.topics && newState.topics.length !=0)
                 {
                     newState.selectedTopic = newState.topics[0].id;
-                    newState.widgets = topics[0].widgets;
                 }
                 this.setState(newState);
             })
@@ -292,7 +281,7 @@ class CourseEditor extends React.Component {
                             newState.selectedTopic = newState.topics[0].id;
                     }
                     return newState;
-                })
+                });
             });
     }
     updateTopic = (topic) => {
@@ -326,14 +315,9 @@ class CourseEditor extends React.Component {
         let moduleId = this.state.selectedModule;
         let lessonId = this.state.selectedLesson;
         if(!courseId || !moduleId || !lessonId || !topicId) return;
-        WidgetService.findAllWidgets(courseId.moduleId,lessonId,topicId)
-            .then(res => res.json())
-            .then(widgets => {
-                let newState = {...this.state};
-                newState.widgets.selectedTopic = topicId;
-                newState.widgets = widgets;
-                this.setState(newState);
-            })
+        let newState = {...this.state};
+        newState.selectedTopic = topicId;
+        this.setState(newState);
     }
 
     render() {

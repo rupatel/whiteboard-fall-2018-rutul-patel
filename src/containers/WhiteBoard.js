@@ -16,7 +16,8 @@ export default class WhiteBoard extends React.Component
                 else
                     return res.json()})
             .then(user=> {
-                courses = user.courses;
+                if(user.courses)
+                    courses = user.courses;
                 let newState = {...this.state};
                 newState.courses = courses;
                 this.setState(newState);
