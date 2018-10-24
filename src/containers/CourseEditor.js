@@ -94,6 +94,7 @@ class CourseEditor extends React.Component {
 
     deleteModule = (moduleId) => {
         let courseId = this.props.match.params.courseId;
+        let getCurrentState = () => this.state;
         ModuleService.deleteModule(courseId,moduleId)
             .then(res => {
                 this.setState(state => {
@@ -102,6 +103,8 @@ class CourseEditor extends React.Component {
                     newState.modules= oldModules.filter(module => module.id != moduleId);
                     if (this.state.selectedModule == moduleId){
                         newState.selectedModule = '';
+                        newState.selectedLesson = '';
+                        newState.selectedTopic = '';
                         newState.topics = [];
                         newState.lessons = [];
                         if(newState.modules.length != 0)
@@ -110,8 +113,8 @@ class CourseEditor extends React.Component {
                     return newState;
                 })
             }).then(res => {
-                if(this.state.selectedModule)
-                    this.selectModule(this.state.selectedModule);
+                if(getCurrentState().selectedModule)
+                    this.selectModule(getCurrentState().selectedModule);
             });
     }
     updateModule = (mod) => {
@@ -181,6 +184,7 @@ class CourseEditor extends React.Component {
     deleteLesson = (lessonId) => {
         let courseId = this.props.match.params.courseId;
         let moduleId = this.state.selectedModule;
+        let getCurrentState = () => this.state;
         LessonService.deleteLesson(courseId,moduleId,lessonId)
             .then(res => {
                 this.setState(state => {
@@ -189,6 +193,7 @@ class CourseEditor extends React.Component {
                     newState.lessons= oldLessons.filter(lesson => lesson.id != lessonId);
                     if (this.state.selectedLesson == lessonId){
                         newState.selectedLesson = '';
+                        newState.selectedTopic = '';
                         newState.topics = [];
                         if(newState.lessons.length != 0)
                             newState.selectedLesson = newState.lessons[0].id;
@@ -196,8 +201,8 @@ class CourseEditor extends React.Component {
                     return newState;
                 })
             }).then(res => {
-                if(this.state.selectedLesson)
-                    this.selectLesson(this.state.selectedLesson);
+                if(getCurrentState().selectedLesson)
+                    this.selectLesson(getCurrentState().selectedLesson);
             });
     }
     updateLesson = (lesson) => {
@@ -276,7 +281,7 @@ class CourseEditor extends React.Component {
                     let oldTopics = [... state.topics]
                     newState.topics= oldTopics.filter(topic => topic.id != topicId);
                     if (this.state.selectedTopic == topicId){
-                        newState.selectedModule = '';
+                        newState.selectedTopic = '';
                         if(newState.topics.length != 0)
                             newState.selectedTopic = newState.topics[0].id;
                     }
