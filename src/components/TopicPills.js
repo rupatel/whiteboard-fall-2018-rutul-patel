@@ -5,7 +5,11 @@ const TopicPills = ({updateTopic,saveTopic,deleteTopic,addTopic,selectedTopic,se
     let actionIconStyle = {
         color: 'white'
     }
-
+    topics = topics.sort((t1, t2) => {
+        let idx1 = t1.id ? t1.id : -1;
+        let idx2 = t2.id ? t2.id : -1;
+        return (idx1 < idx2) ? -1 : (idx1 > idx2) ? 1 : 0;
+    });
     return (
         <div className="row w-100">
             <div className="col-8">

@@ -14,6 +14,11 @@ const LessonTabs = ({
         color: 'white'
     }
     let lessonTitleElem;
+    lessons = lessons.sort((l1, l2) => {
+        let idx1 = l1.id ? l1.id : -1;
+        let idx2 = l2.id ? l2.id : -1;
+        return (idx1 < idx2) ? -1 : (idx1 > idx2) ? 1 : 0;
+    });
     return (
         <nav className="navbar navbar-expand navbar-dark bg-dark fixed-top" style={navBarStyle}>
             <div className="container-fluid">

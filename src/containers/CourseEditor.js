@@ -149,6 +149,7 @@ class CourseEditor extends React.Component {
                 let newState = {...this.state};
                 newState.selectedModule = moduleId;
                 newState.selectedLesson = '';
+                newState.selectedTopic = '';
                 newState.lessons = lessons;
                 newState.topics = [];
                 if(newState.lessons && newState.lessons.length !=0)

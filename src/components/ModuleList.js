@@ -7,6 +7,11 @@ const ModuleList = ({modules, selectedModule, selectModule, deleteModule, addMod
     }
 
     let moduleTitleElem;
+    modules = modules.sort((m1, m2) => {
+        let idx1 = m1.id ? m1.id : -1;
+        let idx2 = m2.id ? m2.id : -1;
+        return (idx1 < idx2) ? -1 : (idx1 > idx2) ? 1 : 0;
+    });
     return (
         <div className="container">
             <div className="row nav flex-column nav-pills" id="v-pills-module-tab" role="tablist"
