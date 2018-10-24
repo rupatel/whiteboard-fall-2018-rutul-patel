@@ -58,6 +58,15 @@ const mapDispatchToProps = (dispatch,props) => {
         },
         setEmail:(email) => {
             return dispatch(setProfileEmail(email));
+        },
+        setProfile: () =>
+        {
+            UserService.getProfile()
+                .then(
+                    res => res.json())
+                .then(u => {
+                    dispatch(updateProfile(u));
+                })
         }
     }
 }

@@ -57,4 +57,15 @@ export default class UserService {
                 body: JSON.stringify(user)
             });
     }
+
+    static getProfile() {
+        return fetch(URL + '/api/profile',
+            {
+                credentials: 'include',
+                method: "GET",
+                headers: {
+                    "Content-Type": 'application/json'
+                }
+            });
+    }
 }
