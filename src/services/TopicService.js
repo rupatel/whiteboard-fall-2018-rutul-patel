@@ -1,7 +1,7 @@
 import React from 'react';
 import LessonService from "./LessonService";
 
-const URL = 'https://cs5610-fall-2018-java-server.herokuapp.com:8080';
+const URL = 'https://cs5610-fall-2018-java-server.herokuapp.com';
 
 export default class TopicService {
     static findAllTopics(cid, mid, lid) {
