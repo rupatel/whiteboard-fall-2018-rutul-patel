@@ -42,8 +42,9 @@ const Widget = ({widget,onWidgetMoveUp,onWidgetMoveDown,isUpDisabled,isDownDisab
                                 onChange={e=> {
                                     let w = {};
                                     w.type = e.currentTarget.value;
-                                    w.name = widget.name
-                                    w.id = widget.id
+                                    w.name = widget.name;
+                                    w.id = widget.id;
+                                    w.index = widget.index;
                                     updateWidget(w);
                                 }}
                                 className="mr-2 custom-select d-inline w-50 float-right"
