@@ -1,4 +1,4 @@
-const URL = 'http://localhost:8080';
+const URL = 'https://webdev-assignment-5.herokuapp.com';
 
 export default class UserService {
 
