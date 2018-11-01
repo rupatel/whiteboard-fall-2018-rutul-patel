@@ -1,11 +1,10 @@
 import React from 'react';
-import ModuleService from "./ModuleService";
 
 const URL = 'https://webdev-assignment-5.herokuapp.com';
 
-export default class LessonService {
-    static findAllLessons(cid, mid) {
-        return fetch(URL + '/api/module/' + mid + '/lesson',
+export default class ListWidgetService {
+    static findAllWidgets(cid, mid, lid, tid) {
+        return fetch(URL + '/api/topic/' + tid + '/list/widget',
             {
                 credentials: 'include',
                 method: "GET",
@@ -15,8 +14,8 @@ export default class LessonService {
             });
     }
 
-    static findLessonById(cid, mid, lid) {
-        return fetch(URL + '/api/lesson/' + lid,
+    static findWidgetById(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/list/widget/' + wid,
             {
                 credentials: 'include',
                 method: "GET",
@@ -26,20 +25,20 @@ export default class LessonService {
             });
     }
 
-    static updateLesson(cid, mid, lesson) {
-        return fetch(URL + '/api/lesson/' + lesson.id,
+    static updateWidget(cid, mid, lid, tid, widget) {
+        return fetch(URL + '/api/list/widget/' + widget.id,
             {
                 credentials: 'include',
                 method: "PUT",
                 headers: {
                     "Content-Type": 'application/json'
                 },
-                body: JSON.stringify(lesson)
+                body: JSON.stringify(widget)
             });
     }
 
-    static deleteLesson(cid, mid, lid) {
-        return fetch(URL + '/api/lesson/' + lid,
+    static deleteWidget(cid, mid, lid, tid, wid) {
+        return fetch(URL + '/api/list/widget/' + wid,
             {
                 credentials: 'include',
                 method: "DELETE",
@@ -49,15 +48,15 @@ export default class LessonService {
             });
     }
 
-    static createLesson(cid, mid, lesson) {
-        return fetch(URL + '/api/module/' + mid + '/lesson',
+    static createWidget(cid, mid, lid, topicId,widget) {
+        return fetch(URL + '/api/topic/' + topicId + '/list/widget',
             {
                 credentials: 'include',
                 method: "POST",
                 headers: {
                     "Content-Type": 'application/json'
                 },
-                body: JSON.stringify(lesson)
+                body: JSON.stringify(widget)
             });
     }
 }

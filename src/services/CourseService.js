@@ -1,6 +1,6 @@
 import React from 'react';
 
-const URL = 'https://cs5610-fall-2018-java-server.herokuapp.com';
+const URL = 'https://webdev-assignment-5.herokuapp.com';
 
 export default class CourseService {
     static findAllCourses() {
