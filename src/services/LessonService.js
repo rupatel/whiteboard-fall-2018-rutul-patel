@@ -1,7 +1,7 @@
 import React from 'react';
 import ModuleService from "./ModuleService";
 
-const URL = 'https://cs5610-fall-2018-java-server.herokuapp.com';
+const URL = 'https://a5-submission-java.herokuapp.com';
 
 export default class LessonService {
     static findAllLessons(cid, mid) {
